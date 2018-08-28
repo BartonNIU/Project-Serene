@@ -30,10 +30,11 @@ if (mysqli_num_rows($result) > 0) {
         //echo $row;
         //echo json_encode ($record);
     }
+    echo json_encode ($rows);
 } else {
     echo "no result";
 }
-echo json_encode ($rows);
+
 //var_dump ($rows);
 mysqli_close($conn);
 ?>
