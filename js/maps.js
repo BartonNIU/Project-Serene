@@ -4,7 +4,7 @@ $(function() {
                    var locations = JSON.parse(data);
                    "use strict";
 
-                   $(".listsearch-header").html(locations[1]["Coordinates"]);
+                   $(".listsearch-header").html(locations[1]["coordinates"]);
 
                    var markerIcon = {
                        anchor: new google.maps.Point(22, 16),
@@ -20,7 +20,7 @@ $(function() {
                        var map = new google.maps.Map(document.getElementById('map-main'), {
                            zoom: 12,
                            scrollwheel: false,
-                           center: eval("("+locations[1]["Coordinates"]+")"),
+                           center: eval("("+locations[1]["coordinates"]+")"),
                            mapTypeId: google.maps.MapTypeId.ROADMAP,
                            zoomControl: false,
                            mapTypeControl: false,
@@ -73,7 +73,7 @@ $(function() {
 
                        for (i = 0; i < locations.length; i++) {
                            marker = new google.maps.Marker({
-                               position: eval("("+locations[i]["Coordinates"]+")"),
+                               position: eval("("+locations[i]["coordinates"]+")"),
                                //icon: locations[i][4],
                                id: i
                            });
@@ -87,11 +87,11 @@ $(function() {
                                return function () {
                                    ib.setOptions(boxOptions);
                                    // the code below is for show the popup on map
-                                   boxText.innerHTML = locationData("",locations[i]["Categoty"],locations[i]["PlaceName"],locations[i]["Address"],"0400600");
+                                   boxText.innerHTML = locationData("",locations[i]["categoty"],locations[i]["place_name"],locations[i]["address"],"0400600");
                                    ib.close();
                                    ib.open(map, marker);
                                    currentInfobox = marker.id;
-                                   var latLng = eval("("+locations[i]["Coordinates"]+")");
+                                   var latLng = eval("("+locations[i]["coordinates"]+")");
                                    map.panTo(latLng);
                                    map.panBy(0, -180);
                                    google.maps.event.addListener(ib, 'domready', function () {
