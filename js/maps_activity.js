@@ -1,7 +1,6 @@
 
 $(function() {
-               $.get("response.php", function (data) {
-
+               $.get("response_activity.php", function (data) {
                    var locations = JSON.parse(data);
                    "use strict";
 
@@ -88,7 +87,7 @@ $(function() {
                                return function () {
                                    ib.setOptions(boxOptions);
                                    // the code below is for show the popup on map
-                                   boxText.innerHTML = locationData("",locations[i]["categoty"],locations[i]["place_name"],locations[i]["address"],"");
+                                   boxText.innerHTML = locationData("",locations[i]["audience"],locations[i]["activity_title"],locations[i]["address"],"");
                                    ib.close();
                                    ib.open(map, marker);
                                    currentInfobox = marker.id;
