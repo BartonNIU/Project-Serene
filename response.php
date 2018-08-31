@@ -9,16 +9,16 @@ $postcode = $_SESSION['postcode_place'];
 $category = $_SESSION['category_place'];
 $suburb = $_SESSION['suburb_place'];
 
-$keyword = "";
-if($keyword != ""){
-    $sql = "SELECT category,place_name,address,coordinates FROM place where post_code like '%$keyword%'";
+//$keyword = "Park";
+//if($keyword != ""){
+//    $sql = "SELECT category,place_name,address,coordinates FROM place where category like '%$keyword%'";
 
 // check if the input has been passed successfully
-//if($postcode != "" || $category != "" ){
+if($postcode != "" || $category != "" ){
 //
 //
 //    // sql query for the map markers
-//    $sql = "SELECT category,place_name,address,coordinates FROM place where post_code like '%$postcode%'";// and category like '%$category'";
+   $sql = "SELECT category,place_name,address,coordinates FROM place where post_code like '%$postcode%'";// and category like '%$category'";
 
 
     $result = mysqli_query($conn, $sql);
@@ -30,7 +30,6 @@ if($keyword != ""){
         while($record = mysqli_fetch_assoc($result)) {
             $rows[] = $record;
             //echo json_encode ($record);
-
 
         }
 

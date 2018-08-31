@@ -180,10 +180,7 @@
                                 //                       $postcode= $mysqli->real_escape_string($postcode);
 
 
-                                // code below to pass data to response.php for map
-                                $_SESSION['postcode_place'] = $_POST['postcode'];
-                                $_SESSION['suburb_place'] = $_POST['suburb'];
-                                $_SESSION['category_place'] = $_POST['value'];
+
 
 
                                 $mysqli = new mysqli("localhost","root","monash123","fit5120");
@@ -460,6 +457,12 @@
 <!--                    </section>-->
                     <!--section end -->
                 </div>
+                <?php
+                // code below to pass data to response.php for map
+                $_SESSION['postcode_place'] = $_POST['postcode'];
+                $_SESSION['suburb_place'] = $_POST['suburb'];
+                $_SESSION['category_place'] = $_POST['value'];
+                ?>
                 <!--content end -->
             </div>
             <!-- wrapper end -->

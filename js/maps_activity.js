@@ -1,10 +1,10 @@
 
 $(function() {
                $.get("response_activity.php", function (data) {
-                   var locations = JSON.parse(data);
+                   //var locations = JSON.parse(data);
                    "use strict";
 
-
+                    var locations = [{"audience":"Parent","activity_title":"Supporting children through transitions","address":"Malvern Town Hall Banquet Room Melbourne VIC","coordinates":"{lat: -37.815145, lng: 144.9667776}"},{"audience":"Parent","activity_title":"Working with Challenging Behaviour in Children","address":"132 Springfield Rd Blackburn VIC","coordinates":"{lat: -37.811025, lng: 145.156065}"},{"audience":"Parent","activity_title":"Successfully Managing Children with ADHD","address":"St Bernard's College Essendon Melbourne VIC","coordinates":"{lat: -37.74979, lng: 144.88295}"},{"audience":"Children","activity_title":"Solidarity with Children in Detention Story Time","address":"Fitzroy Library Fitzroy VIC","coordinates":"{lat: -37.80188, lng: 144.9796}"},{"audience":"Children","activity_title":"School Holiday Spellcraft Class for Children","address":"17\/331-339 Bourke St Melbourne VIC","coordinates":"{lat: -37.814598, lng: 144.96408}"},{"audience":"Parent","activity_title":"Sensory Processing Disorder in Children with ASD","address":"Irabina Autism Services Bundoora VIC","coordinates":"{lat: -37.7075, lng: 145.06139}"},{"audience":"Parent","activity_title":"Emotional Intelligence Skills in Children","address":"Strathcona Baptist Girls Grammar Canterbury VIC","coordinates":"{lat: -37.830093, lng: 145.07996}"},{"audience":"Children","activity_title":"Special Children's Halloween Tour","address":"Melbourne General Cemetery Parkville Vic","coordinates":"{lat: -37.790802, lng: 144.96626}"},{"audience":"Parent","activity_title":"Strategies for Helping Children with Social Difficulties in the Playground","address":"Okey Dokey Childhood Psychology Bayswater VIC","coordinates":"{lat: -37.843, lng: 145.268}"},{"audience":"Parent","activity_title":"Managing Anxiety in Preschool and Primary Aged Children","address":"Okey Dokey Childhood Psychology Bayswater VIC","coordinates":"{lat: -37.843, lng: 145.268}"},{"audience":"Parent","activity_title":"Working with young people with borderline personality disorder","address":"Royal Children's Hospital Mental Health Travancore Conference Room 50 Flemington Street Travancore VIC","coordinates":"{lat: -37.7813, lng: 144.9354}"},{"audience":"Parent","activity_title":"Managing Challenging Behaviour at Home","address":"The Salvation Army Mooroolbark Corps 305 Manchester Road Mooroolbark 3138","coordinates":"{lat: -37.761741, lng: 145.315062}"},{"audience":"Children","activity_title":"Animal Land Children's Farm","address":"190 Duncans Ln Diggers Rest VIC ","coordinates":"{lat: -37.630555, lng: 144.746009}"},{"audience":"Children","activity_title":"Collingwood Children's Farm","address":"18 St Heliers St Abbotsford VIC","coordinates":"{lat: -37.802135, lng: 145.004319}"},{"audience":"Children","activity_title":"Enchanted Adventure Garden","address":"55 Purves Rd Arthurs Seat VIC ","coordinates":"{lat: -38.359141, lng: 144.953154}"},{"audience":"Children","activity_title":"Clip 'N' Climb","address":"144 Murphy St Richmond VIC","coordinates":"{lat: -37.818436, lng: 145.010673}"},{"audience":"Children","activity_title":"Wonderland Junior","address":"Waterfront City 101 Waterfront way Docklands VIC","coordinates":"{lat: -37.811852, lng: 144.937525}"}]
 
                    var markerIcon = {
                        anchor: new google.maps.Point(22, 16),
@@ -20,7 +20,7 @@ $(function() {
                        var map = new google.maps.Map(document.getElementById('map-main'), {
                            zoom: 12,
                            scrollwheel: false,
-                           center: eval("("+locations[1]["coordinates"]+")"),
+                           center: eval("("+locations[0]["coordinates"]+")"),
                            mapTypeId: google.maps.MapTypeId.ROADMAP,
                            zoomControl: false,
                            mapTypeControl: false,
