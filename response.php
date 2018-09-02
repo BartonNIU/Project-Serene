@@ -9,16 +9,16 @@ $postcode = $_SESSION['postcode_place'];
 $category = $_SESSION['category_place'];
 $suburb = $_SESSION['suburb_place'];
 
-//$keyword = "Park";
-//if($keyword != ""){
-//    $sql = "SELECT category,place_name,address,coordinates FROM place where category like '%$keyword%'";
+$keyword = "";
+if($keyword != ""){
+   $sql = "SELECT * FROM place where category like '%$keyword%'";
 
 // check if the input has been passed successfully
-if($postcode != "" || $category != "" ){
+//if($postcode != "" || $category != "" ){
 //
 //
 //    // sql query for the map markers
-   $sql = "SELECT category,place_name,address,coordinates FROM place where post_code like '%$postcode%'";// and category like '%$category'";
+   //$sql = "SELECT category,place_name,address,coordinates FROM place where post_code like '%$postcode%'";// and category like '%$category'";
 
 
     $result = mysqli_query($conn, $sql);
@@ -33,11 +33,13 @@ if($postcode != "" || $category != "" ){
 
         }
 
-        echo (json_encode ($rows));  // pass data to javascript for map markers
-}
+        //echo (json_encode ($rows));  // pass data to javascript for map markers
 }
     else {
-        //echo "no result";
+        echo "no result";
+}}
+else{
+
         $sql = "SELECT * FROM place";
         $result = mysqli_query($conn, $sql);
 
@@ -50,14 +52,16 @@ if($postcode != "" || $category != "" ){
                 //echo json_encode ($record);
             }
 
-            echo json_encode($rows);  // pass data to javascript for map markers
+
         }
-}
+        else {
+            echo "no result";
+}}
 
 //else{
 //    echo "post fails";
 //}
-
+echo json_encode($rows);  // pass data to javascript for map markers
 mysqli_close($conn);
 
 
