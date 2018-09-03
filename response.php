@@ -9,9 +9,10 @@ $postcode = $_SESSION['postcode_place'];
 $category = $_SESSION['category_place'];
 $suburb = $_SESSION['suburb_place'];
 
-$keyword = "";
+$keyword = "park";
 if($keyword != ""){
    $sql = "SELECT * FROM place where category like '%$keyword%'";
+
 
 // check if the input has been passed successfully
 //if($postcode != "" || $category != "" ){
