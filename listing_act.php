@@ -297,6 +297,38 @@
                                 $mysqli->close();
                                 ?>
 
+                                <!--Sessions for map filters -->
+                                <?php
+
+                                if (isset($_POST['postcode'] )){
+                                    $_SESSION['postcode']=$_POST['postcode'];
+                                }
+                                else{
+                                    $_SESSION['postcode'] = "";
+                                }
+                                if (isset($_POST['suburb']) ){
+                                    //echo $_POST["category"];
+                                    $_SESSION['suburb']=$_POST['suburb'];
+                                }
+                                else{
+                                    $_SESSION['suburb'] = "";
+                                }
+
+                                if (isset($_POST['value']) ){
+                                    $_SESSION['option_activity']=$_POST['value'];
+                                }
+                                else{
+                                    $_SESSION['option_activity'] = "";}
+
+                                if (isset($_POST['keyword_place']) ){
+                                    $_SESSION['keyword_place']=$_POST['keyword_place'];
+                                }
+                                else{
+                                    $_SESSION['keyword_place'] = "";
+
+                                }
+                                ?>
+
 
 
 
