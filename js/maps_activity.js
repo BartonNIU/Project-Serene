@@ -11,7 +11,6 @@
                    //     anchor: new google.maps.Point(22, 16),
                    //     url: 'images/marker.png',
                    // };
-                   //locations = [];
 
                    function mainMap() {
                        function locationData( locationURL, locationCategory, locationTitle, locationAddress, locationPhone) {
@@ -89,7 +88,7 @@
                                return function () {
                                    ib.setOptions(boxOptions);
                                    // the code below is for showing the popup on map
-                                   boxText.innerHTML = locationData("",locations[i]["audience"],locations[i]["activity_title"],locations[i]["address"],"");
+                                   boxText.innerHTML = locationData("#1",locations[i]["audience"],locations[i]["activity_title"],locations[i]["address"],"");
                                    ib.close();
                                    ib.open(map, marker);
                                    currentInfobox = marker.id;
@@ -104,7 +103,10 @@
                                    });
                                }
                            })(marker, i));
-                       }
+                       }   //Marker ends here
+
+
+
                        var options = {
                            imagePath: 'images/',
                            styles: clusterStyles,

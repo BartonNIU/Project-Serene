@@ -258,8 +258,10 @@
                                     echo '<p> We apologize, there is no data found for your selection </p>';
                                 }
 
+                                $index = 0;
                                 while($row = $query -> fetch_array())
                                 {
+
                                     //<!-- listing-item -->
                                     echo  '<div class="listing-item">';
                                     echo    '<article class="geodir-category-listing fl-wrap">';
@@ -283,12 +285,13 @@
 //                                           echo     '<div class="listing-rating card-popup-rainingvis" data-starrating2="4">';
 //                                            echo       ' <span>(17 reviews)</span>';
 //                                            echo    '</div>';
-                                    echo '<div class="geodir-category-location"><a  href="#'.$row['ID'] .'" class="map-item"><i class="fa fa-map-marker" aria-hidden="true"></i>'. $row['address'].'</a></div>';
+                                    echo '<div class="geodir-category-location"><a  href="#'.$index.'" class="map-item"><i class="fa fa-map-marker" aria-hidden="true"></i>'. $row['address'].'</a></div>';
                                     echo '</div>';
                                     echo '</div>';
                                     echo '</article>';
                                     echo '</div>';
                                     // <!-- listing-item end-->
+                                    $index++;
                                 }
 
 

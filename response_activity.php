@@ -53,7 +53,7 @@ if ($option == "Free"){
         //echo "query no result";
     }
 }elseif ($option == "less than $20"){
-    $sql = "SELECT * FROM  activity where (post_code like '%$postcode%' or suburb like '%$suburb%')and description like '%$keyword%'and fee_fix > 0 and fee_fix <=20";// like '%$option%'";
+    $sql = "SELECT * FROM  activity where (post_code like '%$postcode%' or suburb like '%$suburb%')and description like '%$keyword%'and fee_fix <=20";// like '%$option%'";
     $result = mysqli_query($conn, $sql);
 
     if (mysqli_num_rows($result) > 0) {
