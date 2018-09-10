@@ -3,8 +3,8 @@
 <head>
     <!--=============== basic  ===============-->
     <meta charset="UTF-8">
-    <title>Citybook -Directory Listing Template</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Serene</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1s.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="robots" content="index, follow"/>
     <meta name="keywords" content=""/>
     <meta name="description" content=""/>
@@ -13,8 +13,28 @@
     <link type="text/css" rel="stylesheet" href="css/plugins.css">
     <link type="text/css" rel="stylesheet" href="css/style.css">
     <link type="text/css" rel="stylesheet" href="css/color.css">
+    <!--For Live Search-->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" />
+    <!--For Checkbox Filter-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link href = "css/jquery-ui.css" rel = "stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <!--=============== favicons ===============-->
-    <link rel="shortcut icon" href="images/favicon.ico">
+    <link rel="shortcut icon" href="images/flogo.ico">
+    <!--=============== scripts ===============-->
+    <!--For Live Search-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <!--For Checkbox Filter-->
+    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/jquery-ui.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!--=============== css  ===============-->
+    <!--For Multiselect Drop down Filter-->
+    <link href="css/bootstrap-select.min.css" rel="stylesheet" />
+    <script src="js/bootstrap-select.min.js"></script>
+
+
 </head>
 <body>
 <!--loader-->
@@ -29,7 +49,7 @@
     <header class="main-header dark-header fs-header sticky">
         <div class="header-inner">
             <div class="logo-holder">
-                <a href="index.php"><img src="images/logo.png" alt=""></a>
+                <a href="index.php"><img src="images/logo2.png" alt=""></a>
             </div>
             <div class="header-search vis-header-search">
 <!--                <div class="header-search-input-item">-->

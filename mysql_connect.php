@@ -1,17 +1,16 @@
 <?php
-$servername = "localhost";
-$username = "nrh";//"root";
-$password = "666";//"monash123";
-$dbname = "fit5120";
+$host = "localhost";
+$user = "root";//"root";
+$password = "";//"monash123";
+$db = "csv_db";
+
 
 // create connection
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+$connect = mysqli_connect($host, $user, $password, $db);
 
-// check connection
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+/* check connection */
+if (mysqli_connect_errno()){
+    printf("Connect failed: %s\n", mysqli_connect_error());
+    exit();
 }
-//else{
-//    echo "mysql connect sucessfully!"."<br>";
-//}
 ?>

@@ -3,6 +3,7 @@
             <div id="wrapper">
                 <!-- Content-->
                 <div class="content">
+
                     <!--section -->
                     <section class="scroll-con-sec hero-section" data-scrollax-parent="true" id="sec1">
                         <div class="bg"  data-bg="picture/homepage.gif" data-scrollax="properties: { translateY: '200px' }"></div>
@@ -15,11 +16,20 @@
                                 </div>
 
                                 <?php
+/*
+                                session_start();
+                                $_SESSION['categoryChoose'] = $categoryValue;
+
+                                */?>
+
+                                <?php
 /*                                    if(isset($_POST['submit'])){
                                         $postcode=$_POST['postcode'];
                                         $suburb=$_POST['suburb'];
                                     }
                                 */?>
+
+
 
                                 <form method="post" action="listing_act.php">
                                 <div class="main-search-input-wrap">
@@ -27,9 +37,30 @@
                                         <div class="main-search-input-item">
                                            <input id="postcode" name="postcode" type="text" placeholder="Put your postcode here"/>
                                        </div>
+
+                                        <!--<div class="main-search-input-item location" id="autocomplete-container">
+                                            <input type="text" placeholder="Location" id="autocomplete-input" value=""/>
+                                            <a href="#"><i class="fa fa-dot-circle-o"></i></a>
+                                        </div>-->
+
                                         <div class="main-search-input-item location" id="autocomplete-container">
                                             <input type="text" placeholder="Suburb" id="suburb" name="suburb"/>
                                         </div>
+
+<!--                                        <div class="main-search-input-item">-->
+                                           <!-- <select name="value" data-placeholder="All Activities" class="chosen-select" id="value">
+                                                <option value="none">All Categories</option>
+                                                <option value="Activity">Activity</option>
+                                                <option value="Garden">Garden</option>
+                                                <option value="Indoor Facility">Indoor Facility</option>
+                                                <option value="Outdoor Venue">Outdoor Venue</option>
+                                                <option value="Park">Park</option>
+                                                <option value="Reserve">Reserve</option>
+                                                <option value="Sports Center">Sports Center</option>
+                                            </select>-->
+<!--                                        </div>-->
+<!--                                        <button class="main-search-button" onclick="window.location.href='listing.html'">Search</button>-->
+<!--                                        <button type="submit" class="main-search-button" onclick="window.location.href='listing.php'">Search</button>-->
                                         <button type="submit" class="main-search-button" name="submit" ">Search</button>
                                     </div>
                                 </div>
@@ -37,6 +68,35 @@
                                 </form>
                             </div>
 
+
+<!--                            --><?php
+//
+//                            $userCat = $_POST['value'];
+//                            switch($userCat){
+//                                case "Garden":
+//                                    echo '<script> test(); </script>';
+//
+//                                 /* echo'  <script>
+////                                            var j =  document.write($userCat);
+//                                            var text = document.getElementsByName("postcode")[0].value;
+//                                            location.replace("listing.php?category=Garden&&postcode=" + text);
+//                                         </script>';*/
+//                                 break;
+//                                case "Park":
+////                                    header("Location: listing.php");
+//                                break;
+//                                default:
+//                                    echo "No selected";
+//                                    break;
+//                            }
+
+
+
+//                            if($_POST['postcode'] != ""){
+//                                header("Location: listing.php");
+//                            }
+//
+                            ?>
 
                         </div>
                         <div class="bubble-bg"> </div>
@@ -117,14 +177,14 @@
 
                                 }
 
-                                $mysqli = new mysqli("localhost","root","monash123","fit5120");
+                                $mysqli = new mysqli("localhost","root","","csv_db");
 
                                 /* check connection */
                                 if (mysqli_connect_errno()){
                                     printf("Connect failed: %s\n", mysqli_connect_error());
                                     exit();
                                 }
-                                $query = $mysqli->query("Select * from activity WHERE fee='Free'");
+                                $query = $mysqli->query("Select * from activity_list WHERE Fee='Free'");
 
                                 while($row = $query->fetch_array()) {
                                     echo '<!--slick-slide-item-->';
@@ -145,13 +205,13 @@
 //                                echo '<span class="avatar-tooltip">Added By  <strong>Lisa Smith</strong></span>';
 //                                echo '</div>';
 //                                    echo '<h3><a href="listing-single.html">'. $row['Article Title']. '</a></h3>';
-                                    echo '<h3>'. $row['activity_title']. '</h3>';
-                                    echo '<p>'. $row['description']. ' </p>';
+                                    echo '<h3>'. $row['Article Title']. '</h3>';
+                                    echo '<p>'.$row['description'].' </p>';
                                     echo '<div class="geodir-category-options fl-wrap">';
 //                                echo '<div class="listing-rating card-popup-rainingvis" data-starrating2="5">';
 //                                echo '<span>(7 reviews)</span>';
 //                                echo '</div>';
-                                    echo '<div class="geodir-category-location"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> '. $row['address']. '</a></div>';
+                                    echo '<div class="geodir-category-location"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> '. $row['Location'].'</a></div>';
                                     echo '</div>';
                                     echo '</div>';
                                     echo '</article>';
@@ -165,186 +225,6 @@
                                 $mysqli->close();
 
                                 ?>
-
-
-                                <!--                                <!--slick-slide-item-->
-                                <!--                                <div class="slick-slide-item">-->
-                                <!--                                    <!-- listing-item -->
-                                <!--                                    <div class="listing-item">-->
-                                <!--                                        <article class="geodir-category-listing fl-wrap">-->
-                                <!--                                            <div class="geodir-category-img">-->
-                                <!--                                                <img src="images/all/1.jpg" alt="">-->
-                                <!--                                                <div class="overlay"></div>-->
-                                <!--                                                <div class="list-post-counter"><span>4</span><i class="fa fa-heart"></i></div>-->
-                                <!--                                            </div>-->
-                                <!--                                            <div class="geodir-category-content fl-wrap">-->
-                                <!--                                                <a class="listing-geodir-category" href="listing.html">Retail</a>-->
-                                <!--                                                <div class="listing-avatar"><a href="author-single.html"><img src="images/avatar/1.jpg" alt=""></a>-->
-                                <!--                                                    <span class="avatar-tooltip">Added By  <strong>Lisa Smith</strong></span>-->
-                                <!--                                                </div>-->
-                                <!--                                                <h3><a href="listing-single.html">Event in City Mol</a></h3>-->
-                                <!--                                                <p>Sed interdum metus at nisi tempor laoreet.  </p>-->
-                                <!--                                                <div class="geodir-category-options fl-wrap">-->
-                                <!--                                                    <div class="listing-rating card-popup-rainingvis" data-starrating2="5">-->
-                                <!--                                                        <span>(7 reviews)</span>-->
-                                <!--                                                    </div>-->
-                                <!--                                                    <div class="geodir-category-location"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> 27th Brooklyn New York, NY 10065</a></div>-->
-                                <!--                                                </div>-->
-                                <!--                                            </div>-->
-                                <!--                                        </article>-->
-                                <!--                                    </div>-->
-                                <!--                                    <!-- listing-item end-->
-                                <!--                                </div>-->
-                                <!--                                <!--slick-slide-item end-->
-                                <!---->
-                                <!---->
-                                <!---->
-                                <!---->
-                                <!--                                <!--slick-slide-item-->
-                                <!--                                <div class="slick-slide-item">-->
-                                <!--                                    <!-- listing-item -->
-                                <!--                                    <div class="listing-item">-->
-                                <!--                                        <article class="geodir-category-listing fl-wrap">-->
-                                <!--                                            <div class="geodir-category-img">-->
-                                <!--                                                <img src="images/all/1.jpg" alt="">-->
-                                <!--                                                <div class="overlay"></div>-->
-                                <!--                                                <div class="list-post-counter"><span>15</span><i class="fa fa-heart"></i></div>-->
-                                <!--                                            </div>-->
-                                <!--                                            <div class="geodir-category-content fl-wrap">-->
-                                <!--                                                <a class="listing-geodir-category" href="listing.html">Event</a>-->
-                                <!--                                                <div class="listing-avatar"><a href="author-single.html"><img src="images/avatar/1.jpg" alt=""></a>-->
-                                <!--                                                    <span class="avatar-tooltip">Added By  <strong>Mark Rose</strong></span>-->
-                                <!--                                                </div>-->
-                                <!--                                                <h3><a href="listing-single.html">Cafe "Lollipop"</a></h3>-->
-                                <!--                                                <p>Morbi suscipit erat in diam bibendum rutrum in nisl.</p>-->
-                                <!--                                                <div class="geodir-category-options fl-wrap">-->
-                                <!--                                                    <div class="listing-rating card-popup-rainingvis" data-starrating2="4">-->
-                                <!--                                                        <span>(17 reviews)</span>-->
-                                <!--                                                    </div>-->
-                                <!--                                                    <div class="geodir-category-location"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> 27th Brooklyn New York, NY 10065</a></div>-->
-                                <!--                                                </div>-->
-                                <!--                                            </div>-->
-                                <!--                                        </article>-->
-                                <!--                                    </div>-->
-                                <!--                                    <!-- listing-item end-->
-                                <!--                                </div>-->
-                                <!--                                <!--slick-slide-item end-->
-                                <!--                                <!--slick-slide-item-->
-                                <!--                                <div class="slick-slide-item">-->
-                                <!--                                    <!-- listing-item -->
-                                <!--                                    <div class="listing-item">-->
-                                <!--                                        <article class="geodir-category-listing fl-wrap">-->
-                                <!--                                            <div class="geodir-category-img">-->
-                                <!--                                                <img src="images/all/1.jpg" alt="">-->
-                                <!--                                                <div class="overlay"></div>-->
-                                <!--                                                <div class="list-post-counter"><span>13</span><i class="fa fa-heart"></i></div>-->
-                                <!--                                            </div>-->
-                                <!--                                            <div class="geodir-category-content fl-wrap">-->
-                                <!--                                                <a class="listing-geodir-category" href="listing.html">Gym </a>-->
-                                <!--                                                <div class="listing-avatar"><a href="author-single.html"><img src="images/avatar/1.jpg" alt=""></a>-->
-                                <!--                                                    <span class="avatar-tooltip">Added By  <strong>Nasty Wood</strong></span>-->
-                                <!--                                                </div>-->
-                                <!--                                                <h3><a href="listing-single.html">Gym In Brooklyn</a></h3>-->
-                                <!--                                                <p>Morbiaccumsan ipsum velit tincidunt . </p>-->
-                                <!--                                                <div class="geodir-category-options fl-wrap">-->
-                                <!--                                                    <div class="listing-rating card-popup-rainingvis" data-starrating2="3">-->
-                                <!--                                                        <span>(16 reviews)</span>-->
-                                <!--                                                    </div>-->
-                                <!--                                                    <div class="geodir-category-location"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> 27th Brooklyn New York, NY 10065</a></div>-->
-                                <!--                                                </div>-->
-                                <!--                                            </div>-->
-                                <!--                                        </article>-->
-                                <!--                                    </div>-->
-                                <!--                                    <!-- listing-item end-->
-                                <!--                                </div>-->
-                                <!--                                <!--slick-slide-item end-->
-                                <!--                                <!--slick-slide-item-->
-                                <!--                                <div class="slick-slide-item">-->
-                                <!--                                    <!-- listing-item -->
-                                <!--                                    <div class="listing-item">-->
-                                <!--                                        <article class="geodir-category-listing fl-wrap">-->
-                                <!--                                            <div class="geodir-category-img">-->
-                                <!--                                                <img src="images/all/1.jpg" alt="">-->
-                                <!--                                                <div class="overlay"></div>-->
-                                <!--                                                <div class="list-post-counter"><span>3</span><i class="fa fa-heart"></i></div>-->
-                                <!--                                            </div>-->
-                                <!--                                            <div class="geodir-category-content fl-wrap">-->
-                                <!--                                                <a class="listing-geodir-category" href="listing.html">Shops</a>-->
-                                <!--                                                <div class="listing-avatar"><a href="author-single.html"><img src="images/avatar/1.jpg" alt=""></a>-->
-                                <!--                                                    <span class="avatar-tooltip">Added By  <strong>Nasty Wood</strong></span>-->
-                                <!--                                                </div>-->
-                                <!--                                                <h3><a href="listing-single.html">Shop in Boutique Zone</a></h3>-->
-                                <!--                                                <p>Morbiaccumsan ipsum velit tincidunt . </p>-->
-                                <!--                                                <div class="geodir-category-options fl-wrap">-->
-                                <!--                                                    <div class="listing-rating card-popup-rainingvis" data-starrating2="4">-->
-                                <!--                                                        <span>(6 reviews)</span>-->
-                                <!--                                                    </div>-->
-                                <!--                                                    <div class="geodir-category-location"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> 27th Brooklyn New York, NY 10065</a></div>-->
-                                <!--                                                </div>-->
-                                <!--                                            </div>-->
-                                <!--                                        </article>-->
-                                <!--                                    </div>-->
-                                <!--                                    <!-- listing-item end-->
-                                <!--                                </div>-->
-                                <!--                                <!--slick-slide-item end-->
-                                <!--                                <!--slick-slide-item-->
-                                <!--                                <div class="slick-slide-item">-->
-                                <!--                                    <!-- listing-item -->
-                                <!--                                    <div class="listing-item">-->
-                                <!--                                        <article class="geodir-category-listing fl-wrap">-->
-                                <!--                                            <div class="geodir-category-img">-->
-                                <!--                                                <img src="images/all/1.jpg" alt="">-->
-                                <!--                                                <div class="overlay"></div>-->
-                                <!--                                                <div class="list-post-counter"><span>35</span><i class="fa fa-heart"></i></div>-->
-                                <!--                                            </div>-->
-                                <!--                                            <div class="geodir-category-content fl-wrap">-->
-                                <!--                                                <a class="listing-geodir-category" href="listing.html">Cars</a>-->
-                                <!--                                                <div class="listing-avatar"><a href="author-single.html"><img src="images/avatar/1.jpg" alt=""></a>-->
-                                <!--                                                    <span class="avatar-tooltip">Added By  <strong>Kliff Antony</strong></span>-->
-                                <!--                                                </div>-->
-                                <!--                                                <h3><a href="listing-single.html">Best deal For the Cars</a></h3>-->
-                                <!--                                                <p>Lorem ipsum gravida nibh vel velit.</p>-->
-                                <!--                                                <div class="geodir-category-options fl-wrap">-->
-                                <!--                                                    <div class="listing-rating card-popup-rainingvis" data-starrating2="5">-->
-                                <!--                                                        <span>(11 reviews)</span>-->
-                                <!--                                                    </div>-->
-                                <!--                                                    <div class="geodir-category-location"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> 27th Brooklyn New York, NY 10065</a></div>-->
-                                <!--                                                </div>-->
-                                <!--                                            </div>-->
-                                <!--                                        </article>-->
-                                <!--                                    </div>-->
-                                <!--                                    <!-- listing-item end-->
-                                <!--                                </div>-->
-                                <!--                                <!--slick-slide-item end-->
-                                <!--                                <!--slick-slide-item-->
-                                <!--                                <div class="slick-slide-item">-->
-                                <!--                                    <!-- listing-item -->
-                                <!--                                    <div class="listing-item">-->
-                                <!--                                        <article class="geodir-category-listing fl-wrap">-->
-                                <!--                                            <div class="geodir-category-img">-->
-                                <!--                                                <img src="images/all/1.jpg" alt="">-->
-                                <!--                                                <div class="overlay"></div>-->
-                                <!--                                                <div class="list-post-counter"><span>553</span><i class="fa fa-heart"></i></div>-->
-                                <!--                                            </div>-->
-                                <!--                                            <div class="geodir-category-content fl-wrap">-->
-                                <!--                                                <a class="listing-geodir-category" href="listing.html">Restourants</a>-->
-                                <!--                                                <div class="listing-avatar"><a href="author-single.html"><img src="images/avatar/1.jpg" alt=""></a>-->
-                                <!--                                                    <span class="avatar-tooltip">Added By  <strong>Adam Koncy</strong></span>-->
-                                <!--                                                </div>-->
-                                <!--                                                <h3><a href="listing-single.html">Luxury Restourant</a></h3>-->
-                                <!--                                                <p>Sed non neque elit. Sed ut imperdie.</p>-->
-                                <!--                                                <div class="geodir-category-options fl-wrap">-->
-                                <!--                                                    <div class="listing-rating card-popup-rainingvis" data-starrating2="5">-->
-                                <!--                                                        <span>(7 reviews)</span>-->
-                                <!--                                                    </div>-->
-                                <!--                                                    <div class="geodir-category-location"><a href="#"><i class="fa fa-map-marker" aria-hidden="true"></i> 27th Brooklyn New York, NY 10065</a></div>-->
-                                <!--                                                </div>-->
-                                <!--                                            </div>-->
-                                <!--                                        </article>-->
-                                <!--                                    </div>-->
-                                <!-- listing-item end-->
-                                <!--                                </div>
-                                                                <!--slick-slide-item end-->
                             </div>
                             <!--listing-carousel end-->
                             <div class="swiper-button-prev sw-btn"><i class="fa fa-long-arrow-left"></i></div>
@@ -365,7 +245,7 @@
                                 <p>Explore some of the best recreational facilities and play areas in Melbourne</p>
                             </div>
                             <?php
-                            $mysqli = new mysqli("localhost","root","monash123","fit5120");
+                            $mysqli = new mysqli("localhost","root","","csv_db");
 
                             /* check connection */
                             if (mysqli_connect_errno()){
@@ -373,22 +253,22 @@
                                 exit();
                             }
 
-                            $result_garden = $mysqli->query("SELECT * from place WHERE category='Garden'");
+                            $result_garden = $mysqli->query("SELECT * from places WHERE Category='Garden'");
                             $row_cnt_garden = $result_garden ->num_rows;
 
-                            $result_indoor = $mysqli->query("SELECT * from place WHERE category='Indoor Facility'");
+                            $result_indoor = $mysqli->query("SELECT * from places WHERE Category='Indoor Facility'");
                             $row_cnt_indoor = $result_indoor ->num_rows; //4
 
-                            $result_outdoor = $mysqli->query("SELECT * from place WHERE category='Outdoor Venue'");
+                            $result_outdoor = $mysqli->query("SELECT * from places WHERE Category='Outdoor Venue'");
                             $row_cnt_outdoor = $result_outdoor ->num_rows; //3
 
-                            $result_park = $mysqli->query("SELECT * from place WHERE category='Park'");
+                            $result_park = $mysqli->query("SELECT * from places WHERE Category='Park'");
                             $row_cnt_park = $result_park ->num_rows; //23
 
-                            $result_reserve = $mysqli->query("SELECT * from place WHERE category='Reserve'");
+                            $result_reserve = $mysqli->query("SELECT * from places WHERE Category='Reserve'");
                             $row_cnt_reserve = $result_reserve ->num_rows; //4
 
-                            $result_sport = $mysqli->query("SELECT * from place WHERE category='Sports Center'");
+                            $result_sport = $mysqli->query("SELECT * from places WHERE Category='Sports Center'");
                             $row_cnt_sport = $result_sport ->num_rows; //15
 
                             $garden = "Garden";
@@ -410,7 +290,7 @@
                             echo "                                            <div class=\"listing-item-cat\">\n";
 //                            echo "                                                <h3><a href=\"listing.html\">Garden</a></h3>\n";
                             echo                                               "<h3><a href=listing.php?category=",urlencode($garden),">Garden</a></h3>\n";
-                            echo "                                                <p>Explore Melbourne's finest gardens</p>\n";
+                            echo "                                                <p>Constant care and attention to the patients makes good record</p>\n";
                             echo "                                            </div>\n";
                             echo "                                        </div>\n";
                             echo "                                    </div>\n";
@@ -424,7 +304,7 @@
                             echo "                                            <div class=\"listing-counter\"><span>".$row_cnt_outdoor."</span> Locations</div>\n";
                             echo "                                            <div class=\"listing-item-cat\">\n";
                             echo                                                "<h3><a href=listing.php?category=",urlencode($outdoor),">Outdoor Venue</a></h3>\n";
-                            echo "                                                <p>Look for activities in open areas and venues across Melbourne</p>\n";
+                            echo "                                                <p>Constant care and attention to the patients makes good record</p>\n";
                             echo "                                            </div>\n";
                             echo "                                        </div>\n";
                             echo "                                    </div>\n";
@@ -438,7 +318,7 @@
                             echo "                                            <div class=\"listing-counter\"><span>".$row_cnt_indoor."</span> Locations</div>\n";
                             echo "                                            <div class=\"listing-item-cat\">\n";
                             echo "                                                <h3><a href=listing.php?category=",urlencode($indoor),">Indoor Facility</a></h3>\n";
-                            echo "                                                <p>Locate facilities that offer indoor play and sport activities</p>\n";
+                            echo "                                                <p>Constant care and attention to the patients makes good record</p>\n";
                             echo "                                            </div>\n";
                             echo "                                        </div>\n";
                             echo "                                    </div>\n";
@@ -452,7 +332,7 @@
                             echo "                                            <div class=\"listing-counter\"><span>".$row_cnt_park."</span> Locations</div>\n";
                             echo "                                            <div class=\"listing-item-cat\">\n";
                             echo "                                                <h3><a href=listing.php?category=",urlencode($park),">Park</a></h3>\n";
-                            echo "                                                <p>Spend time in some of the tranquil locations in and around Melbourne</p>\n";
+                            echo "                                                <p>Constant care and attention to the patients makes good record</p>\n";
                             echo "                                            </div>\n";
                             echo "                                        </div>\n";
                             echo "                                    </div>\n";
@@ -466,7 +346,7 @@
                             echo "                                            <div class=\"listing-counter\"><span>".$row_cnt_reserve."</span> Locations</div>\n";
                             echo "                                            <div class=\"listing-item-cat\">\n";
                             echo "                                                <h3><a href=listing.php?category=",urlencode($reserve),">Reserve</a></h3>\n";
-                            echo "                                                <p>Visit some of the historical locations across Victoria</p>\n";
+                            echo "                                                <p>Constant care and attention to the patients makes good record</p>\n";
                             echo "                                            </div>\n";
                             echo "                                        </div>\n";
                             echo "                                    </div>\n";
@@ -480,7 +360,7 @@
                             echo "                                            <div class=\"listing-counter\"><span>".$row_cnt_sport."</span> Locations</div>\n";
                             echo "                                            <div class=\"listing-item-cat\">\n";
                             echo "                                                <h3><a href=listing.php?category=",urlencode($sport),">Sport Center</a></h3>\n";
-                            echo "                                                <p>Melbourne is home to some of the best sports facilities</p>\n";
+                            echo "                                                <p>Constant care and attention to the patients makes good record</p>\n";
                             echo "                                            </div>\n";
                             echo "                                        </div>\n";
                             echo "                                    </div>\n";
@@ -997,7 +877,7 @@
                                 <div class="row">
                                     <div class="col-md-8">
                                         <h3>Do You Have Questions ?</h3>
-                                        <p>If you have any questions or if you have feedback with regards to our website, please email us at info@serene.tk</p>
+                                        <p>Lorem ipsum dolor sit amet, harum dolor nec in, usu molestiae at no.</p>
                                     </div>
 <!--                                    <div class="col-md-4"><a href="contacts.html" class="join-wrap-btn">Get In Touch <i class="fa fa-envelope-o"></i></a></div>-->
                                 </div>
