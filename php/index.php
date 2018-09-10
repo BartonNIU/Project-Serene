@@ -21,7 +21,7 @@
                                     }
                                 */?>
 
-                                <form method="post" action="listing_act.php">
+                                <form method="post" action="../listing_act.php">
                                 <div class="main-search-input-wrap">
                                     <div class="main-search-input fl-wrap">
                                         <div class="main-search-input-item">
@@ -365,7 +365,9 @@
                                 <p>Explore some of the best recreational facilities and play areas in Melbourne</p>
                             </div>
                             <?php
-                            $mysqli = new mysqli("localhost","root","monash123","fit5120");
+
+                            //include_once("mysql_connect.php");
+                            $mysqli = new mysqli("localhost","nrh","666","fit5120");
 
                             /* check connection */
                             if (mysqli_connect_errno()){
@@ -405,11 +407,11 @@
                             echo "                                <div class=\"gallery-item\">\n";
                             echo "                                    <div class=\"grid-item-holder\">\n";
                             echo "                                        <div class=\"listing-item-grid\">\n";
-                            echo "                                            <img  src=\"picture/Gardens/garden.jpeg\"   alt=\"\">\n";
+                            echo ">\n";
                             echo "                                            <div class=\"listing-counter\"><span>".$row_cnt_garden."</span> Locations</div>\n";
                             echo "                                            <div class=\"listing-item-cat\">\n";
 //                            echo "                                                <h3><a href=\"listing.html\">Garden</a></h3>\n";
-                            echo                                               "<h3><a href=listing.php?category=",urlencode($garden),">Garden</a></h3>\n";
+                            echo "<h3><a href=../listing.php?category=",urlencode($garden),">Garden</a></h3>\n";
                             echo "                                                <p>Explore Melbourne's finest gardens</p>\n";
                             echo "                                            </div>\n";
                             echo "                                        </div>\n";
@@ -420,10 +422,10 @@
                             echo "                                <div class=\"gallery-item gallery-item-second\">\n";
                             echo "                                    <div class=\"grid-item-holder\">\n";
                             echo "                                        <div class=\"listing-item-grid\">\n";
-                            echo "                                            <img  src=\"picture/Outdoor/outdoor1.jpeg\"   alt=\"\">\n";
+                            echo ">\n";
                             echo "                                            <div class=\"listing-counter\"><span>".$row_cnt_outdoor."</span> Locations</div>\n";
                             echo "                                            <div class=\"listing-item-cat\">\n";
-                            echo                                                "<h3><a href=listing.php?category=",urlencode($outdoor),">Outdoor Venue</a></h3>\n";
+                            echo "<h3><a href=../listing.php?category=",urlencode($outdoor),">Outdoor Venue</a></h3>\n";
                             echo "                                                <p>Look for activities in open areas and venues across Melbourne</p>\n";
                             echo "                                            </div>\n";
                             echo "                                        </div>\n";
@@ -434,10 +436,10 @@
                             echo "                                <div class=\"gallery-item\">\n";
                             echo "                                    <div class=\"grid-item-holder\">\n";
                             echo "                                        <div class=\"listing-item-grid\">\n";
-                            echo "                                            <img src=\"picture/Indoor/indoor.jpeg\"   alt=\"\">\n";
+                            echo ">\n";
                             echo "                                            <div class=\"listing-counter\"><span>".$row_cnt_indoor."</span> Locations</div>\n";
                             echo "                                            <div class=\"listing-item-cat\">\n";
-                            echo "                                                <h3><a href=listing.php?category=",urlencode($indoor),">Indoor Facility</a></h3>\n";
+                            echo "                                                <h3><a href=../listing.php?category=",urlencode($indoor),">Indoor Facility</a></h3>\n";
                             echo "                                                <p>Locate facilities that offer indoor play and sport activities</p>\n";
                             echo "                                            </div>\n";
                             echo "                                        </div>\n";
@@ -448,10 +450,10 @@
                             echo "                                <div class=\"gallery-item\">\n";
                             echo "                                    <div class=\"grid-item-holder\">\n";
                             echo "                                        <div class=\"listing-item-grid\">\n";
-                            echo "                                            <img  src=\"picture/Parks/park.jpeg\"   alt=\"\">\n";
+                            echo ">\n";
                             echo "                                            <div class=\"listing-counter\"><span>".$row_cnt_park."</span> Locations</div>\n";
                             echo "                                            <div class=\"listing-item-cat\">\n";
-                            echo "                                                <h3><a href=listing.php?category=",urlencode($park),">Park</a></h3>\n";
+                            echo "                                                <h3><a href=../listing.php?category=",urlencode($park),">Park</a></h3>\n";
                             echo "                                                <p>Spend time in some of the tranquil locations in and around Melbourne</p>\n";
                             echo "                                            </div>\n";
                             echo "                                        </div>\n";
@@ -462,10 +464,10 @@
                             echo "                                <div class=\"gallery-item\">\n";
                             echo "                                    <div class=\"grid-item-holder\">\n";
                             echo "                                        <div class=\"listing-item-grid\">\n";
-                            echo "                                            <img  src=\"picture/Reserves/reserve.jpeg\"   alt=\"\">\n";
+                            echo ">\n";
                             echo "                                            <div class=\"listing-counter\"><span>".$row_cnt_reserve."</span> Locations</div>\n";
                             echo "                                            <div class=\"listing-item-cat\">\n";
-                            echo "                                                <h3><a href=listing.php?category=",urlencode($reserve),">Reserve</a></h3>\n";
+                            echo "                                                <h3><a href=../listing.php?category=",urlencode($reserve),">Reserve</a></h3>\n";
                             echo "                                                <p>Visit some of the historical locations across Victoria</p>\n";
                             echo "                                            </div>\n";
                             echo "                                        </div>\n";
@@ -476,10 +478,10 @@
                             echo "                                <div class=\"gallery-item\">\n";
                             echo "                                    <div class=\"grid-item-holder\">\n";
                             echo "                                        <div class=\"listing-item-grid\">\n";
-                            echo "                                            <img  src=\"picture/Sport Centers/sport.jpeg\"   alt=\"\">\n";
+                            echo ">\n";
                             echo "                                            <div class=\"listing-counter\"><span>".$row_cnt_sport."</span> Locations</div>\n";
                             echo "                                            <div class=\"listing-item-cat\">\n";
-                            echo "                                                <h3><a href=listing.php?category=",urlencode($sport),">Sport Center</a></h3>\n";
+                            echo "                                                <h3><a href=../listing.php?category=",urlencode($sport),">Sport Center</a></h3>\n";
                             echo "                                                <p>Melbourne is home to some of the best sports facilities</p>\n";
                             echo "                                            </div>\n";
                             echo "                                        </div>\n";
@@ -1013,16 +1015,17 @@
            <?php include "includes/footer.php"; ?>
             <!--footer end  -->
             <!--register form -->
-            <?php include "includes/registerform.php"; ?>
+<!--            --><?php //include "includes/registerform.php"; ?>
             <!--register form end -->
             <a class="to-top"><i class="fa fa-angle-up"></i></a>
         </div>
         <!-- Main end -->
         <!--=============== scripts  ===============-->
-        <script type="text/javascript" src="js/jquery.min.js"></script>
-        <script type="text/javascript" src="js/plugins.js"></script>
-        <script type="text/javascript" src="js/scripts.js"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwJSRi0zFjDemECmFl9JtRj1FY7TiTRRo&libraries=places&callback=initAutocomplete"></script>
+        <script type="text/javascript" src="../js/jquery.min.js"></script>
+        <script type="text/javascript" src="../js/plugins.js"></script>
+        <script type="text/javascript" src="../js/scripts.js"></script>
+<!--		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwJSRi0zFjDemECmFl9JtRj1FY7TiTRRo&libraries=places&callback=initAutocomplete"></script>-->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6uvEZqkQXhf_Ai-vj50Phw-zMEaw7zLo"></script>
     </body>
 </html>
 

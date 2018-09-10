@@ -547,7 +547,7 @@ function initCitybook() {
 	            forecast: 5, //default: 5 (0 -5) how many days you want forecast
 	            render: true, //default: true (true/false) if you want plugin to generate markup
 	            loadingAnimation: true, //default: true (true/false) if you want plugin to show loading animation
-	            units : "metric", //"metric" or "imperial" to overide units default: "auto" 
+	            units : "metric", //"metric" or "imperial" to overide units default: "auto"
 	            
 	            lang: "EN",
 	            //translation strings, If you would like to use another language please replace these strings with your language
@@ -721,7 +721,7 @@ $.get("http://ipinfo.io", function (response) {
             });		
         }
 $(".notification-close").on("click", function () {
-	$(this).parent(".notification").slideUp(500);
+    $(this).parent(".notification").slideUp(500);
 });
 //   Init All ------------------
 $(function () {
