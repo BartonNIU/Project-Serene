@@ -1,0 +1,15 @@
+RewriteEngine On
+ErrorDocument 400 /specact/400.php
+#Bad Request
+
+ErrorDocument 401 /specact/401.php
+#Unauthorized
+
+ErrorDocument 403 /specact/403.php
+#Forbidden
+
+ErrorDocument 404 /specact/404.php
+#Not Found
+
+ErrorDocument 500 /specact/500.php
+#Internal Server Error
