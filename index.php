@@ -117,7 +117,8 @@
 
                                 }
 
-                                $mysqli = new mysqli("localhost","root","monash123","fit5120");
+                                //$mysqli = new mysqli("localhost","root","monash123","fit5120");
+                                $mysqli = new mysqli("localhost","nrh","666","fit5120");
 
                                 /* check connection */
                                 if (mysqli_connect_errno()){
@@ -365,7 +366,8 @@
                                 <p>Explore some of the best recreational facilities and play areas in Melbourne</p>
                             </div>
                             <?php
-                            $mysqli = new mysqli("localhost","root","monash123","fit5120");
+                            //$mysqli = new mysqli("localhost","root","monash123","fit5120");
+                            $mysqli = new mysqli("localhost","nrh","666","fit5120");
 
                             /* check connection */
                             if (mysqli_connect_errno()){
@@ -1022,7 +1024,8 @@
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/plugins.js"></script>
         <script type="text/javascript" src="js/scripts.js"></script>
-		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwJSRi0zFjDemECmFl9JtRj1FY7TiTRRo&libraries=places&callback=initAutocomplete"></script>
+<!--		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwJSRi0zFjDemECmFl9JtRj1FY7TiTRRo&libraries=places&callback=initAutocomplete"></script>-->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6uvEZqkQXhf_Ai-vj50Phw-zMEaw7zLo"></script>
     </body>
 </html>
 

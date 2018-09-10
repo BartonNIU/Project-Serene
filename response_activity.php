@@ -25,10 +25,6 @@ if (isset($_SESSION['option_activity'])){
 
 // check if the input has been passed successfully
 
-//$postcode = "30"; //$_SESSION['postcode'];
-//$suburb = ""; //$_SESSION['suburb'];
-//$option = ""; //$_SESSION['option_activity'];
-//$keyword = "workshop"; //$_SESSION['keyword_activity'];
 
 //$keyword = "Parent";
 //if($keyword != ""){
@@ -145,24 +141,6 @@ if ($option == "Free"){
 }
 
 
-//else {
-//        $ql = "SELECT * FROM activity";
-//        $result = mysqli_query($conn, $sql);
-//
-//        if (mysqli_num_rows($result) > 0) {
-//            // output data
-//
-//            while($record = mysqli_fetch_assoc($result)) {
-//                $rows[]=$record;
-//                //echo json_encode($record);
-//
-//            }
-//            //echo json_encode ($rows);  // pass data to javascript for map markers
-//   }
-//}
-//}else{
-//    echo "post fails";
-//}
 echo json_encode ($rows);  // pass data to javascript for map markers
 mysqli_close($conn);
 
