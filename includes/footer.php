@@ -82,7 +82,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="about-widget">
-                        <img src="images/logo.png" alt="">
+                        <img src="images/logo5.png" alt="">
                     </div>
                 </div>
                 <div class="col-md-4">

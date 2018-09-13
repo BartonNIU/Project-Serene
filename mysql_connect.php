@@ -1,12 +1,12 @@
 <?php
 $host = "localhost";
-$user = "root";//"root";
-$password = "";//"monash123";
-$db = "csv_db";
+$user = "nrh";//"root";
+$password = "666";//"monash123";
+$db = "fit5120";
 
 
 // create connection
-$connect = mysqli_connect($host, $user, $password, $db);
+$conn = mysqli_connect($host, $user, $password, $db);
 
 /* check connection */
 if (mysqli_connect_errno()){

@@ -21,7 +21,7 @@
                        var map = new google.maps.Map(document.getElementById('map-main'), {
                            zoom: 12,
                            scrollwheel: false,
-                           center: eval("("+locations[0]["coordinates"]+")"),
+                           center: {lat: -37.8136, lng: 144.9621},//eval("("+locations[0]["coordinates"]+")"),
                            mapTypeId: google.maps.MapTypeId.ROADMAP,
                            zoomControl: false,
                            mapTypeControl: false,
@@ -88,7 +88,7 @@
                                return function () {
                                    ib.setOptions(boxOptions);
                                    // the code below is for showing the popup on map
-                                   boxText.innerHTML = locationData("",locations[i]["audience"],locations[i]["activity_title"],locations[i]["address"],"");
+                                   boxText.innerHTML = locationData("#1",locations[i]["audience"],locations[i]["activity_title"],locations[i]["address"],"");
                                    ib.close();
                                    ib.open(map, marker);
                                    currentInfobox = marker.id;
@@ -103,7 +103,10 @@
                                    });
                                }
                            })(marker, i));
-                       }
+                       }   //Marker ends here
+
+
+
                        var options = {
                            imagePath: 'images/',
                            styles: clusterStyles,
