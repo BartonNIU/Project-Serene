@@ -1,3 +1,4 @@
+
 <?php include "includes/header.php"; ?>
             <!--  wrapper  -->
             <div id="wrapper">
@@ -1021,6 +1022,26 @@
         </div>
         <!-- Main end -->
         <!--=============== scripts  ===============-->
+        <script>
+            var password = "whitecaps"; // because ANYONE CAN SEE THIS IN VIEW SOURCE!
+
+
+            // Repeatedly prompt for user password until success:
+            (function promptPass() {
+
+                var psw = prompt("Please Enter your Password");
+
+                while (psw !== password) {
+                    alert("Incorrect Password");
+                    return promptPass();
+                }
+
+            }());
+
+
+            // alert('WELCOME');
+            // or show you page content
+        </script>
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/plugins.js"></script>
         <script type="text/javascript" src="js/scripts.js"></script>

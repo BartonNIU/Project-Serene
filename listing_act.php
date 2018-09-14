@@ -1,15 +1,25 @@
 <?php include "includes/header.php"; ?>
 <?php error_reporting (E_ALL ^ E_NOTICE); ?>
+        <script>
+            // $.getScript("maps_activity.js", function() {
+            //     $("#pageinput").submit(function(){
+            //
+            //         // $.post("listing_act.php",$(this).serialize(),function(data){
+            //             alert("ajax work or not??");
+            //         });
+            //
+            //     });
+        </script>
             <!-- wrapper -->
             <div id="wrapper">
                 <div class="content">
                     <!-- Map -->
                     <div class="map-container column-map right-pos-map">
                         <div id="map-main"></div>
-                        <ul class="mapnavigation">
-                            <li><a href="#" class="prevmap-nav">Prev</a></li>
-                            <li><a href="#" class="nextmap-nav">Next</a></li>
-                        </ul>
+<!--                        <ul class="mapnavigation">-->
+<!--                            <li><a href="#" class="prevmap-nav">Prev</a></li>-->
+<!--                            <li><a href="#" class="nextmap-nav">Next</a></li>-->
+<!--                        </ul>-->
                     </div>
                     <!-- Map end -->
                     <!--col-list-wrap -->
@@ -36,12 +46,14 @@
                                     </div>
                                 </div>
 
-                                <form action="listing_act.php" method="post">
+                                <form  id = "pageinput" >
+<!--                                    method="post"-->
                                 <!-- listsearch-input-wrap  -->
                                 <div class="listsearch-input-wrap fl-wrap">
                                     <div class="listsearch-input-item">
                                         <i class="mbri-key single-i"></i>
-                                        <input type="text" name="postcode" placeholder="Postcode?" value=""/>
+                                        <input type="text" name="postcode" placeholder="Postcode?" value="" onchange="ajaxSearch_activity()">
+<!--                                        //onchange="this.form.submit()"-->
                                     </div>
 <!--                                    <div class="listsearch-input-item">-->
 <!--                                        <select data-placeholder="Location" class="chosen-select" >-->
@@ -55,7 +67,7 @@
 <!--                                    </div>-->
 
                                     <div class="listsearch-input-item">
-                                        <select name="value" data-placeholder="All Range Budgets" class="chosen-select" id="value">
+                                        <select name="value" data-placeholder="All Range Budgets" class="chosen-select" id="value" onchange="ajaxSearch_activity()">
                                             <option value="All Budget Ranges">All Budget Ranges</option>
                                             <option value="Free">Free</option>
                                             <option value="less than $20">less than $20</option>
@@ -95,7 +107,7 @@
                                     <!-- hidden-listing-filter end -->
                                     <br/><br/><br/><br/>
 
-                                    <button type="submit" class="button fs-map-btn">Update</button>
+                                    <button type="submit" class="button fs-map-btn" id="pagesubmit">Update</button>
 <!--                                    <div class="more-filter-option">More Filters <span></span></div>-->
                                 </div>
                                 </form>
@@ -316,20 +328,20 @@
                                 else{
                                     $_SESSION['suburb'] = "";
                                 }
-
-                                if (isset($_POST['value']) ){
-                                    $_SESSION['option_activity']=$_POST['value'];
-                                }
-                                else{
-                                    $_SESSION['option_activity'] = "";}
-
-                                if (isset($_POST['keyword_place']) ){
-                                    $_SESSION['keyword_place']=$_POST['keyword_place'];
-                                }
-                                else{
-                                    $_SESSION['keyword_place'] = "";
-
-                                }
+//
+//                                if (isset($_POST['value']) ){
+//                                    $_SESSION['option_activity']=$_POST['value'];
+//                                }
+//                                else{
+//                                    $_SESSION['option_activity'] = "";}
+//
+//                                if (isset($_POST['keyword_place']) ){
+//                                    $_SESSION['keyword_place']=$_POST['keyword_place'];
+//                                }
+//                                else{
+//                                    $_SESSION['keyword_place'] = "";
+//
+//                                }
                                 ?>
 
 
@@ -519,12 +531,12 @@
                 </div>
                 <!--content end -->
             </div>
-                <?php
-                // pass data to response_activity.php for map searching
-                $_SESSION['postcode_activity'] = $_POST['postcode'];
-                $_SESSION['suburb_activity'] = $_POST['suburb'];
-                $_SESSION['budget_activity'] = $_POST['value'];
-                ?>
+<!--                --><?php
+//                // pass data to response_activity.php for map searching
+//                $_SESSION['postcode_activity'] = $_POST['postcode'];
+//                $_SESSION['suburb_activity'] = $_POST['suburb'];
+//                $_SESSION['budget_activity'] = $_POST['value'];
+//                ?>
             <!-- wrapper end -->
             <!--footer -->
             <?php include "includes/footer.php"; ?>
