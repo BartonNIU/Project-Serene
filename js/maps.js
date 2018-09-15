@@ -82,7 +82,7 @@
                         return function () {
                             ib.setOptions(boxOptions);
                             // the code below is for showing the popup on map
-                            boxText.innerHTML = locationData("#1", locations[i]["audience"], locations[i]["activity_title"], locations[i]["address"], "");
+                            boxText.innerHTML = locationData("", locations[i]["audience"], locations[i]["place_name"], locations[i]["address"], "");
                             ib.close();
                             ib.open(map, marker);
                             currentInfobox = marker.id;

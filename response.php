@@ -7,27 +7,36 @@ $rows = array();
 //$postcode = "";
 //$suburb = "";
 $keyword = "";
-$option = "";
-
-//if (isset($_SESSION['postcode'])){
-//    $postcode = $_SESSION['postcode'];
-//}
+$option = "'" . implode("', '", array('Park','Garden','Indoor Facility','Outdoor Venue','Reserve','Sports Center')) . "'";
+//$check_disable ="";
+//$check_slide ="";
+//$check_fencing="";
+//$check_toilet="";
+//$sql = "SELECT * FROM place where post_code like '' ";
 
 if (isset($_POST['userinput_place'])){
     $keyword = $_POST['userinput_place'];
 }
-if (isset($_POST['value'])){
-    $option = $_POST['value'];
+if (isset($_POST['category'])){
+    //$option = $_POST['category'];
+    //$option=implode("','",$_POST['category']);
+    $option = "'" . implode("', '", $_POST["category"]) . "'";
+
 }
 
+//foreach ($option as $test){
+//    echo "option value is:".$test;
+//}
+
+// print_r( $option);
+// $test = implode("','",$option);
+// echo $test;
 
 
-
-
-
+//
 //echo "
 //<script>
-/*   var test = '<?php echo $keyword ?>';*/
+/*   var test = '<?php echo $option ?>';*/
 //    console.log('option value is: ',test);
 //</script>";
 
@@ -42,7 +51,48 @@ if (isset($_POST['value'])){
 
 
     // sql query for the map markers
-    $sql = "SELECT * FROM place where (post_code like '%$keyword%' or suburb like '%$keyword%')  and category like '%$option%'"; //and description like '%$keyword%'
+    $sql = "SELECT * FROM place where (post_code like '%$keyword%' or suburb like '%$keyword%')  and category in ($option)"; //and description like '%$keyword%'
+
+    if(isset($_POST["check_disable"])){
+        $sql .= "and disabled_access='Y'";
+    }
+    if(isset($_POST["check_fencing"])){
+        $sql .= "and fencing='Y'";
+    }
+    if(isset($_POST["check_toilet"])){
+        $sql .= "and toilet='Y'";
+    }
+    if(isset($_POST["check_slide"])){
+        $sql .= "and slides='Y'";
+    }
+    if(isset($_POST["check_play"])){
+        $sql .= "and play_structure='Y'";
+    }
+    if(isset($_POST["check_liberty"])){
+        $sql .= "and toilet='Y'";
+    }
+    if(isset($_POST["check_chinup"])){
+        $sql .= "and chinup_bar='Y'";
+    }
+    if(isset($_POST["check_bell"])){
+        $sql .= "and bells_chimes='Y'";
+    }
+    if(isset($_POST["check_rocker"])){
+        $sql .= "and rockers='Y'";
+    }
+    if(isset($_POST["check_climber"])){
+        $sql .= "and climbers='Y'";
+    }
+    if(isset($_POST["check_saw"])){
+        $sql .= "and see_saws='Y'";
+    }
+    if(isset($_POST["check_swing"])){
+        $sql .= "and swings='Y'";
+    }
+    if(isset($_POST["check_shade"])){
+        $sql .= "and shade='Y'";
+    }
+
     $result = mysqli_query($connect, $sql);
 
 
@@ -59,30 +109,7 @@ if (isset($_POST['value'])){
         $rows = ["categoty" => "","place_name" => "","address" => "Melbourne","coordinates" => "{lat: -37.8136, lng: 144.9621}"];
         //echo "query no result";
     }
-//}
-//else{
-//
-//        $sql = "SELECT * FROM place";
-//        $result = mysqli_query($connect, $sql);
-//
-//
-//        if (mysqli_num_rows($result) > 0) {
-//            // output data
-//            while ($record = mysqli_fetch_assoc($result)) {
-//                $rows[] = $record;
-//
-//                //echo json_encode ($record);
-//            }
-//
-//
-//        }
-//        else {
-//            echo "no result";
-//}}
 
-//else{
-//    echo "post fails";
-//}
 echo json_encode($rows);  // pass data to javascript for map markers
 mysqli_close($connect);
 
