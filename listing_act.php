@@ -23,7 +23,7 @@
                             echo '<h3>Results For : <span>'.$_POST['value'].'</span></h3>';
                         }
                         elseif ($_POST['value'] == ""){
-                            echo '<h3>Results For: All Budget Ranges</span></h3>';
+                            echo '<h3>Activities for behavioral issues children</span></h3>';
                         }
                         ?>
 
@@ -36,15 +36,15 @@
                         </div>
                     </div>
 
-                    <form  id = "pageinput">
+                    <form action="listing_act.php" method="post">
                         <!-- listsearch-input-wrap  -->
                         <div class="listsearch-input-wrap fl-wrap">
                             <div class="listsearch-input-item">
                                 <i class="mbri-key single-i"></i>
-                                <input type="text" name="userinput_activity" placeholder="Postcode or Suburb?" value="" id="search_text" onchange="ajaxSearch_activity()">
+                                <input type="text" name="postcode" placeholder="Search by Postcode" value="" id="search_text"/>
                             </div>
                             <div class="listsearch-input-item">
-                                <select name="value" data-placeholder="All Range Budgets" class="chosen-select" id="value" onchange="ajaxSearch_activity()">
+                                <select name="value" data-placeholder="All Range Budgets" class="chosen-select" id="value">
                                     <option value="All Budget Ranges">All Budget Ranges</option>
                                     <option value="Free">Free</option>
                                     <option value="less than $20">less than $20</option>
@@ -60,9 +60,9 @@
                                 <!-- Checkboxes Filter -->
                                 <div class=" fl-wrap filter-tags">
                                     <h4>Filter by Target Audience</h4>
-                                    <input id="Parent" type="checkbox" name="check_p" class="common_selector Parent" value="Parent" onchange="ajaxSearch_activity()">
+                                    <input id="Parent" type="checkbox" name="check" class="common_selector Parent" value="Parent">
                                     <label for="Parent">Parent</label>
-                                    <input id="Children" type="checkbox" name="check_c" class="common_selector Children" value="Children" onchange="ajaxSearch_activity()">
+                                    <input id="Children" type="checkbox" name="check" class="common_selector Children" value="Children">
                                     <label for="Children">Children</label>
                                 </div>
                             </div>
@@ -94,8 +94,9 @@
 </div>
 <?php
 // pass data to response_activity.php for map searching
-$_SESSION['userinput'] = $_POST['userinput'];
-//$_SESSION['budget_activity'] = $_POST['value'];
+$_SESSION['postcode_activity'] = $_POST['postcode'];
+$_SESSION['suburb_activity'] = $_POST['suburb'];
+$_SESSION['budget_activity'] = $_POST['value'];
 ?>
 <!-- wrapper end -->
 <!--footer -->
@@ -115,18 +116,6 @@ $_SESSION['userinput'] = $_POST['userinput'];
 <script type="text/javascript" src="js/map_infobox.js"></script>
 <script type="text/javascript" src="js/markerclusterer.js"></script>
 <script type="text/javascript" src="js/maps_activity.js"></script>
-
-<!--This is a script for limiting user selecting checkbox only one-->
-<!--<script>-->
-<!--    var limit = 1;-->
-<!--    $('input.common_selector').on('change', function(evt) {-->
-<!--        if($(this).siblings(':checked').length >= limit) {-->
-<!--            this.checked = false;-->
-<!--            alert("Can only select one, please deselect the other one first");-->
-<!--        }-->
-<!--    });-->
-<!--</script>-->
-
 
 <style>
     #loading

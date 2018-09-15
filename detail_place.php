@@ -66,6 +66,14 @@
             </div>
         </div>
 
+        <?php
+        $placeCatch = $_GET['place'];
+        if($placeCatch != "")
+        {
+            $placeName = $placeCatch;
+        }
+        ?>
+
         <!--  section   -->
         <section class="gray-section no-top-padding">
             <div class="container">
@@ -73,7 +81,10 @@
                     <div class="col-md-8">
                         <!-- list-single-main-wrapper -->
                         <div class="list-single-main-wrapper fl-wrap" id="sec2">
-                            <div class="breadcrumbs gradient-bg  fl-wrap"><a href="index.php">Home</a><a href="listing.php">Explore</a><span>Detail Activity</span></div>
+                            <?php
+                            echo'<div class="breadcrumbs gradient-bg  fl-wrap"><a href="index.php">Home</a><a href="listing.php">Explore</a><span>'.$placeName.'</span></div>';
+                            ?>
+
                             <!-- list-single-header -->
                             <div class="list-single-header list-single-header-inside fl-wrap">
                                 <div class="container">
@@ -87,11 +98,6 @@
                                                 <!--                                                    </div>   -->
 
                                                 <?php
-                                                $placeCatch = $_GET['place'];
-                                                if($placeCatch != "")
-                                                {
-                                                    $placeName = $placeCatch;
-                                                }
                                                 echo '<h2>'.$placeName.'</h2>';
                                                 ?>
                                                 <!--                                                    <span class="section-separator"></span>-->
