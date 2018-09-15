@@ -2,62 +2,12 @@
 include "mysql_connect.php";
 
 // Random Image function
-function random_image($directory)
-{
-    $leading = substr($directory, 0, 1);
-    $trailing = substr($directory, -1, 1);
-
-    if($leading == '/')
-    {
-        $directory = substr($directory, 1);
-    }
-    if($trailing != '/')
-    {
-        $directory = $directory . '/';
-    }
-
-    if(empty($directory) or !is_dir($directory))
-    {
-        die('Directory: ' . $directory . ' not found.');
-    }
-
-    $files = scandir($directory, 1);
-
-    $make_array = array();
-
-    foreach($files AS $id => $file)
-    {
-        $info = pathinfo($directory . $file);
-
-        $image_extensions = array('jpg', 'jpeg', 'gif', 'png', 'ico');
-        if(!in_array($info['extension'], $image_extensions))
-        {
-            unset($file);
-        }
-        else
-        {
-            $file = str_replace(' ', '%20', $file);
-            $temp = array($id => $file);
-            array_push($make_array, $temp);
-        }
-    }
-
-    if(sizeof($make_array) == 0)
-    {
-        die('No images in ' . $directory . ' Directory');
-    }
-
-    $total = count($make_array) - 1;
-
-    $random_image = rand(0, $total);
-    return $directory . $make_array[$random_image][$random_image];
-
-}
+include "randomImage.php";
 
 if(isset($_POST["action"]))
 {
     $query = "
-		SELECT * FROM place WHERE place_name!='' ";
+		SELECT * FROM places WHERE place_name!='' ";
 
     if(isset($_POST["query"]) && !empty($_POST["query"]))
     {
@@ -66,11 +16,25 @@ if(isset($_POST["action"]))
 		 AND postcode LIKE '%".$search."%'  ";
     }
 
-    if(isset($_POST["category"]) && $_POST["category"] != 'All Categories'&& !empty($_POST["category"]) ){
+    if(isset($_POST["category"]) && $_POST["category"] != 'All Categories'&& !empty($_POST["category"]) )
+    {
         $search_text = "'" . implode("', '", $_POST["category"]) . "'";
-//        print_r($search_text);
-        $query .= " AND category IN (".$search_text.")
-        ";
+        print_r($_POST["category"]);
+        echo $search_text;
+
+        $countCat= strlen($search_text);
+        echo $countCat;
+        if($countCat <= 3)
+        {
+            $query .= " AND category NOT IN (".$search_text.")
+            ";
+        }
+        //        print_r($search_text);
+
+        else{
+            $query .= " AND category IN (".$search_text.")
+            ";
+        }
     }
 
     if (isset($_POST["disabled_access"])) {
@@ -93,6 +57,50 @@ if(isset($_POST["action"]))
 		 AND slides='Y' ";
     }
 
+    if (isset($_POST["rockers"])) {
+        $query .= "
+		 AND rockers='Y' ";
+    }
+
+    if (isset($_POST["climbers"])) {
+        $query .= "
+		 AND climbers='Y' ";
+    }
+
+    if (isset($_POST["see_saws"])) {
+        $query .= "
+		 AND see_saws='Y' ";
+    }
+
+    if (isset($_POST["swings"])) {
+        $query .= "
+		 AND swings='Y' ";
+    }
+
+    if (isset($_POST["liberty_swings"])) {
+        $query .= "
+		 AND liberty_swings='Y' ";
+    }
+
+    if (isset($_POST["play_structure"])) {
+        $query .= "
+		 AND play_structure='Y' ";
+    }
+
+    if (isset($_POST["chinup_bar"])) {
+        $query .= "
+		 AND chinup_bar='Y' ";
+    }
+
+    if (isset($_POST["bells_chimes"])) {
+        $query .= "
+		 AND bells_chimes='Y' ";
+    }
+
+    if (isset($_POST["shade"])) {
+        $query .= "
+		 AND shade='Y' ";
+    }
 
     $output = '';
     echo $query;
@@ -117,6 +125,17 @@ if(isset($_POST["action"]))
                                           <p> postcode:'. $row['postcode'].' </p>
                                           <p>'. $row['description'].'</p>
                                           <div class="geodir-category-options fl-wrap">
+                                          
+                                          <div class="listing-features fl-wrap">
+                                        <ul>
+                                          
+                                            <li><i class="fa fa-truck"></i> </li>
+                                            <li><i class="fa fa-tree"></i> </li>
+                                            <li><i class="fa fa-wheelchair"></i> </li>
+                                        </ul>
+                                    </div>
+
+                      
                                             <div class="geodir-category-location"><a  href="#0" class="map-item"><i class="fa fa-map-marker" aria-hidden="true"></i>'. $row['suburb'].'</a></div>
                                           </div>
                                        </div>
@@ -127,12 +146,10 @@ if(isset($_POST["action"]))
         echo $output;
     }
     else{
-        echo '<p> We apologize, there is no data found for your selection </p>';
+        echo '<h4> We apologize, there is no data found for your selection </h4>';
     }
 
-
 }
-
 /* close connection */
 $connect->close();
 ?>

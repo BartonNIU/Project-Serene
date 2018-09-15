@@ -37,18 +37,17 @@
                         </div>
                     </div>
 
-                    <form  id = "pageinput">
                     <!-- listsearch-input-wrap  -->
                     <!-- Insert Postcode  -->
                     <div class="listsearch-input-wrap fl-wrap">
                         <div class="listsearch-input-item">
                             <i class="mbri-key single-i"></i>
-                            <input type="text" name="userinput_place" placeholder="Postcode or Suburb?" value="" id="search_text" onchange="ajaxSearch_place()">
+                            <input type="text" name="postcode" placeholder="Postcode?" value="" id="search_text" />
                         </div>
 
                         <!-- Select Category  -->
                         <div class="listsearch-input-item">
-                            <select multiple="multiple" name="value" data-placeholder="Categories" class="chosen-select" id="value"  onchange="ajaxSearch_place()">
+                            <select multiple="multiple" name="value" data-placeholder="Categories" class="chosen-select" id="value" >
                                 <!--                                            <option value="*">All Categories</option>-->
                                 <option value="Garden">Garden</option>
                                 <option value="Indoor Facility">Indoor Facility</option>
@@ -85,6 +84,26 @@
                                 <label for="fencing">Fencing Park</label>
                                 <input id="toilet" type="checkbox" name="check" class="common_selector toilet" value="toilet">
                                 <label for="toilet">Public Toilet</label>
+                                <br><br><br><br>
+                                <input id="rockers" type="checkbox" name="check" class="common_selector rockers" value="rockers">
+                                <label for="rockers">Rockers</label>
+                                <input id="climbers" type="checkbox" name="check" class="common_selector climbers" value="climbers">
+                                <label for="climbers">Climbers</label>
+                                <input id="see_saws" type="checkbox" name="check" class="common_selector see_saws" value="see_saws">
+                                <label for="see_saws">See Saws</label>
+                                <input id="swings" type="checkbox" name="check" class="common_selector swings" value="swings">
+                                <label for="swings">Swings</label>
+                                <input id="shade" type="checkbox" name="check" class="common_selector shade" value="shade">
+                                <label for="shade">Shade</label>
+                                <br><br>
+                                <input id="liberty_swings" type="checkbox" name="check" class="common_selector liberty_swings" value="liberty_swings">
+                                <label for="liberty_swings">Liberty Swings</label>
+                                <input id="play_structure" type="checkbox" name="check" class="common_selector play_structure" value="play_structure">
+                                <label for="play_structure">Play Structure</label>
+                                <input id="chinup_bar" type="checkbox" name="check" class="common_selector chinup_bar" value="chinup_bar">
+                                <label for="chinup_bar">Chin Up Bars</label>
+                                <input id="bells_chimes" type="checkbox" name="check" class="common_selector bells_chimes" value="bells_chimes">
+                                <label for="bells_chimes">Bells Chimes</label>
                             </div>
                         </div>
                         <!-- hidden-listing-filter end -->
@@ -112,9 +131,6 @@
         <!--col-list-wrap -->
         <div class="limit-box fl-wrap"></div>
     </div>
-    <?php
-
-    ?>
     <!--content end -->
 </div>
 <!-- wrapper end -->
@@ -155,11 +171,22 @@
             var toilet = get_filter('toilet');
             var fencing = get_filter('fencing');
             var slides = get_filter('slides');
+            var rockers = get_filter('rockers');
+            var climbers = get_filter('climbers');
+            var see_saws = get_filter('see_saws');
+            var swings = get_filter('swings');
+            var liberty_swings = get_filter('liberty_swings');
+            var play_structure = get_filter('play_structure');
+            var chinup_bar = get_filter('chinup_bar');
+            var bells_chimes = get_filter('bells_chimes');
+            var shade = get_filter('shade');
+
             var category = $('#value').val();
 
 
             var cat = [];
             var catchCat ='';
+
             catchCat  = <?php echo json_encode($catCatch, JSON_HEX_TAG); ?>;
 
 
@@ -181,7 +208,10 @@
             $.ajax({
                 url:"fetch.php",
                 method:"POST",
-                data:{action:action, query:query, disabled_access:disabled_access, toilet:toilet, fencing:fencing, slides:slides, category:category},
+                data:{action:action, query:query, disabled_access:disabled_access, toilet:toilet, fencing:fencing,
+                    slides:slides, category:category, rockers:rockers,climbers:climbers, see_saws:see_saws,
+                    swings:swings,liberty_swings:liberty_swings,play_structure:play_structure,
+                    chinup_bar:chinup_bar, bells_chimes:bells_chimes, shade:shade},
                 success:function(data){
                     $('.filter_data').html(data);
                 }
@@ -210,7 +240,6 @@
             else
             {
                 filter_data();
-
             }
         });
 
@@ -222,13 +251,10 @@
 
             filter_data();
         });
-
     });
 </script>
 
 
 </body>
 </html>
-
-
 
