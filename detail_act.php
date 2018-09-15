@@ -57,7 +57,7 @@
                                 <ul>
                                     <li><a class="act-scrlink" href="#sec1">Gallery</a></li>
                                     <li><a href="#sec2">Details</a></li>
-                                    <li><a href="#sec3">Video </a></li>
+                                    <li><a href="#sec3">Video</a></li>
                                     <li><a href="#sec4">Reviews</a></li>
                                 </ul>
                             </nav>
@@ -508,8 +508,8 @@
         <!--=============== scripts  ===============-->
         <script type="text/javascript" src="js/jquery.min.js"></script>
         <script type="text/javascript" src="js/plugins.js"></script>
-        <script type="text/javascript" src="js/scripts.js"></script>   
-        <script src="https://maps.googleapis.com/maps/api/js?key=YOURAPIKEYHERE&libraries=places&callback=initAutocomplete"></script>
+        <script type="text/javascript" src="js/scripts.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6uvEZqkQXhf_Ai-vj50Phw-zMEaw7zLo"></script>
         <script type="text/javascript" src="js/map_infobox.js"></script>
         <script type="text/javascript" src="js/markerclusterer.js"></script>  
         <script type="text/javascript" src="js/maps.js"></script>

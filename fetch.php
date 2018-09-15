@@ -57,7 +57,7 @@ function random_image($directory)
 if(isset($_POST["action"]))
 {
     $query = "
-		SELECT * FROM places WHERE place_name!='' ";
+		SELECT * FROM place WHERE place_name!='' ";
 
     if(isset($_POST["query"]) && !empty($_POST["query"]))
     {

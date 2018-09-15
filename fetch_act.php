@@ -6,7 +6,7 @@ include "mysql_connect.php";
 if(isset($_POST["action"]))
 {
     $query = "
-		SELECT * FROM activity_list WHERE activity_title !='' ";
+		SELECT * FROM activity WHERE activity_title !='' ";
 
     if(isset($_POST["query"]) && !empty($_POST["query"]))
     {
@@ -16,12 +16,12 @@ if(isset($_POST["action"]))
     }
 
     if(isset($_POST["category"]) && $_POST["category"] != 'All Categories'&& !empty($_POST["category"]) ){
-        $search_text = $_POST["category"];
+            $search_text = $_POST["category"];
 
-       //print_r($_POST["category"]);
-        echo $search_text;
+            //print_r($_POST["category"]);
+            echo $search_text;
 
-        if (strpos($search_text, 'Free') !== false) {
+            if (strpos($search_text, 'Free') !== false) {
             $query .= "AND fee='Free'";
         }
         else if (strpos($search_text, 'less than $20') !== false) {
@@ -69,7 +69,7 @@ if(isset($_POST["action"]))
                                                 <a class="listing-geodir-category">Activity</a>
                                                     <h3><a href=detail_act.php?event='.urlencode($actName).' > '. $row['activity_title'].' </a></h3>
                                                     <h6> Fee: '. $row['fee']. ' </h6>
-                                                    <p> postcode:'. $row['postcode'].' </p>
+                                                    <p> postcode:'. $row['post_code'].' </p>
                                                     <p> audience:'. $row['audience'].' </p>
                                                     <p>'. $row['description'].'</p>
                                                     <div class="geodir-category-options fl-wrap">

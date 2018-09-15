@@ -6,7 +6,7 @@ $db = "fit5120";
 
 
 // create connection
-$conn = mysqli_connect($host, $user, $password, $db);
+$connect = mysqli_connect($host, $user, $password, $db);
 
 /* check connection */
 if (mysqli_connect_errno()){

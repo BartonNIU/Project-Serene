@@ -4,22 +4,20 @@ session_start();
 include("mysql_connect.php");
 $rows = array();
 
-$postcode = "";
-$suburb = "";
+//$postcode = "";
+//$suburb = "";
 $keyword = "";
 $option = "";
 
-if (isset($_SESSION['postcode'])){
-    $postcode = $_SESSION['postcode'];
+//if (isset($_SESSION['postcode'])){
+//    $postcode = $_SESSION['postcode'];
+//}
+
+if (isset($_POST['userinput_place'])){
+    $keyword = $_POST['userinput_place'];
 }
-if (isset($_SESSION['suburb'])){
-    $suburb = $_SESSION['suburb'];
-}
-if (isset($_SESSION['keyword_place'])){
-    $keyword = $_SESSION['keyword_place'];
-}
-if (isset($_SESSION['option_place'])){
-    $option = $_SESSION['option_place'];
+if (isset($_POST['value'])){
+    $option = $_POST['value'];
 }
 
 
@@ -33,10 +31,7 @@ if (isset($_SESSION['option_place'])){
 //    console.log('option value is: ',test);
 //</script>";
 
-//$postcode = ""; //$_SESSION['postcode'];
-//$suburb = ""; //$_SESSION['suburb'];
-//$option = ""; //$_SESSION['option_place'];
-//$keyword = "gard";
+
 
 //if($keyword != ""){
 //   $sql = "SELECT * FROM place where option like '%$keyword%'";
@@ -47,8 +42,8 @@ if (isset($_SESSION['option_place'])){
 
 
     // sql query for the map markers
-    $sql = "SELECT * FROM place where post_code like '%$postcode%' and suburb like '%$suburb%'  and category like '%$option%'"; //and description like '%$keyword%'
-    $result = mysqli_query($conn, $sql);
+    $sql = "SELECT * FROM place where (post_code like '%$keyword%' or suburb like '%$keyword%')  and category like '%$option%'"; //and description like '%$keyword%'
+    $result = mysqli_query($connect, $sql);
 
 
     if (mysqli_num_rows($result) > 0) {
@@ -68,7 +63,7 @@ if (isset($_SESSION['option_place'])){
 //else{
 //
 //        $sql = "SELECT * FROM place";
-//        $result = mysqli_query($conn, $sql);
+//        $result = mysqli_query($connect, $sql);
 //
 //
 //        if (mysqli_num_rows($result) > 0) {
@@ -89,6 +84,6 @@ if (isset($_SESSION['option_place'])){
 //    echo "post fails";
 //}
 echo json_encode($rows);  // pass data to javascript for map markers
-mysqli_close($conn);
+mysqli_close($connect);
 
 

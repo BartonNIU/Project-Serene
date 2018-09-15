@@ -18,9 +18,9 @@
                     <form method="post" action="listing_act.php">
                         <div class="main-search-input-wrap">
                             <div class="main-search-input fl-wrap">
-                                <div class="main-search-input-item">
-                                    <input id="postcode" name="postcode" type="text" placeholder="Put your postcode here"/>
-                                    <div id="postcodeList"></div>
+                                <div class="main-search-input-item" id="autocomplete-container">
+                                    <input id="userinput" name="userinput" type="text" placeholder="Put your postcode or suburb here" >
+                                    <div id="userinputList"></div>
                                 </div>
 
                                 <!--<div class="main-search-input-item location" id="autocomplete-container">
@@ -28,9 +28,9 @@
                                     <a href="#"><i class="fa fa-dot-circle-o"></i></a>
                                 </div>-->
 
-                                <div class="main-search-input-item location" id="autocomplete-container">
-                                    <input type="text" placeholder="Or, Search by suburb" id="suburb" name="suburb"/>
-                                </div>
+<!--                                <div class="main-search-input-item location" id="autocomplete-container">-->
+<!--                                    <input type="text" placeholder="Or, Search by suburb" id="suburb" name="suburb"/>-->
+<!--                                </div>-->
                                 <button type="submit" class="main-search-button" name="submit" ">Search</button>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                     include "randomImage.php";
 
                     //Free Activity
-                    $query = $connect->query("Select * from activity_list WHERE Fee='Free'");
+                    $query = $connect->query("Select * from activity WHERE fee='Free'");
                     while($row = $query->fetch_array())
                     {
                         $actName = $row['activity_title'];
@@ -111,24 +111,24 @@
                     <p>Explore some of the best recreational facilities and play areas in Melbourne</p>
                 </div>
 
-                <!--Category Listing-->
+                <!--category Listing-->
                 <?php
-                $result_garden = $connect->query("SELECT * from places WHERE Category='Garden'");
+                $result_garden = $connect->query("SELECT * from place WHERE category='Garden'");
                 $row_cnt_garden = $result_garden ->num_rows;
 
-                $result_indoor = $connect->query("SELECT * from places WHERE Category='Indoor Facility'");
+                $result_indoor = $connect->query("SELECT * from place WHERE category='Indoor Facility'");
                 $row_cnt_indoor = $result_indoor ->num_rows; //4
 
-                $result_outdoor = $connect->query("SELECT * from places WHERE Category='Outdoor Venue'");
+                $result_outdoor = $connect->query("SELECT * from place WHERE category='Outdoor Venue'");
                 $row_cnt_outdoor = $result_outdoor ->num_rows; //3
 
-                $result_park = $connect->query("SELECT * from places WHERE Category='Park'");
+                $result_park = $connect->query("SELECT * from place WHERE category='Park'");
                 $row_cnt_park = $result_park ->num_rows; //23
 
-                $result_reserve = $connect->query("SELECT * from places WHERE Category='Reserve'");
+                $result_reserve = $connect->query("SELECT * from place WHERE category='Reserve'");
                 $row_cnt_reserve = $result_reserve ->num_rows; //4
 
-                $result_sport = $connect->query("SELECT * from places WHERE Category='Sports Center'");
+                $result_sport = $connect->query("SELECT * from place WHERE category='Sports Center'");
                 $row_cnt_sport = $result_sport ->num_rows; //15
 
                 $garden = "Garden";
@@ -324,7 +324,8 @@
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/plugins.js"></script>
 <script type="text/javascript" src="js/scripts.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDwJSRi0zFjDemECmFl9JtRj1FY7TiTRRo&libraries=places&callback=initAutocomplete"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6uvEZqkQXhf_Ai-vj50Phw-zMEaw7zLo"></script>
+<script type="text/javascript" src="complete.js"></script>
+
 </body>
 </html>
-<script type="text/javascript" src="complete.js"></script>
