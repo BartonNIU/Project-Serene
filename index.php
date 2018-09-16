@@ -74,13 +74,11 @@
                 <!--listing-carousel-->
                 <div class="listing-carousel  fl-wrap ">
                     <?php
-                    // Random Image function
-                    include "randomImage.php";
-
                     //Free Activity
                     $query = $connect->query("Select * from activity_list WHERE Fee='Free'");
                     while($row = $query->fetch_array())
                     {
+                        $orderPict = $row['id'];
                         $actName = $row['activity_title'];
                         $description = $row['description'] . ' ' . $actName;
                         $string = strip_tags($description);
@@ -102,7 +100,7 @@
                         echo '<article class="geodir-category-listing fl-wrap">';
                         echo '<a href=detail_act.php?event=',urlencode($actName),'>';
                         echo '<div class="geodir-category-img">';
-                        echo '<img src=' . random_image('picture/Activities') . ' >';
+                        echo '<img src=picture/it2/Activities/'.$orderPict.'.jpeg>';
                         echo '<div class="overlay"></div>';
                         echo '</div>';
                         echo '</a>';
@@ -321,7 +319,7 @@
                         <li>
                             <div class="process-item">
                                 <span class="process-count">02 .</span>
-                                <div class="time-line-icon"><i class="fa fa-envelope-open-o"></i></div>
+                                <div class="time-line-icon"><i class="fa fa-map-marker"></i></div>
                                 <h4> Locate Facilities </h4>
                                 <p>You can look for free to access playgrounds, parks, gardens and sport centres that may offer activities catered to children</p>
                             </div>
@@ -330,7 +328,7 @@
                         <li>
                             <div class="process-item">
                                 <span class="process-count">03 .</span>
-                                <div class="time-line-icon"><i class="fa fa-hand-peace-o"></i></div>
+                                <div class="time-line-icon"><i class="fa fa-heart-o"></i></div>
                                 <h4>For parents</h4>
                                 <p>Look up activities specially catered to parents with special needs children, that help you understand their behavious and provide you with skills to calm them</p>
                             </div>

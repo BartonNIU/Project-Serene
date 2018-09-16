@@ -23,7 +23,7 @@
                             echo '<h3>Results For : <span>'.$_POST['value'].'</span></h3>';
                         }
                         elseif ($_POST['value'] == ""){
-                            echo '<h3>Activities for behavioral issues children</span></h3>';
+                            echo '<h3>Activities For Behavioral Issues Children</span></h3>';
                         }
                         ?>
 

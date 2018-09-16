@@ -1,9 +1,6 @@
 <?php
 include "mysql_connect.php";
 
-// Random Image function
-include "randomImage.php";
-
 if(isset($_POST["action"]))
 {
     $query = "
@@ -110,31 +107,26 @@ if(isset($_POST["action"]))
     {
         while($row = mysqli_fetch_array($result))
         {
+            $orderPict = $row['ID'];
             $placeName = $row['place_name'];
             $output .='
                                 <!-- listing-item -->
                              <div class="listing-item list-layout">
                                 <article class="geodir-category-listing fl-wrap">
+                                <a href=detail_place.php?place='.urlencode($placeName).'>
                                   <div class="geodir-category-img">
-                                    <img src=' . random_image('picture/Activities') . '>
+                                    <img src=picture/it2/Explore/'.$orderPict.'.jpeg>
                                     <div class="overlay"></div>
                                     </div>
+                                    </a>
                                        <div class="geodir-category-content fl-wrap">
                                          <a class="listing-geodir-category">'. $row['category'] .'</a>
                                           <h3><a href=detail_place.php?place='.urlencode($placeName).' > '. $row['place_name'].' </a></h3>
-                                          <p> postcode:'. $row['postcode'].' </p>
+                                          <p> Postcode: '. $row['postcode'].' </p>
                                           <p>'. $row['description'].'</p>
                                           <div class="geodir-category-options fl-wrap">
                                           
-                                          <div class="listing-features fl-wrap">
-                                        <ul>
-                                          
-                                            <li><i class="fa fa-truck"></i> </li>
-                                            <li><i class="fa fa-tree"></i> </li>
-                                            <li><i class="fa fa-wheelchair"></i> </li>
-                                        </ul>
-                                    </div>
-
+                                      
                       
                                             <div class="geodir-category-location"><a  href="#0" class="map-item"><i class="fa fa-map-marker" aria-hidden="true"></i>'. $row['suburb'].'</a></div>
                                           </div>

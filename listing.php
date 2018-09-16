@@ -111,7 +111,7 @@
                                         <input id="play_structure" type="checkbox" name="check" class="common_selector play_structure" value="play_structure">
                                         <label for="play_structure">Play Structure</label>
                                         <input id="chinup_bar" type="checkbox" name="check" class="common_selector chinup_bar" value="chinup_bar">
-                                        <label for="chinup_bar">Chin Up Bars</label>
+                                        <label for="chinup_bar">Chinup Bars</label>
                                         <input id="bells_chimes" type="checkbox" name="check" class="common_selector bells_chimes" value="bells_chimes">
                                         <label for="bells_chimes">Bells Chimes</label>
                                     </li>
@@ -197,7 +197,7 @@
 
 
             var cat = [];
-            var catchCat ='';            var shade = get_filter('shade');
+            var catchCat ='';
 
             catchCat  = <?php echo json_encode($catCatch, JSON_HEX_TAG); ?>;
 
@@ -269,6 +269,4 @@
 
 </body>
 </html>
-
-
 

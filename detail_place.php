@@ -1,5 +1,12 @@
 <?php include "includes\header.php"?>
 <?php include "mysql_connect.php";?>
+<?php
+$placeCatch = $_GET['place'];
+if($placeCatch != "")
+{
+    $placeName = $placeCatch;
+}
+?>
 <!--  header end -->
 <!-- wrapper -->
 <div id="wrapper">
@@ -8,45 +15,61 @@
         <!--  carousel-->
         <div class="list-single-carousel-wrap fl-wrap" id="sec1">
             <div class="fw-carousel fl-wrap full-height lightgallery">
+
                 <!-- slick-slide-item -->
                 <div class="slick-slide-item">
                     <div class="box-item">
-                        <img  src="images/all/single/1.jpg"   alt="">
-                        <a href="images/all/single/1.jpg" class="gal-link popup-image"><i class="fa fa-search"  ></i></a>
+                        <?php
+                        $query = $connect->query("Select * from places WHERE place_name='$placeName'");
+                        while($row = $query -> fetch_array())
+                        {
+                            $orderPict = $row['ID'];
+                            echo'<img src=picture/it2/Explore/'.$orderPict.'.jpeg   alt="">';
+                        }
+                        ?>
+
+                        <!--                            <a href="images/all/single/1.jpg" class="gal-link popup-image"><i class="fa fa-search"  ></i></a>-->
                     </div>
                 </div>
                 <!-- slick-slide-item end -->
                 <!-- slick-slide-item -->
                 <div class="slick-slide-item">
                     <div class="box-item">
-                        <img  src="images/all/single/1.jpg"   alt="">
-                        <a href="images/all/single/1.jpg" class="gal-link popup-image"><i class="fa fa-search"  ></i></a>
+                        <?php
+                        $query = $connect->query("Select * from places WHERE place_name='$placeName'");
+                        while($row = $query -> fetch_array())
+                        {
+                            $orderPict = $row['ID'];
+                            echo'<img src=picture/it2/Explore/'.$orderPict.'.jpeg   alt="">';
+                        }
+                        ?>
+                        <!--                            <a href="images/all/single/1.jpg" class="gal-link popup-image"><i class="fa fa-search"  ></i></a>-->
                     </div>
                 </div>
                 <!-- slick-slide-item end -->
                 <!-- slick-slide-item -->
-                <div class="slick-slide-item">
-                    <div class="box-item">
-                        <img  src="images/all/single/1.jpg"   alt="">
-                        <a href="images/all/single/1.jpg" class="gal-link popup-image"><i class="fa fa-search"  ></i></a>
-                    </div>
-                </div>
+                <!--                    <div class="slick-slide-item">-->
+                <!--                        <div class="box-item">-->
+                <!--                            <img  src="images/all/single/1.jpg"   alt="">-->
+                <!--                            <a href="images/all/single/1.jpg" class="gal-link popup-image"><i class="fa fa-search"  ></i></a>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
                 <!-- slick-slide-item end -->
                 <!-- slick-slide-item -->
-                <div class="slick-slide-item">
-                    <div class="box-item">
-                        <img  src="images/all/single/1.jpg"   alt="">
-                        <a href="images/all/single/1.jpg" class="gal-link popup-image"><i class="fa fa-search"  ></i></a>
-                    </div>
-                </div>
+                <!--                    <div class="slick-slide-item">-->
+                <!--                        <div class="box-item">-->
+                <!--                            <img  src="images/all/single/1.jpg"   alt="">-->
+                <!--                            <a href="images/all/single/1.jpg" class="gal-link popup-image"><i class="fa fa-search"  ></i></a>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
                 <!-- slick-slide-item end -->
                 <!-- slick-slide-item -->
-                <div class="slick-slide-item">
-                    <div class="box-item">
-                        <img  src="images/all/single/1.jpg"   alt="">
-                        <a href="images/all/single/1.jpg" class="gal-link popup-image"><i class="fa fa-search"  ></i></a>
-                    </div>
-                </div>
+                <!--                    <div class="slick-slide-item">-->
+                <!--                        <div class="box-item">-->
+                <!--                            <img  src="images/all/single/1.jpg"   alt="">-->
+                <!--                            <a href="images/all/single/1.jpg" class="gal-link popup-image"><i class="fa fa-search"  ></i></a>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
                 <!-- slick-slide-item end -->
             </div>
             <div class="swiper-button-prev sw-btn"><i class="fa fa-long-arrow-left"></i></div>
@@ -66,13 +89,7 @@
             </div>
         </div>
 
-        <?php
-        $placeCatch = $_GET['place'];
-        if($placeCatch != "")
-        {
-            $placeName = $placeCatch;
-        }
-        ?>
+
 
         <!--  section   -->
         <section class="gray-section no-top-padding">
@@ -175,20 +192,65 @@
                                         //                                 echo '<a href="#" class="btn transparent-btn float-btn">Visit Website <i class="fa fa-angle-right"></i></a>';
                                         echo'<span class="fw-separator"></span>';
                                         echo'<div class="list-single-main-item-title fl-wrap">';
+                                        echo '<h3>Amenities</h3>';
+                                        echo '</div>';
+                                        echo '<div class="listing-features fl-wrap" id="sec3">';
+                                        echo '<ul>';
+                                        if($row['disabled_access'] === 'Y')
+                                        {
+                                            echo '<li><img src="picture/icon2/disable.png" height="10%" width="10%">   Disabled Access</li>';
+                                        }
+                                        if($row['slides'] === 'Y')
+                                        {
+                                            echo '<li><img src="picture/icon2/slide.png" height="10%" width="10%">  Slides </li>';
+                                        }
+                                        if($row['fencing'] === 'Y')
+                                        {
+                                            echo '<li><img src="picture/icon2/fence.png" height="10%" width="10%">   Fencing</li>';
+                                        }
+                                        if($row['toilet'] === 'Y')
+                                        {
+                                            echo '<li><img src="picture/icon2/toilet.png" height="10%" width="10%">   Public Toilet</li>';
+                                        }
+                                        if($row['rockers'] === 'Y')
+                                        {
+                                            echo '<li><img src="picture/icon2/horse-rocker.png" height="10%" width="10%">    Rockers</li>';
+                                        }
+                                        if($row['climbers'] === 'Y')
+                                        {
+                                            echo '<li><img src="picture/icon2/climber.png" height="10%" width="10%">   Climbers</li>';
+                                        }
+                                        if($row['see_saws'] === 'Y')
+                                        {
+                                            echo '<li><img src="picture/icon2/seesaw.png" height="10%" width="10%">   See Saws</li>';
+                                        }
+                                        if($row['swings'] === 'Y')
+                                        {
+                                            echo '<li><img src="picture/icon2/swings.png" height="10%" width="10%">   Swings</li>';
+                                        }
+                                        if($row['shade'] === 'Y')
+                                        {
+                                            echo '<li><img src="picture/icon2/umbrella.png" height="10%" width="10%">   Shade</li>';
+                                        }
+                                        if($row['liberty_swings'] === 'Y')
+                                        {
+                                            echo '<li><img src="picture/icon2/swing.png" height="10%" width="10%">   Liberty Swings</li>';
+                                        }
+                                        if($row['play_structure'] === 'Y')
+                                        {
+                                            echo '<li><img src="picture/icon2/playground.png" height="10%" width="10%">   Play Structure</li>';
+                                        }
+                                        if($row['chinup_bar'] === 'Y')
+                                        {
+                                            echo '<li><img src="picture/icon2/clamber.png" height="10%" width="10%">   Chinup Bar</li>';
+                                        }
+                                        if($row['bells_chimes'] === 'Y')
+                                        {
+                                            echo '<li><img src="picture/icon2/alarm.png" height="10%" width="10%">   Bells Chimes</li>';
+                                        }
                                     }
                                     ?>
-                                    <h3>Amenities</h3>
-                                </div>
-                                <div class="listing-features fl-wrap" id="sec3">
-                                    <ul>
-                                        <li><i class="fa fa-rocket"></i> Elevator in building</li>
-                                        <li><i class="fa fa-wifi"></i> Free Wi Fi</li>
-                                        <li><i class="fa fa-motorcycle"></i> Free Parking</li>
-                                        <li><i class="fa fa-cloud"></i> Air Conditioned</li>
-                                        <li><i class="fa fa-shopping-cart"></i> Online Ordering</li>
-                                        <li><i class="fa fa-paw"></i> Pet Friendly</li>
-                                        <li><i class="fa fa-tree"></i> Outdoor Seating</li>
-                                        <li><i class="fa fa-wheelchair"></i> Wheelchair Friendly</li>
+
                                     </ul>
                                 </div>
                                 <!--                                    <span class="fw-separator"></span>-->
