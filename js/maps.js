@@ -31,9 +31,13 @@
                 }]
             });
 
+
             function mainMap() {
                 function locationData(locationURL, locationCategory, locationTitle, locationAddress, locationPhone) {
-                    return ('<div class="map-popup-wrap"><div class="map-popup"><div class="infoBox-close"><i class="fa fa-times"></i></div><div class="map-popup-category">' + locationCategory + '</div><a href="' + locationURL + '" class="listing-img-content fl-wrap"></a> <div class="listing-content fl-wrap"><div class="listing-title fl-wrap"><h4><a href=' + locationURL + '>' + locationTitle + '</a></h4><span class="map-popup-location-info"><i class="fa fa-map-marker"></i>' + locationAddress + '</span><span class="map-popup-location-phone"><i class="fa fa-phone"></i>' + locationPhone + '</span></div></div></div></div>')
+                    return ('<div class="map-popup-wrap"><div class="map-popup"><div class="infoBox-close"><i class="fa fa-times"></i></div>' +
+                        '<div class="map-popup-category">' + locationCategory + '</div><a href="' + locationURL + '" class="listing-img-content fl-wrap"></a> ' +
+                        '<div class="listing-content fl-wrap"><div class="listing-title fl-wrap"><h4><a href=' + locationURL + '>' + locationTitle + '</a></h4>' +
+                        '<span class="map-popup-location-info"><i class="fa fa-map-marker"></i>' + locationAddress + '</span></div></div></div></div>')
                 }
 
                 var boxText = document.createElement("div");
@@ -49,8 +53,8 @@
                     boxStyle: {
                         width: "260px"
                     },
-                    closeBoxMargin: "0",
-                    closeBoxURL: "",
+                    closeBoxMargin: "10px 20px 2px 2px",//"0",
+                    closeBoxURL: "https://www.google.com/intl/en_us/mapfiles/close.gif",  //
                     infoBoxClearance: new google.maps.Size(1, 1),
                     isHidden: false,
                     pane: "floatPane",
@@ -194,28 +198,32 @@
 
 
     if(document.getElementById('map-main')) {
-        var map = new google.maps.Map(document.getElementById('map-main'), {
-            zoom: 12,
-            scrollwheel: false,
-            center: {lat: -37.8136, lng: 144.9621},//eval("("+locations[0]["coordinates"]+")"),
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            zoomControl: false,
-            mapTypeControl: false,
-            scaleControl: false,
-            panControl: false,
-            fullscreenControl: true,
-            navigationControl: false,
-            streetViewControl: false,
-            animation: google.maps.Animation.BOUNCE,
-            gestureHandling: 'cooperative',
-            styles: [{
-                "featureType": "administrative",
-                "elementType": "labels.text.fill",
-                "stylers": [{
-                    "color": "#444444"
-                }]
-            }]
+        // var map = new google.maps.Map(document.getElementById('map-main'), {
+        //     zoom: 12,
+        //     scrollwheel: false,
+        //     center: {lat: -37.8136, lng: 144.9621},//eval("("+locations[0]["coordinates"]+")"),
+        //     mapTypeId: google.maps.MapTypeId.ROADMAP,
+        //     zoomControl: false,
+        //     mapTypeControl: false,
+        //     scaleControl: false,
+        //     panControl: false,
+        //     fullscreenControl: true,
+        //     navigationControl: false,
+        //     streetViewControl: false,
+        //     animation: google.maps.Animation.BOUNCE,
+        //     gestureHandling: 'cooperative',
+        //     styles: [{
+        //         "featureType": "administrative",
+        //         "elementType": "labels.text.fill",
+        //         "stylers": [{
+        //             "color": "#444444"
+        //         }]
+        //     }]
+        // });
+        $(function () {
+            ajaxSearch_place();
         });
+
     }else {
         //     var markerIcon2 = {
         //         url: 'images/marker.png',

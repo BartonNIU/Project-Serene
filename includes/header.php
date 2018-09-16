@@ -142,7 +142,7 @@
                         </li>
                         <li>
                             <!--                            <a href="blog.html">Activities</a>-->
-                            <a href="listing.php">Places</a>
+                            <a href="listing.php">Explore</a>
 
                         </li>
                         <li>

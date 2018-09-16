@@ -12,7 +12,7 @@ if(isset($_POST["action"]))
     {
         $search = mysqli_real_escape_string($connect, $_POST["query"]);
         $query .= "
-		 AND postcode LIKE '%".$search."%'  ";
+		 AND post_code LIKE '%".$search."%'  ";
     }
 
     if(isset($_POST["category"]) && $_POST["category"] != 'All Categories'&& !empty($_POST["category"]) ){
@@ -54,6 +54,7 @@ if(isset($_POST["action"]))
 
     if(mysqli_num_rows($result) > 0)
     {
+        $index = 0;
         while($row = mysqli_fetch_array($result))
         {
             $actName = $row['activity_title'];
@@ -73,12 +74,13 @@ if(isset($_POST["action"]))
                                                     <p> audience:'. $row['audience'].' </p>
                                                     <p>'. $row['description'].'</p>
                                                     <div class="geodir-category-options fl-wrap">
-                                                      <div class="geodir-category-location"><a  href="#0" class="map-item"><i class="fa fa-map-marker" aria-hidden="true"></i>'. $row['address'].'</a></div>
+                                                      <div class="geodir-category-location"><a  href="#'.$index.'" class="map-item"><i class="fa fa-map-marker" aria-hidden="true"></i>'. $row['address'].'</a></div>
                                                     </div>
                                             </div>
                                  </article>
                              </div>
                                <!-- listing-item end-->';
+            $index++;
         }
         echo $output;
     }

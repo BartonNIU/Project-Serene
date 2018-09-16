@@ -373,7 +373,7 @@
                                             <div class="box-widget-item-header">
                                                 <h3>Weather in City : </h3>
                                             </div>										
-											<div id="weather-widget" class="gradient-bg" data-city="New York" data-country="USA"></div>
+											<div id="weather-widget" class="gradient-bg" data-city=""  data-country="AU"></div>
                                         </div>
                                         <!--box-widget-item end --> 										
                                         <!--box-widget-item -->
