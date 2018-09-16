@@ -15,31 +15,22 @@
                     </video>
                 </div>
 
-                <!--                        <div class="bg"  data-bg="picture/homepage.gif" data-scrollax="properties: { translateY: '200px' }"></div>-->
             </div>
             <div class="overlay"></div>
             <div class="hero-section-wrap fl-wrap">
                 <div class="container">
                     <div class="intro-item fl-wrap">
-                        <h2>Find activities and play areas </h2>
-                        <h3>For you and your special child in and around Melbourne</h3>
+                        <h2>Find Activities and Play Areas </h2>
+                        <h3>To calm your behaviour issues child in and around Melbourne</h3>
                     </div>
                     <form method="post" action="listing_act.php">
                         <div class="main-search-input-wrap">
                             <div class="main-search-input fl-wrap">
                                 <div class="main-search-input-item">
                                     <input id="postcode" name="postcode" type="text" placeholder="Search by Postcode Or Suburb"/>
+                                    <div></div>
                                     <div id="postcodeList"></div>
                                 </div>
-
-                                <!--<div class="main-search-input-item location" id="autocomplete-container">
-                                    <input type="text" placeholder="Location" id="autocomplete-input" value=""/>
-                                    <a href="#"><i class="fa fa-dot-circle-o"></i></a>
-                                </div>-->
-
-<!--                                <div class="main-search-input-item location" id="autocomplete-container">-->
-<!--                                    <input type="text" placeholder="Or, Search by suburb" id="suburb" name="suburb"/>-->
-<!--                                </div>-->
                                 <button type="submit" class="main-search-button" name="submit" ">Search</button>
                             </div>
                         </div>
@@ -68,7 +59,7 @@
                 <div class="listing-carousel  fl-wrap ">
                     <?php
                     //Free Activity
-                    $query = $connect->query("Select * from activity WHERE Fee='Free'");
+                    $query = $connect->query("Select * from activity_list WHERE Fee='Free'");
                     while($row = $query->fetch_array())
                     {
                         $orderPict = $row['id'];
@@ -182,8 +173,6 @@
                 echo "                                </div>\n";
 
                 echo "                                <!-- gallery-item end-->\n";
-                //                            echo '</a>';
-
 
                 echo "                                <!-- gallery-item-->\n";
                 echo "                                <div class=\"gallery-item gallery-item-second\">\n";
@@ -293,7 +282,6 @@
             <div class="container">
                 <div class="section-title">
                     <h2>How it WORKS?</h2>
-                    <div class="section-subtitle"></div>
                     <span class="section-separator"></span>
                     <p>We help you to find and locate activities specially catered towards children with behavioural issues</p>
                 </div>
@@ -301,56 +289,43 @@
                 <div class="process-wrap fl-wrap">
                     <ul>
                         <li>
-                            <div class="process-item">
-                                <span class="process-count">01 . </span>
-                                <div class="time-line-icon"><i class="fa fa-map-o"></i></div>
-                                <h4> Find an Activity</h4>
-                                <p>Serene offers you and your children activities in Melbourne that promote their behaviour through intellectual and physical activities</p>
-                            </div>
+                            <a href=listing_act.php>
+                                <div class="process-item">
+
+                                    <span class="process-count">01 . </span>
+                                    <div class="time-line-icon"><i class="fa fa-map-o"></i></div>
+                                    <h4> Find an Activity</h4>
+                                    <p>Serene offers you and your children activities in Melbourne that promote their behaviour through intellectual and physical activities</p>
+                                </div>
+                            </a>
                             <span class="pr-dec"></span>
                         </li>
                         <li>
-                            <div class="process-item">
-                                <span class="process-count">02 .</span>
-                                <div class="time-line-icon"><i class="fa fa-map-marker"></i></div>
-                                <h4> Locate Facilities </h4>
-                                <p>You can look for free to access playgrounds, parks, gardens and sport centres that may offer activities catered to children</p>
-                            </div>
+                            <a href=listing.php>
+                                <div class="process-item">
+                                    <span class="process-count">02 .</span>
+                                    <div class="time-line-icon"><i class="fa fa-map-marker"></i></div>
+                                    <h4> Locate Facilities </h4>
+                                    <p>You can look for free to access playgrounds, parks, gardens and sport centres that may offer activities catered to children</p>
+                                </div>
+                            </a>
                             <span class="pr-dec"></span>
                         </li>
                         <li>
-                            <div class="process-item">
-                                <span class="process-count">03 .</span>
-                                <div class="time-line-icon"><i class="fa fa-heart-o"></i></div>
-                                <h4>For parents</h4>
-                                <p>Look up activities specially catered to parents with special needs children, that help you understand their behavious and provide you with skills to calm them</p>
-                            </div>
+                            <a href=FAQ.php>
+                                <div class="process-item">
+                                    <span class="process-count">03 .</span>
+                                    <div class="time-line-icon"><i class="fa fa-heart-o"></i></div>
+                                    <h4>For parents</h4>
+                                    <p>Look up activities specially catered to parents with special needs children, that help you understand their behavious and provide you with skills to calm them</p>
+                                </div>
+                            </a>
                         </li>
                     </ul>
-                    <!--                                <div class="process-end"><i class="fa fa-check"></i></div>-->
                 </div>
                 <!--process-wrap   end-->
             </div>
         </section>
-
-        <!--section -->
-        <!--                    <section class="gradient-bg">-->
-        <!--                        <div class="cirle-bg">-->
-        <!--                            <div class="bg" data-bg="images/bg/circle.png"></div>-->
-        <!--                        </div>-->
-        <!--                        <div class="container">-->
-        <!--                            <div class="join-wrap fl-wrap">-->
-        <!--                                <div class="row">-->
-        <!--                                    <div class="col-md-8">-->
-        <!--                                        <h3>Do You Have Questions ?</h3>-->
-        <!--                                        <p>Send any question to serene@admin.tk</p>-->
-        <!--                                    </div>-->
-        <!--<!--                                    <div class="col-md-4"><a href="contacts.html" class="join-wrap-btn">Get In Touch <i class="fa fa-envelope-o"></i></a></div>-->-->
-        <!--                                </div>-->
-        <!--                            </div>-->
-        <!--                        </div>-->
-        <!--                    </section>-->
-        <!-- section end -->
     </div>
     <!-- Content end -->
 </div>

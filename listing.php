@@ -7,8 +7,8 @@
         <div class="map-container column-map right-pos-map">
             <div id="map-main"></div>
             <ul class="mapnavigation">
-                <li><a href="#" class="prevmap-nav">Prev</a></li>
-                <li><a href="#" class="nextmap-nav">Next</a></li>
+                <!--                            <li><a href="#" class="prevmap-nav">Prev</a></li>-->
+                <!--                            <li><a href="#" class="nextmap-nav">Next</a></li>-->
             </ul>
         </div>
         <!-- Map end -->
@@ -20,7 +20,6 @@
                         <!--Showing List Result Title-->
                         <?php
                         if($_POST['category'] != "") {
-                            echo "gsgs";
                             echo '<h3>List For : <span>'.$_POST['category'].'</span></h3>';
                         }
                         elseif ($_POST['category'] == ""){
@@ -36,18 +35,18 @@
                             </ul>
                         </div>
                     </div>
-                    <form  id = "pageinput">
+
                     <!-- listsearch-input-wrap  -->
                     <!-- Insert Postcode  -->
                     <div class="listsearch-input-wrap fl-wrap">
                         <div class="listsearch-input-item">
                             <i class="mbri-key single-i"></i>
-                            <input type="text" name="userinput_place" placeholder="Postcode or Suburb?" value="" id="search_text" onchange="ajaxSearch_place()">
+                            <input type="text" name="postcode" placeholder="Search By Postcode" value="" id="search_text" />
                         </div>
 
                         <!-- Select Category  -->
                         <div class="listsearch-input-item">
-                            <select multiple="multiple" name="category[]" data-placeholder="Categories" class="chosen-select" id="value" onchange="ajaxSearch_place()">
+                            <select multiple="multiple" name="value" data-placeholder="Categories" class="chosen-select" id="value" >
                                 <!--                                            <option value="*">All Categories</option>-->
                                 <option value="Garden">Garden</option>
                                 <option value="Indoor Facility">Indoor Facility</option>
@@ -68,7 +67,7 @@
                         else {
                             $catCatch = '';
                         }
-                        echo $catCatch;
+                        //                                        echo $catCatch;
                         ?>
 
                         <!-- hidden-listing-filter -->
@@ -78,40 +77,42 @@
                                 <h4>Filter by Amenities</h4>
                                 <ul>
                                     <li>
-                                    <input id="disabled_access" type="checkbox" name="check_disable" class="common_selector disabled_access" value="disabled_access" onchange="ajaxSearch_place()">
-                                    <label for="disabled_access">Disabled Access </label>
-                                    <input id="fencing" type="checkbox" name="check_fencing" class="common_selector fencing" value="fencing" onchange="ajaxSearch_place()">
-                                    <label for="fencing">Fencing &nbsp</label>
-                                    <input id="toilet" type="checkbox" name="check_toilet" class="common_selector toilet" value="toilet" onchange="ajaxSearch_place()">
-                                    <label for="toilet">Public Toilet &nbsp</label>
-                                    <input id="slides" type="checkbox" name="check_slide" class="common_selector slides" value="slides" onchange="ajaxSearch_place()">
-                                    <label for="slides">Slides</label>
+                                        <input id="disabled_access" type="checkbox" name="check" class="common_selector disabled_access" value="disabled_access">
+                                        <label for="disabled_access">Disabled Access</label>
+
+                                        <input id="slides" type="checkbox" name="check" class="common_selector slides" value="slides">
+                                        <label for="slides">Slides</label>
+
+                                        <input id="fencing" type="checkbox" name="check" class="common_selector fencing" value="fencing">
+                                        <label for="fencing">Fencing</label>
+
+
+                                        <input id="toilet" type="checkbox" name="check" class="common_selector toilet" value="toilet">
+                                        <label for="toilet">Public Toilet</label>
                                     </li>
                                     <br><br><br><br>
-
                                     <li>
-                                    <input id="play_structure" type="checkbox" name="check_play" class="common_selector play_structure" value="play_structure" onchange="ajaxSearch_place()">
-                                    <label for="play_structure">Play Structure &nbsp</label>
-                                    <input id="liberty_swings" type="checkbox" name="check_liberty" class="common_selector liberty_swings" value="liberty_swings" onchange="ajaxSearch_place()">
-                                    <label for="liberty_swings">Liberty Swings</label>
-                                    <input id="chinup_bar" type="checkbox" name="check_chinup" class="common_selector chinup_bar" value="chinup_bar" onchange="ajaxSearch_place()">
-                                    <label for="chinup_bar">Chinup Bars &nbsp</label>
-                                    <input id="bells_chimes" type="checkbox" name="check_bell" class="common_selector bells_chimes" value="bells_chimes" onchange="ajaxSearch_place()">
-                                    <label for="bells_chimes">Bells Chimes</label>
+                                        <input id="rockers" type="checkbox" name="check" class="common_selector rockers" value="rockers">
+                                        <label for="rockers">Rockers</label>
+                                        <input id="climbers" type="checkbox" name="check" class="common_selector climbers" value="climbers">
+                                        <label for="climbers">Climbers</label>
+                                        <input id="see_saws" type="checkbox" name="check" class="common_selector see_saws" value="see_saws">
+                                        <label for="see_saws">See Saws</label>
+                                        <input id="swings" type="checkbox" name="check" class="common_selector swings" value="swings">
+                                        <label for="swings">Swings</label>
+                                        <input id="shade" type="checkbox" name="check" class="common_selector shade" value="shade">
+                                        <label for="shade">Shade</label>
                                     </li>
-
                                     <br><br>
                                     <li>
-                                    <input id="rockers" type="checkbox" name="check_rocker" class="common_selector rockers" value="rockers" onchange="ajaxSearch_place()">
-                                    <label for="rockers">Rockers</label>
-                                    <input id="climbers" type="checkbox" name="check_climber" class="common_selector climbers" value="climbers" onchange="ajaxSearch_place()">
-                                    <label for="climbers">Climbers</label>
-                                    <input id="see_saws" type="checkbox" name="check_saw" class="common_selector see_saws" value="see_saws" onchange="ajaxSearch_place()">
-                                    <label for="see_saws">See Saws</label>
-                                    <input id="swings" type="checkbox" name="check_swing" class="common_selector swings" value="swings" onchange="ajaxSearch_place()">
-                                    <label for="swings">Swings</label>
-                                    <input id="shade" type="checkbox" name="check_shade" class="common_selector shade" value="shade" onchange="ajaxSearch_place()">
-                                    <label for="shade">Shade</label>
+                                        <input id="liberty_swings" type="checkbox" name="check" class="common_selector liberty_swings" value="liberty_swings">
+                                        <label for="liberty_swings">Liberty Swings</label>
+                                        <input id="play_structure" type="checkbox" name="check" class="common_selector play_structure" value="play_structure">
+                                        <label for="play_structure">Play Structure</label>
+                                        <input id="chinup_bar" type="checkbox" name="check" class="common_selector chinup_bar" value="chinup_bar">
+                                        <label for="chinup_bar">Chinup Bars</label>
+                                        <input id="bells_chimes" type="checkbox" name="check" class="common_selector bells_chimes" value="bells_chimes">
+                                        <label for="bells_chimes">Bells Chimes</label>
                                     </li>
                                 </ul>
                             </div>

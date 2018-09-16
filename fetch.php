@@ -1,13 +1,10 @@
 <?php
 include "mysql_connect.php";
 
-// Random Image function
-include "randomImage.php";
-
 if(isset($_POST["action"]))
 {
     $query = "
-		SELECT * FROM explore WHERE place_name!='' ";
+		SELECT * FROM places WHERE place_name!='' ";
 
     if(isset($_POST["query"]) && !empty($_POST["query"]))
     {
@@ -19,11 +16,11 @@ if(isset($_POST["action"]))
     if(isset($_POST["category"]) && $_POST["category"] != 'All Categories'&& !empty($_POST["category"]) )
     {
         $search_text = "'" . implode("', '", $_POST["category"]) . "'";
-        print_r($_POST["category"]);
-        echo $search_text;
+//        print_r($_POST["category"]);
+//        echo $search_text;
 
         $countCat= strlen($search_text);
-        echo $countCat;
+//        echo $countCat;
         if($countCat <= 3)
         {
             $query .= " AND category NOT IN (".$search_text.")
@@ -44,7 +41,7 @@ if(isset($_POST["action"]))
 
     if (isset($_POST["toilet"])) {
         $query .= "
-		 AND public_toilet='Y' ";
+		 AND toilet='Y' ";
     }
 
     if (isset($_POST["fencing"])) {
@@ -103,12 +100,11 @@ if(isset($_POST["action"]))
     }
 
     $output = '';
-    echo $query;
+//    echo $query;
     $result = mysqli_query($connect, $query);
 
     if(mysqli_num_rows($result) > 0)
     {
-        $index =0;
         while($row = mysqli_fetch_array($result))
         {
             $orderPict = $row['ID'];
@@ -126,25 +122,28 @@ if(isset($_POST["action"]))
                                        <div class="geodir-category-content fl-wrap">
                                          <a class="listing-geodir-category">'. $row['category'] .'</a>
                                           <h3><a href=detail_place.php?place='.urlencode($placeName).' > '. $row['place_name'].' </a></h3>
-                                          <p> Postcode: '. $row['post_code'].' </p>
-                                       
+  
                                           <p>'. $row['description'].'</p>
                                           <div class="geodir-category-options fl-wrap">
                                           
                                       
                       
-                                            <div class="geodir-category-location"><a  href="#'.$index.'" class="map-item"><i class="fa fa-map-marker" aria-hidden="true"></i>'. $row['address'].'</a></div>
+                                            <div class="geodir-category-location"><a  href="#0" class="map-item"><i class="fa fa-map-marker" aria-hidden="true"></i>'. $row['address'].'</a></div>
                                           </div>
                                        </div>
                                    </article>
                                </div>
                                <!-- listing-item end-->';
-            $index++;
         }
         echo $output;
     }
     else{
-        echo '<h4> We apologize, there is no data found for your selection </h4>';
+        echo'<p></p>';
+        echo'<p></p>';
+        echo'<p></p>';
+        echo'<p></p>';
+        echo'<p></p>';
+        echo '<p> We apologize, there is no data found for your selection </p>';
     }
 
 }
