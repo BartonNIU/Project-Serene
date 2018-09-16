@@ -183,7 +183,7 @@ if($placeCatch != "")
                             <div class="list-single-main-item fl-wrap">
                                 <div class="list-single-main-item-title fl-wrap">
                                     <?php
-                                    $query = $connect->query("Select * from places WHERE place_name='$placeName'");
+                                    $query = $connect->query("Select * from place WHERE place_name='$placeName'");
                                     while($row = $query -> fetch_array())
                                     {
                                         echo' <h3>About '.$placeName.' </h3>';
@@ -400,7 +400,7 @@ if($placeCatch != "")
                                 <div class="box-widget opening-hours">
                                     <div class="box-widget-content">
                                         <?php
-                                        $query = $connect->query("Select * from places WHERE place_name='$placeName'");
+                                        $query = $connect->query("Select * from place WHERE place_name='$placeName'");
                                         while($row = $query -> fetch_array())
                                         {
 //                                                    echo '<span class="current-status"><i class="fa fa-clock-o"></i> Daily Schedule</span>';
@@ -465,9 +465,9 @@ if($placeCatch != "")
                                     <h3>Weather in City : </h3>
                                 </div>
                                 <?php
-                                $query = $connect->query("Select * from places WHERE place_name='$placeName'");
+                                $query = $connect->query("Select * from place WHERE place_name='$placeName'");
                                 while($row = $query -> fetch_array()){
-                                    echo '<div id="weather-widget" class="gradient-bg" data-city="'.$row['suburb'].'" data-country="AU"></div>';
+                                    echo '<div id="weather-widget" class="gradient-bg" data-city="'.$row['suburb'].'"  data-country="AU"></div>';
                                 }
                                 ?>
 
@@ -481,7 +481,7 @@ if($placeCatch != "")
                                 <div class="box-widget">
                                     <div class="map-container">
                                         <?php
-                                        $query = $connect->query("Select * from places WHERE place_name='$placeName'");
+                                        $query = $connect->query("Select * from place WHERE place_name='$placeName'");
                                         while($row = $query -> fetch_array()){
                                             echo '<div id="singleMap" data-latitude="'.$row['lat_coordinates'].'" data-longitude="'.$row['lng_coordinates'].'" data-mapTitle="Our Location"></div>';
 //                                                 <div id="singleMap" data-latitude="40.7427837" data-longitude="-73.11445617675781" data-mapTitle="Our Location"></div>
@@ -615,8 +615,7 @@ if($placeCatch != "")
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6uvEZqkQXhf_Ai-vj50Phw-zMEaw7zLo"></script>
 <script type="text/javascript" src="js/map_infobox.js"></script>
 <script type="text/javascript" src="js/markerclusterer.js"></script>
-<script type="text/javascript" src="js/maps_activity.js"></script>
-
+<script type="text/javascript" src="js/maps.js"></script>
 
 
 </body>

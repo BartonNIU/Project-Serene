@@ -1,10 +1,13 @@
 <?php
 include "mysql_connect.php";
 
+// Random Image function
+include "randomImage.php";
+
 if(isset($_POST["action"]))
 {
     $query = "
-		SELECT * FROM places WHERE place_name!='' ";
+		SELECT * FROM explore WHERE place_name!='' ";
 
     if(isset($_POST["query"]) && !empty($_POST["query"]))
     {
@@ -41,7 +44,7 @@ if(isset($_POST["action"]))
 
     if (isset($_POST["toilet"])) {
         $query .= "
-		 AND toilet='Y' ";
+		 AND public_toilet='Y' ";
     }
 
     if (isset($_POST["fencing"])) {
@@ -105,6 +108,7 @@ if(isset($_POST["action"]))
 
     if(mysqli_num_rows($result) > 0)
     {
+        $index =0;
         while($row = mysqli_fetch_array($result))
         {
             $orderPict = $row['ID'];
@@ -122,18 +126,20 @@ if(isset($_POST["action"]))
                                        <div class="geodir-category-content fl-wrap">
                                          <a class="listing-geodir-category">'. $row['category'] .'</a>
                                           <h3><a href=detail_place.php?place='.urlencode($placeName).' > '. $row['place_name'].' </a></h3>
-                                          <p> Postcode: '. $row['postcode'].' </p>
+                                          <p> Postcode: '. $row['post_code'].' </p>
+                                       
                                           <p>'. $row['description'].'</p>
                                           <div class="geodir-category-options fl-wrap">
                                           
                                       
                       
-                                            <div class="geodir-category-location"><a  href="#0" class="map-item"><i class="fa fa-map-marker" aria-hidden="true"></i>'. $row['suburb'].'</a></div>
+                                            <div class="geodir-category-location"><a  href="#'.$index.'" class="map-item"><i class="fa fa-map-marker" aria-hidden="true"></i>'. $row['address'].'</a></div>
                                           </div>
                                        </div>
                                    </article>
                                </div>
                                <!-- listing-item end-->';
+            $index++;
         }
         echo $output;
     }

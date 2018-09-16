@@ -1,27 +1,25 @@
 <?php
 include "mysql_connect.php";
-// Random Image function
-include "randomImage.php";
 
 if(isset($_POST["action"]))
 {
     $query = "
-		SELECT * FROM activity_list WHERE activity_title !='' ";
+		SELECT * FROM activity WHERE activity_title !='' ";
 
     if(isset($_POST["query"]) && !empty($_POST["query"]))
     {
         $search = mysqli_real_escape_string($connect, $_POST["query"]);
         $query .= "
-		 AND postcode LIKE '%".$search."%'  ";
+		 AND post_code LIKE '%".$search."%'  ";
     }
 
     if(isset($_POST["category"]) && $_POST["category"] != 'All Categories'&& !empty($_POST["category"]) ){
         $search_text = $_POST["category"];
 
-        //print_r($_POST["category"]);
-        echo $search_text;
+            //print_r($_POST["category"]);
+            echo $search_text;
 
-        if (strpos($search_text, 'Free') !== false) {
+            if (strpos($search_text, 'Free') !== false) {
             $query .= "AND fee='Free'";
         }
         else if (strpos($search_text, 'less than $20') !== false) {
@@ -36,7 +34,7 @@ if(isset($_POST["action"]))
         else if (strpos($search_text, 'more than $100') !== false) {
             $query .= "AND fee_fix > 100";
         }
-    }
+     }
 
     if (isset($_POST["Parent"])) {
         $query .= "
@@ -55,6 +53,7 @@ if(isset($_POST["action"]))
 
     if(mysqli_num_rows($result) > 0)
     {
+        $index = 0;
         while($row = mysqli_fetch_array($result))
         {
             $orderPict = $row['id'];
@@ -73,18 +72,18 @@ if(isset($_POST["action"]))
                                                 <a class="listing-geodir-category">'. $row['fee'].'</a>
                                                     <h3><a href=detail_act.php?event='.urlencode($actName).' > '. $row['activity_title'].' </a></h3>
                                               
-                                                    <p> Postcode: '. $row['postcode'].' </p>
+                                                    <p> Postcode: '. $row['post_code'].' </p>
                                                     <p> Audience: '. $row['audience'].' </p>
                                                     <p>'. $row['description'].'</p>
                                                     <div class="geodir-category-options fl-wrap">
-                                                      <div class="geodir-category-location"><a  href="#0" class="map-item"><i class="fa fa-map-marker" aria-hidden="true"></i>'. $row['address'].'</a></div>
-                                                      
+                                                      <div class="geodir-category-location"><a  href="#'.$index.'" class="map-item"><i class="fa fa-map-marker" aria-hidden="true"></i>'. $row['address'].'</a></div>
                                                     </div>
                                             </div>
                                  </article>
                              </div>
                              
                                <!-- listing-item end-->';
+            $index++;
         }
         echo $output;
     }
@@ -211,8 +210,8 @@ if(isset($_POST["action"]))
 
 
 
-/* close connection */
-$connect->close();
-?>
+                    /* close connection */
+                    $connect->close();
+                    ?>
 
 

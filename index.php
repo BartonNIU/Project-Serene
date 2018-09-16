@@ -15,13 +15,6 @@
                     </video>
                 </div>
 
-
-
-
-
-
-
-
                 <!--                        <div class="bg"  data-bg="picture/homepage.gif" data-scrollax="properties: { translateY: '200px' }"></div>-->
             </div>
             <div class="overlay"></div>
@@ -44,9 +37,9 @@
                                     <a href="#"><i class="fa fa-dot-circle-o"></i></a>
                                 </div>-->
 
-                                <div class="main-search-input-item location" id="autocomplete-container">
-                                    <input type="text" placeholder="Or, Search by suburb" id="suburb" name="suburb"/>
-                                </div>
+<!--                                <div class="main-search-input-item location" id="autocomplete-container">-->
+<!--                                    <input type="text" placeholder="Or, Search by suburb" id="suburb" name="suburb"/>-->
+<!--                                </div>-->
                                 <button type="submit" class="main-search-button" name="submit" ">Search</button>
                             </div>
                         </div>
@@ -75,7 +68,7 @@
                 <div class="listing-carousel  fl-wrap ">
                     <?php
                     //Free Activity
-                    $query = $connect->query("Select * from activity_list WHERE Fee='Free'");
+                    $query = $connect->query("Select * from activity WHERE Fee='Free'");
                     while($row = $query->fetch_array())
                     {
                         $orderPict = $row['id'];
