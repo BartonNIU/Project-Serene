@@ -23,7 +23,7 @@
 
                         <?php
                         $postAndSuburb = mysqli_real_escape_string($connect, $_POST['postcode']);
-                        //                        echo $postAndSuburb;
+                        echo $postAndSuburb;
                         $query = "SELECT * FROM address WHERE postnsuburb ='$postAndSuburb' ";
                         $output = '';
                         $postcode = 'none';
@@ -220,6 +220,8 @@ $_SESSION['userinput'] = $_POST['postcode'];
         });
 
     });
+
+
 </script>
 
 </body>

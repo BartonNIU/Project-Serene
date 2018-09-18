@@ -124,8 +124,6 @@ if(isset($_POST["action"]))
     }
 }
 
-/* close connection */
-$connect->close();
-?>
-
-
+    /* close connection */
+    $connect->close();
+    ?>
