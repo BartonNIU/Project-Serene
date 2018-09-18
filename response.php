@@ -8,12 +8,13 @@ $rows = array();
 //$suburb = "";
 $keyword = "";
 $option = "'" . implode("', '", array('Park','Garden','Indoor Facility','Outdoor Venue','Reserve','Sports Center')) . "'";
-//$check_disable ="";
-//$check_slide ="";
-//$check_fencing="";
-//$check_toilet="";
-//$sql = "SELECT * FROM place where post_code like '' ";
 
+if (isset($_SESSION["category"]) and $_SESSION["category"] != ""){
+    //$option = "'" . implode("', '", $_SESSION["category"]) . "'";
+    $option = "'" .$_SESSION["category"]. "'";
+    //echo gettype($option);
+
+}
 if (isset($_POST['userinput_place'])){
     $keyword = $_POST['userinput_place'];
 }
@@ -23,31 +24,6 @@ if (isset($_POST['category'])){
     $option = "'" . implode("', '", $_POST["category"]) . "'";
 
 }
-
-//foreach ($option as $test){
-//    echo "option value is:".$test;
-//}
-
-// print_r( $option);
-// $test = implode("','",$option);
-// echo $test;
-
-
-//
-//echo "
-//<script>
-/*   var test = '<?php echo $option ?>';*/
-//    console.log('option value is: ',test);
-//</script>";
-
-
-
-//if($keyword != ""){
-//   $sql = "SELECT * FROM place where option like '%$keyword%'";
-//
-
-// check if the input has been passed successfully
-//if($postcode != "" || $option != "" ){
 
 
     // sql query for the map markers

@@ -13,17 +13,8 @@ $check_p = "";
 $check_c = "";
 
 
+$sql = "SELECT * FROM  activity where  suburb like '%%'";
 
-if (isset($_SESSION['userinput'])){
-    $keyword_main = $_SESSION['userinput'];
-}
-$sql = "SELECT * FROM  activity where (post_code like '%$keyword_main%' or suburb like '%$keyword_main%')";
-//if (isset($_SESSION['keyword_activity'])){
-//    $keyword = $_SESSION['keyword_activity'];
-//}
-//if (isset($_SESSION['option_activity'])){
-//    $option = $_SESSION['option_activity'];
-//}
 
 if (isset($_POST['userinput_activity'])){
     $keyword = $_POST['userinput_activity'];
@@ -42,6 +33,19 @@ if (isset($_POST['check_c'])){
     $sql .= "and child = 'Y'";
     //$check_c = $_POST['check_c'];
 }
+
+if (isset($_SESSION['userinput'])){
+    $keyword_main = $_SESSION['userinput'];
+    if( strpos($keyword_main, ",") !== false ) {
+        $keyword_main = explode(",",$keyword_main)[0];
+        //echo "keyword is:".$keyword_main;
+    }
+    if ($keyword != "" or $option != "") {
+        $keyword_main="";
+    }
+    $sql .= " and (post_code like '%$keyword_main%' or suburb like '%$keyword_main%')";
+}
+//$sql = "SELECT * FROM  activity where (post_code like '%$keyword_main%' or suburb like '%$keyword_main%')";
 
 // check if the input has been passed successfully
 //echo "keywordmain value is: ".$keyword_main."<br>";
@@ -70,12 +74,12 @@ if (isset($_POST['check_c'])){
 
 
 // check if the userinput on the listing page exist or not
-if ($keyword != "" or $option != "") {
-    $keyword_main = "";   // to avoid the influence from the index page input
+//if ($keyword != "" or $option != "") {
+//    $keyword_main = "";   // to avoid the influence from the index page input
     if ($option == "All Budget Ranges"){
         //$sql = "SELECT * FROM  activity where (post_code like '%$keyword_main%' or suburb like '%$keyword_main%')and (post_code like '%$keyword%'or suburb like '%$keyword%')and (audience like '%$check_p%' and audience like '%$check_c%')";
         //queryResult($connect, $sql);
-        $sql .= "";
+        //$sql .= "";
 
     }
     if ($option == "Free") {
@@ -115,7 +119,7 @@ if ($keyword != "" or $option != "") {
 //        $sql = "SELECT * FROM  activity where (post_code like '%$keyword_main%' or suburb like '%$keyword_main%')and (post_code like '%$keyword%'or suburb like '%$keyword%') and (audience like '%$check_p%'and audience like '%$check_c%')"; //and description like '%$keyword%'";
 //        queryResult($connect, $sql);
 //    }
-}
+//}
 //else{
 //    $sql = "SELECT * FROM  activity where (post_code like '%$keyword_main%' or suburb like '%$keyword_main%')and (audience like '%$check_p%'and audience like '%$check_c%')"; //and description like '%$keyword%'";
 //    queryResult($connect, $sql);

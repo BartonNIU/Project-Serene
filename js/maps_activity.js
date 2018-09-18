@@ -18,26 +18,26 @@ function mainMap(locations) {
     }
 
     var map = new google.maps.Map(document.getElementById('map-main'), {
-        zoom: 12,
-        scrollwheel: false,
-        center: {lat: -37.8136, lng: 144.9621},//eval("("+locations[0]["coordinates"]+")"),
-        mapTypeId: google.maps.MapTypeId.ROADMAP,
-        zoomControl: false,
-        mapTypeControl: false,
-        scaleControl: false,
-        panControl: false,
-        fullscreenControl: true,
-        navigationControl: false,
-        streetViewControl: false,
-        animation: google.maps.Animation.BOUNCE,
-        gestureHandling: 'cooperative',
-        styles: [{
-            "featureType": "administrative",
-            "elementType": "labels.text.fill",
-            "stylers": [{
-                "color": "#444444"
+            zoom: 12,
+            scrollwheel: false,
+            center: {lat: -37.8136, lng: 144.9621},//eval("("+locations[0]["coordinates"]+")"),
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            zoomControl: false,
+            mapTypeControl: false,
+            scaleControl: false,
+            panControl: false,
+            fullscreenControl: true,
+            navigationControl: false,
+            streetViewControl: false,
+            animation: google.maps.Animation.BOUNCE,
+            gestureHandling: 'cooperative',
+            styles: [{
+                "featureType": "administrative",
+                "elementType": "labels.text.fill",
+                "stylers": [{
+                    "color": "#444444"
+                }]
             }]
-        }]
     });
 
     var boxText = document.createElement("div");
@@ -86,7 +86,7 @@ function mainMap(locations) {
             return function () {
                 ib.setOptions(boxOptions);
                 // the code below is for showing the popup on map
-                boxText.innerHTML = locationData("#1", locations[i]["audience"], locations[i]["activity_title"], locations[i]["address"], "");
+                boxText.innerHTML = locationData("detail_act.php?event="+ encodeURIComponent(locations[i]["activity_title"].replace(/'/g, "%27")), locations[i]["audience"], locations[i]["activity_title"], locations[i]["address"], "");
                 ib.close();
                 ib.open(map, marker);
                 currentInfobox = marker.id;
@@ -188,28 +188,6 @@ function normal_map(){
     $.get("response_activity.php",function(data){
         var locations = JSON.parse(data);
 
-        var map = new google.maps.Map(document.getElementById('map-main'), {
-            zoom: 12,
-            scrollwheel: false,
-            center: {lat: -37.8136, lng: 144.9621},//eval("("+locations[0]["coordinates"]+")"),
-            mapTypeId: google.maps.MapTypeId.ROADMAP,
-            zoomControl: false,
-            mapTypeControl: false,
-            scaleControl: false,
-            panControl: false,
-            fullscreenControl: true,
-            navigationControl: false,
-            streetViewControl: false,
-            animation: google.maps.Animation.BOUNCE,
-            gestureHandling: 'cooperative',
-            styles: [{
-                "featureType": "administrative",
-                "elementType": "labels.text.fill",
-                "stylers": [{
-                    "color": "#444444"
-                }]
-            }]
-        });
         mainMap(locations);
     });
 }
@@ -225,37 +203,8 @@ function normal_map(){
 
             //$(".listsearch-header").html(data);
 
-            var map = new google.maps.Map(document.getElementById('map-main'), {
-                zoom: 12,
-                scrollwheel: false,
-                center: {lat: -37.8136, lng: 144.9621},//eval("("+locations[0]["coordinates"]+")"),
-                mapTypeId: google.maps.MapTypeId.ROADMAP,
-                zoomControl: false,
-                mapTypeControl: false,
-                scaleControl: false,
-                panControl: false,
-                fullscreenControl: true,
-                navigationControl: false,
-                streetViewControl: false,
-                animation: google.maps.Animation.BOUNCE,
-                gestureHandling: 'cooperative',
-                styles: [{
-                    "featureType": "administrative",
-                    "elementType": "labels.text.fill",
-                    "stylers": [{
-                        "color": "#444444"
-                    }]
-                }]
-            });
-
-
             mainMap(locations);
             //This is the end of mainMap
-
-
-            // $(function () {
-            //     mainMap();
-            // });
 
         });
 

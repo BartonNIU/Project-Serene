@@ -10,8 +10,8 @@
         <div class="map-container column-map right-pos-map">
             <div id="map-main"></div>
             <ul class="mapnavigation">
-                <!--                <li><a href="#" class="prevmap-nav">Prev</a></li>-->
-                <!--                <li><a href="#" class="nextmap-nav">Next</a></li>-->
+                <li><a href="#" class="prevmap-nav">Prev</a></li>
+                <li><a href="#" class="nextmap-nav">Next</a></li>
             </ul>
         </div>
         <!-- Map end -->
@@ -57,16 +57,16 @@
                             </ul>
                         </div>
                     </div>
-                    <p id="demo"></p>
-                    <form action="listing_act.php" method="post">
+
+                    <form  id = "pageinput">
                         <!-- listsearch-input-wrap  -->
                         <div class="listsearch-input-wrap fl-wrap">
                             <div class="listsearch-input-item">
                                 <i class="mbri-key single-i"></i>
-                                <input type="text" name="postcode" placeholder="Search by Postcode" value="" id="search_text"/>
+                                <input type="text" name="userinput_activity" placeholder="Search by Postcode" value="" id="search_text" onchange="ajaxSearch_activity()"/>
                             </div>
                             <div class="listsearch-input-item">
-                                <select name="value" data-placeholder="All Range Budgets" class="chosen-select" id="value">
+                                <select name="value" data-placeholder="All Range Budgets" class="chosen-select" id="value" onchange="ajaxSearch_activity()">
                                     <option value="All Budget Ranges">All Budget Ranges</option>
                                     <option value="Free">Free</option>
                                     <option value="less than $20">less than $20</option>
@@ -82,16 +82,17 @@
                                 <!-- Checkboxes Filter -->
                                 <div class=" fl-wrap filter-tags">
                                     <h4>Filter by Target Audience</h4>
-                                    <input id="Parent" type="checkbox" name="check" class="common_selector Parent" value="Parent">
+                                    <input id="Parent" type="checkbox" name="check_p" class="common_selector Parent" value="Parent" onchange="ajaxSearch_activity()">
                                     <label for="Parent">Parent</label>
-                                    <input id="Children" type="checkbox" name="check" class="common_selector Children" value="Children">
+                                    <input id="Children" type="checkbox" name="check_c" class="common_selector Children" value="Children" onchange="ajaxSearch_activity()">
                                     <label for="Children">Children</label>
                                 </div>
                             </div>
+                            <button type ="button" class="button fs-map-btn">Update</button>
                             <!-- hidden-listing-filter end -->
                             <br/><br/><br/><br/>
 
-                            <!--                            <button type="submit" class="button fs-map-btn">Update</button>-->
+
                             <div class="more-filter-option">More Filters <span></span></div>
                         </div>
                     </form>
@@ -116,9 +117,9 @@
 </div>
 <?php
 // pass data to response_activity.php for map searching
-$_SESSION['postcode_activity'] = $_POST['postcode'];
-$_SESSION['suburb_activity'] = $_POST['suburb'];
-$_SESSION['budget_activity'] = $_POST['value'];
+$_SESSION['userinput'] = $_POST['postcode'];
+//$_SESSION['suburb_activity'] = $_POST['suburb'];
+//$_SESSION['budget_activity'] = $_POST['value'];
 ?>
 <!-- wrapper end -->
 <!--footer -->
