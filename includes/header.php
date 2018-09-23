@@ -21,6 +21,7 @@
     <link href = "css/jquery-ui.css" rel = "stylesheet">
     <!--=============== favicons ===============-->
     <link rel="shortcut icon" href="images/flogo.ico">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--=============== scripts ===============-->
     <!--For Live Search-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>

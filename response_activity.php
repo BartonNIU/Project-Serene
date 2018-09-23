@@ -136,7 +136,9 @@ if (mysqli_num_rows($result) > 0) {
     }
 }
 else {
-    $rows = ["audience" => "","activity_title" => "","address" => "Melbourne","coordinates" => "{lat: -37.8136, lng: 144.9621}"];
+    //$rows = ["audience" => "","activity_title" => "","address" => "Melbourne","coordinates" => "{lat: -37.8136, lng: 144.9621}"];
+    $rows = [["audience" => "","activity_title" => "","address" => "Melbourne","coordinates" => "{lat: -37.8136, lng: 144.9621}"]];
+
     //echo "query no result";
 }
 echo json_encode ($rows);  //pass data to javascript for map markers

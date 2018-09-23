@@ -14,13 +14,20 @@
 
 function mainMap(locations) {
     function locationData(locationURL, locationCategory, locationTitle, locationAddress, locationPhone) {
-        return ('<div class="map-popup-wrap"><div class="map-popup"><div class="infoBox-close"><i class="fa fa-times"></i></div><div class="map-popup-category">' + locationCategory + '</div><a href="' + locationURL + '" class="listing-img-content fl-wrap"></a> <div class="listing-content fl-wrap"><div class="listing-title fl-wrap"><h4><a href=' + locationURL + '>' + locationTitle + '</a></h4><span class="map-popup-location-info"><i class="fa fa-map-marker"></i>' + locationAddress + '</span></div></div></div></div>')
+        //return ('<div class="map-popup-wrap"><div class="map-popup"><div class="infoBox-close"><i class="fa fa-times"></i></div><div class="map-popup-category">' + locationCategory + '</div><a href="' + locationURL + '" class="listing-img-content fl-wrap"></a> <div class="listing-content fl-wrap"><div class="listing-title fl-wrap"><h4><a href=' + locationURL + '>' + locationTitle + '</a></h4><span class="map-popup-location-info"><i class="fa fa-map-marker"></i>' + locationAddress + '</span></div></div></div></div>')
+        return ('<div class="map-popup-wrap"><div class="listing-content fl-wrap"><div class="infoBox-close"><i class="fa fa-times"></i></div>' +
+            '<div class="listing-title fl-wrap"><h4><a href=' + locationURL + '>' + locationTitle + '</a></h4>' +
+            '<span class="map-popup-location-info"><i class="fa fa-map-marker"></i>' + locationAddress + '</span></div>' +
+            '<span class="map-popup-direction">' +
+            '<a target="_blank"  href ="https://www.google.com/maps/dir/?api=1&destination='+ locationAddress+'"><i class="material-icons" style="font-size:18px;color:deepskyblue">directions</i><i>Directions</i></a></span></div></div></div></div>')
     }
+
+
 
     var map = new google.maps.Map(document.getElementById('map-main'), {
             zoom: 12,
             scrollwheel: false,
-            center: {lat: -37.8136, lng: 144.9621},//eval("("+locations[0]["coordinates"]+")"),
+            center: eval("("+locations[0]["coordinates"]+")"), // eval("("+center_location+")"),//{lat: -37.8136, lng: 144.9621},
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             zoomControl: false,
             mapTypeControl: false,
@@ -90,15 +97,21 @@ function mainMap(locations) {
                 ib.close();
                 ib.open(map, marker);
                 currentInfobox = marker.id;
+                console.log("currentinfobox value is :"+currentInfobox);
                 var latLng = eval("(" + locations[i]["coordinates"] + ")");
                 map.panTo(latLng);
                 map.panBy(0, -180);
+                //The code below for scrolling the matched list to the appropriate place.
+                if(currentInfobox){
+                    document.getElementById('map-item'+ currentInfobox).scrollIntoView({behavior: "instant", block: "center", inline: "nearest"});
+                }
                 google.maps.event.addListener(ib, 'domready', function () {
                     $('.infoBox-close').click(function (e) {
                         e.preventDefault();
                         ib.close();
                     });
                 });
+
             }
         })(marker, i));
     }   //Marker ends here
@@ -143,19 +156,20 @@ function mainMap(locations) {
     $('.map-item').click(function (e) {
         e.preventDefault();
         map.setZoom(15);
-        var index = currentInfobox;
+        //var index = currentInfobox;
         var marker_index = parseInt($(this).attr('href').split('#')[1], 10);
+        console.log(marker_index);
         google.maps.event.trigger(allMarkers[marker_index], "click");
-        if ($(this).hasClass("scroll-top-map")) {
-            $('html, body').animate({
-                scrollTop: $(".map-container").offset().top + "-80px"
-            }, 500)
-        }
-        else if ($(window).width() < 1064) {
-            $('html, body').animate({
-                scrollTop: $(".map-container").offset().top + "-80px"
-            }, 500)
-        }
+        // if ($(this).hasClass("scroll-top-map")) {
+        //     $('html, body').animate({
+        //         scrollTop: $(".map-container").offset().top + "-80px"
+        //     }, 500)
+        // }
+        // else if ($(window).width() < 1064) {
+        //     $('html, body').animate({
+        //         scrollTop: $(".map-container").offset().top + "-80px"
+        //     }, 500)
+        // }
     });
 
     var zoomControlDiv = document.createElement('div');
@@ -184,17 +198,27 @@ function mainMap(locations) {
 } //This is the end of main map
 
 
-function normal_map(){
+function normalMap(){
     $.get("response_activity.php",function(data){
         var locations = JSON.parse(data);
-
         mainMap(locations);
-    });
+//
+//         // $('.map-item').click(function (e) {
+//         //     //e.preventDefault();
+//         //     map.setZoom(15);
+//         //     //var index = currentInfobox;
+//         //     var marker_index = parseInt($(this).attr('href').split('#')[1], 10);
+//         //     console.log(marker_index);
+//         //     google.maps.event.trigger(allMarkers[marker_index], "click");});
+   });
 }
 
-    $(function(){
-        normal_map();
-    });
+$(function(){
+        normalMap();
+
+});
+
+
 
 //Ajax for activity page userinput search
     function ajaxSearch_activity() {
@@ -202,13 +226,12 @@ function normal_map(){
             var locations = JSON.parse(data);
 
             //$(".listsearch-header").html(data);
-
             mainMap(locations);
             //This is the end of mainMap
-
         });
+    }
 
-}
+
 
 
 //})(this.jQuery);

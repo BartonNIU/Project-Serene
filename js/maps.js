@@ -4,10 +4,11 @@
             return ('<div class="map-popup-wrap"><div class="map-popup"><div class="infoBox-close"><i class="fa fa-times"></i></div><div class="map-popup-category">' + locationCategory + '</div><a href="' + locationURL + '" class="listing-img-content fl-wrap"></a> <div class="listing-content fl-wrap"><div class="listing-title fl-wrap"><h4><a href=' + locationURL + '>' + locationTitle + '</a></h4><span class="map-popup-location-info"><i class="fa fa-map-marker"></i>' + locationAddress + '</span></div></div></div></div>')
         }
 
+
         var map = new google.maps.Map(document.getElementById('map-main'), {
             zoom: 12,
             scrollwheel: false,
-            center: {lat: -37.8136, lng: 144.9621},//eval("("+locations[0]["coordinates"]+")"),
+            center: eval("("+locations[0]["coordinates"]+")"),//{lat: -37.8136, lng: 144.9621},
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             zoomControl: false,
             mapTypeControl: false,

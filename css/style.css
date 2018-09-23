@@ -2167,18 +2167,18 @@ section.gray-section .section-separator {
 }
 .listing-content {
 	background:#fff;
-	padding:25px 20px;
+	padding:18px 15px;
 	z-index:20;
 	border-bottom-left-radius:10px;
 	border-bottom-right-radius:10px;
 }
 .infoBox-close {
 	position:absolute;
-	width:30px;
-	height:30px;
-	line-height:30px;
-	top:20px;
-	right:20px;
+	width:20px;
+	height:20px;
+	line-height:20px;
+	top:10px;
+	right:10px;
 	color:#fff;
 	border-radius:100%;
 	z-index:20;
@@ -2251,7 +2251,7 @@ section.gray-section .section-separator {
 }
 .map-popup-location-phone i , .map-popup-location-info i{
 	padding-right:10px;
-	font-size:14px;
+	font-size:18px;
 }
 .map-card-rainting {
 	position:absolute;
@@ -2271,14 +2271,27 @@ section.gray-section .section-separator {
 }
 .map-popup-category {
 	position:absolute;
-	top:20px;
-	left:20px;
+	top:10px;
+	left:1px;
 	font-weight:500;
 	color:#fff;
 	z-index:20;
 	padding:10px 12px;
 	border-radius:4px;
 	box-shadow: 0px 0px 0px 3px rgba(255,255,255,0.2);
+}
+.map-popup-direction {
+    float:left;
+    color:#666;
+    font-size:13px;
+    width:100%;
+    text-align:left;
+    margin-bottom:1px;
+}
+.map-popup-direction i{
+    padding-right:5px;
+    font-size:13px;
+    color: #44b3ee;
 }
 .pagination {
 	margin-top:20px;
@@ -3645,7 +3658,7 @@ article .list-single-main-item {
 	border-radius:4px;
 	color:#fff;
 	float:left;
-	margin-left:97px;
+	margin-left:10px;
 	box-shadow:0px 0px 0px 4px rgba(255,255,255,0.4);
 }
 .mapnavigation a , .mapzoom-in:hover  , .mapzoom-out:hover{

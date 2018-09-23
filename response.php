@@ -8,6 +8,7 @@ $rows = array();
 //$suburb = "";
 $keyword = "";
 $option = "'" . implode("', '", array('Park','Garden','Indoor Facility','Outdoor Venue','Reserve','Sports Center')) . "'";
+echo $option;
 
 if (isset($_SESSION["category"]) and $_SESSION["category"] != ""){
     //$option = "'" . implode("', '", $_SESSION["category"]) . "'";
@@ -82,7 +83,7 @@ if (isset($_POST['category'])){
 
     }
     else {
-        $rows = ["categoty" => "","place_name" => "","address" => "Melbourne","coordinates" => "{lat: -37.8136, lng: 144.9621}"];
+        $rows = [["categoty" => "","place_name" => "","address" => "Melbourne","coordinates" => "{lat: -37.8136, lng: 144.9621}"]];
         //echo "query no result";
     }
 
