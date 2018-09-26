@@ -59,7 +59,7 @@
                 <div class="listing-carousel  fl-wrap ">
                     <?php
                     //Free Activity
-                    $query = $connect->query("Select * from activity_list WHERE Fee='Free'");
+                    $query = $connect->query("Select * from activity WHERE Fee='Free'");
                     while($row = $query->fetch_array())
                     {
                         $orderPict = $row['id'];
@@ -124,22 +124,22 @@
 
                 <!--Category Listing-->
                 <?php
-                $result_garden = $connect->query("SELECT * from places WHERE Category='Garden'");
+                $result_garden = $connect->query("SELECT * from explore WHERE Category='Garden'");
                 $row_cnt_garden = $result_garden ->num_rows;
 
-                $result_indoor = $connect->query("SELECT * from places WHERE Category='Indoor Facility'");
+                $result_indoor = $connect->query("SELECT * from explore WHERE Category='Indoor Facility'");
                 $row_cnt_indoor = $result_indoor ->num_rows; //4
 
-                $result_outdoor = $connect->query("SELECT * from places WHERE Category='Outdoor Venue'");
+                $result_outdoor = $connect->query("SELECT * from explore WHERE Category='Outdoor Venue'");
                 $row_cnt_outdoor = $result_outdoor ->num_rows; //3
 
-                $result_park = $connect->query("SELECT * from places WHERE Category='Park'");
+                $result_park = $connect->query("SELECT * from explore WHERE Category='Park'");
                 $row_cnt_park = $result_park ->num_rows; //23
 
-                $result_reserve = $connect->query("SELECT * from places WHERE Category='Reserve'");
+                $result_reserve = $connect->query("SELECT * from explore WHERE Category='Reserve'");
                 $row_cnt_reserve = $result_reserve ->num_rows; //4
 
-                $result_sport = $connect->query("SELECT * from places WHERE Category='Sports Center'");
+                $result_sport = $connect->query("SELECT * from explore WHERE Category='Sports Center'");
                 $row_cnt_sport = $result_sport ->num_rows; //15
 
                 $garden = "Garden";
@@ -340,6 +340,39 @@
 </div>
 <!-- Main end -->
 <!--=============== scripts  ===============-->
+
+<!--The script below for password when access our website-->
+<script>
+<!--    --><?php //$password = "whitecaps";?>
+//    var password = '<?php //echo $password;?>//';//"whitecaps";
+
+
+//     var password = "whitecaps";
+// //alert(password);
+//     var passwd = document.cookie;
+//     var psw = "";
+//     if (passwd.indexOf(";")> -1){
+//         psw = passwd.split(";")[1].split("=")[1];
+//     }
+//
+//     alert(passwd);
+//
+//     // Repeatedly prompt for user password until success:
+//     (function promptPass() {
+//         if(psw !== password){
+//             psw = prompt("Please Enter your Password");
+//             document.cookie = "pass =" + psw;
+//         }
+//
+//
+//         while (psw !== password) {
+//             alert("Incorrect Password");
+//             return promptPass();
+//         }
+//
+//     }());
+
+</script>
 <script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/plugins.js"></script>
 <script type="text/javascript" src="js/scripts.js"></script>

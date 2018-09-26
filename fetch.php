@@ -4,13 +4,13 @@ include "mysql_connect.php";
 if(isset($_POST["action"]))
 {
     $query = "
-		SELECT * FROM places WHERE place_name!='' ";
+		SELECT * FROM explore WHERE place_name!='' ";
 
     if(isset($_POST["query"]) && !empty($_POST["query"]))
     {
         $search = mysqli_real_escape_string($connect, $_POST["query"]);
         $query .= "
-		 AND postcode LIKE '%".$search."%'  ";
+		 AND post_code LIKE '%".$search."%'  ";
     }
 
     if(isset($_POST["category"]) && $_POST["category"] != 'All Categories'&& !empty($_POST["category"]) )
@@ -41,7 +41,7 @@ if(isset($_POST["action"]))
 
     if (isset($_POST["toilet"])) {
         $query .= "
-		 AND toilet='Y' ";
+		 AND public_toilet='Y' ";
     }
 
     if (isset($_POST["fencing"])) {
@@ -105,9 +105,10 @@ if(isset($_POST["action"]))
 
     if(mysqli_num_rows($result) > 0)
     {
+        $index =0;
         while($row = mysqli_fetch_array($result))
         {
-            $orderPict = $row['ID'];
+            $orderPict = $row['id'];
             $placeName = $row['place_name'];
             $output .='
                                 <!-- listing-item -->
@@ -128,12 +129,13 @@ if(isset($_POST["action"]))
                                           
                                       
                       
-                                            <div class="geodir-category-location"><a  href="#0" class="map-item"><i class="fa fa-map-marker" aria-hidden="true"></i>'. $row['address'].'</a></div>
+                                            <div class="geodir-category-location"><a  href="#'.$index.'" class="map-item" id="map-item'.$index.'"><i class="fa fa-map-marker" aria-hidden="true"></i>'. $row['address'].'</a></div>
                                           </div>
                                        </div>
                                    </article>
                                </div>
                                <!-- listing-item end-->';
+            $index++;
         }
         echo $output;
     }

@@ -1,10 +1,11 @@
-<?php include "includes\header.php"?>
+<?php include "includes/header.php"?>
 <?php include "mysql_connect.php";?>
 <?php
 $eventCatch = $_GET['event'];
 if($eventCatch != "")
 {
     $eventName = $eventCatch;
+    //echo $eventName;
 }
 ?>
 <!--  header end -->
@@ -15,7 +16,7 @@ if($eventCatch != "")
         <!--  section  -->
         <section class="parallax-section single-par list-single-section" data-scrollax-parent="true" id="sec1">
             <?php
-            $query = $connect->query("Select * from activity_list WHERE activity_title='$eventName'");
+            $query = $connect->query("Select * from activity WHERE activity_title='$eventName'");
             while($row = $query -> fetch_array())
             {
                 $orderPict = $row['id'];
@@ -98,7 +99,7 @@ if($eventCatch != "")
                             <div class="list-single-main-item fl-wrap">
                                 <div class="list-single-main-item-title fl-wrap">
                                     <?php
-                                    $query = $connect->query("Select * from activity_list WHERE activity_title='$eventName'");
+                                    $query = $connect->query("Select * from activity WHERE activity_title='$eventName'");
                                     while($row = $query -> fetch_array())
                                     {
                                         echo' <h3>About '.$eventName.' </h3>';
@@ -139,7 +140,7 @@ if($eventCatch != "")
                                 <div class="box-widget opening-hours">
                                     <div class="box-widget-content">
                                         <?php
-                                        $query = $connect->query("Select * from activity_list WHERE activity_title='$eventName'");
+                                        $query = $connect->query("Select * from activity WHERE activity_title='$eventName'");
                                         while($row = $query -> fetch_array())
                                         {
 //                                                    echo '<span class="current-status"><i class="fa fa-clock-o"></i> Daily Schedule</span>';
@@ -157,7 +158,7 @@ if($eventCatch != "")
                                     <h3>Weather in City : </h3>
                                 </div>
                                 <?php
-                                $query = $connect->query("Select * from activity_list WHERE activity_title='$eventName'");
+                                $query = $connect->query("Select * from activity WHERE activity_title='$eventName'");
                                 while($row = $query -> fetch_array()){
                                     echo '<div id="weather-widget" class="gradient-bg" data-city="'.$row['suburb'].'" data-country="AU"></div>';
                                 }
@@ -173,7 +174,7 @@ if($eventCatch != "")
                                 <div class="box-widget">
                                     <div class="map-container">
                                         <?php
-                                        $query = $connect->query("Select * from activity_list WHERE activity_title='$eventName'");
+                                        $query = $connect->query("Select * from activity WHERE activity_title='$eventName'");
                                         while($row = $query -> fetch_array()){
                                             echo '<div id="singleMap" data-latitude="'.$row['lat_coordinates'].'" data-longitude="'.$row['lng_coordinates'].'" data-mapTitle="Our Location"></div>';
 //                                                 <div id="singleMap" data-latitude="40.7427837" data-longitude="-73.11445617675781" data-mapTitle="Our Location"></div>
@@ -217,7 +218,7 @@ if($eventCatch != "")
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6uvEZqkQXhf_Ai-vj50Phw-zMEaw7zLo"></script>
 <script type="text/javascript" src="js/map_infobox.js"></script>
 <script type="text/javascript" src="js/markerclusterer.js"></script>
-<script type="text/javascript" src="js/maps_activity.js"></script>
+<script type="text/javascript" src="js/maps.js"></script>
 
 
 </body>

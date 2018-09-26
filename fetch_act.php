@@ -11,7 +11,7 @@ if(isset($_POST["postcode"], $_POST["suburb"]))
         $postcode = $_POST["postcode"];
         $suburb = $_POST["suburb"];
         $query = "
-		SELECT * FROM activity_list WHERE postcode='$postcode' AND suburb='$suburb'";
+		SELECT * FROM activity WHERE post_code='$postcode' AND suburb='$suburb'";
 
         $output = '';
         $result = mysqli_query($connect, $query);
@@ -23,13 +23,13 @@ if(isset($_POST["action"]))
 {
 
     $query = "
-		SELECT * FROM activity_list WHERE activity_title !='' ";
+		SELECT * FROM activity WHERE activity_title !='' ";
 
     if(isset($_POST["query"]) && !empty($_POST["query"]))
     {
         $search = mysqli_real_escape_string($connect, $_POST["query"]);
         $query .= "
-		 AND postcode LIKE '%".$search."%'  ";
+		 AND post_code LIKE '%".$search."%'  ";
     }
 
     if($_POST["postcode"] !== 'none' && $_POST["suburb"] !== 'none')
@@ -37,7 +37,7 @@ if(isset($_POST["action"]))
         $postcode = $_POST["postcode"];
         $suburb = $_POST["suburb"];
         $query .= "
-		 AND postcode='$postcode' AND suburb='$suburb'";
+		 AND post_code='$postcode' AND suburb='$suburb'";
     }
 
 
@@ -81,9 +81,11 @@ if(isset($_POST["action"]))
 
     if(mysqli_num_rows($result) > 0)
     {
+        $index = 0;
         while($row = mysqli_fetch_array($result))
         {
             $orderPict = $row['id'];
+            ///$actName = str_replace("'"," ",$row['activity_title']);
             $actName = $row['activity_title'];
             $output .='
                                 <!-- listing-item -->
@@ -102,14 +104,14 @@ if(isset($_POST["action"]))
                                             
                                                     <p>'. $row['description'].'</p>
                                                     <div class="geodir-category-options fl-wrap">
-                                                      <div class="geodir-category-location"><a  href="#0" class="map-item"><i class="fa fa-map-marker" aria-hidden="true"></i>'. $row['address'].'</a></div>
-                                                      
+                                                      <div class="geodir-category-location"><a  href="#'.$index.'" class="map-item" id="map-item'.$index.'"><i class="fa fa-map-marker" aria-hidden="true"></i>'. $row['address'].'</a></div>
                                                     </div>
                                             </div>
                                  </article>
                              </div>
                              
                                <!-- listing-item end-->';
+            $index++;
         }
         echo $output;
     }

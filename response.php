@@ -8,7 +8,7 @@ $rows = array();
 //$suburb = "";
 $keyword = "";
 $option = "'" . implode("', '", array('Park','Garden','Indoor Facility','Outdoor Venue','Reserve','Sports Center')) . "'";
-echo $option;
+//echo $option;
 
 if (isset($_SESSION["category"]) and $_SESSION["category"] != ""){
     //$option = "'" . implode("', '", $_SESSION["category"]) . "'";

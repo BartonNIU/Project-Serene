@@ -2250,8 +2250,8 @@ section.gray-section .section-separator {
 	margin-bottom:5px;
 }
 .map-popup-location-phone i , .map-popup-location-info i{
-	padding-right:10px;
-	font-size:18px;
+	padding-right:5px;
+	font-size:20px;
 }
 .map-card-rainting {
 	position:absolute;
@@ -2281,17 +2281,31 @@ section.gray-section .section-separator {
 	box-shadow: 0px 0px 0px 3px rgba(255,255,255,0.2);
 }
 .map-popup-direction {
-    float:left;
-    color:#666;
-    font-size:13px;
-    width:100%;
-    text-align:left;
-    margin-bottom:1px;
+    /*float:left;*/
+    /*color:#666;*/
+    /*font-size:13px;*/
+    /*width:100%;*/
+    /*text-align:left;*/
+    /*margin-bottom:1px;*/
+	float: left;
+	font-weight:500;
+	color:#fff;
+	/*padding:10px 0px 5px;*/
+	padding-top: 5px;
+	border-radius:4px;
+	box-shadow: 0px 0px 0px 3px rgba(255,255,255,0.2);
 }
 .map-popup-direction i{
     padding-right:5px;
-    font-size:13px;
+    font-size:20px;
     color: #44b3ee;
+}
+
+.map-popup-direction em{
+	padding-right:25px;
+	font-size:13px;
+	font-style: italic;
+	color: #44b3ee;
 }
 .pagination {
 	margin-top:20px;
@@ -3653,12 +3667,12 @@ article .list-single-main-item {
 	width:170px;
 }
 .mapnavigation a {
-	width:50px;
+	width:45px;
 	padding:8px 0;
 	border-radius:4px;
 	color:#fff;
 	float:left;
-	margin-left:10px;
+	margin-left:95px;
 	box-shadow:0px 0px 0px 4px rgba(255,255,255,0.4);
 }
 .mapnavigation a , .mapzoom-in:hover  , .mapzoom-out:hover{
@@ -4807,7 +4821,7 @@ footer.main-footer.fixed-footer {
 .sub-footer {
 	/*margin-top:40px;*/
 	background:#24324F;
-	padding:28px 0;
+	padding:20px 0;
 }
 .copyright {
 	display:inline-block;

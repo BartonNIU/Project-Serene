@@ -1,8 +1,14 @@
 
     function mainMap(locations) {
         function locationData(locationURL, locationCategory, locationTitle, locationAddress, locationPhone) {
-            return ('<div class="map-popup-wrap"><div class="map-popup"><div class="infoBox-close"><i class="fa fa-times"></i></div><div class="map-popup-category">' + locationCategory + '</div><a href="' + locationURL + '" class="listing-img-content fl-wrap"></a> <div class="listing-content fl-wrap"><div class="listing-title fl-wrap"><h4><a href=' + locationURL + '>' + locationTitle + '</a></h4><span class="map-popup-location-info"><i class="fa fa-map-marker"></i>' + locationAddress + '</span></div></div></div></div>')
+            //return ('<div class="map-popup-wrap"><div class="map-popup"><div class="infoBox-close"><i class="fa fa-times"></i></div><div class="map-popup-category">' + locationCategory + '</div><a href="' + locationURL + '" class="listing-img-content fl-wrap"></a> <div class="listing-content fl-wrap"><div class="listing-title fl-wrap"><h4><a href=' + locationURL + '>' + locationTitle + '</a></h4><span class="map-popup-location-info"><i class="fa fa-map-marker"></i>' + locationAddress + '</span></div></div></div></div>')
+            return ('<div class="map-popup-wrap"><div class="map-popup"><div class="listing-content fl-wrap"><div class="infoBox-close"><i class="fa fa-times"></i></div>' +
+                '<div class="listing-title fl-wrap"><h4><a href=' + locationURL + '>' + locationTitle + '</a></h4>' +
+                '<span class="map-popup-location-info"><i class="material-icons" >place</i>' + locationAddress + '</span></div>' +
+                '<span class="map-popup-direction">' +
+                '<a target="_blank"  href ="https://www.google.com/maps/dir/?api=1&destination='+ locationAddress+'"><i class="material-icons" >directions</i><em>Directions</em></a><a href="https://calendar.google.com" target="_blank"><i class="material-icons">share</i><em>Share</em></a></span></div></div></div></div>')
         }
+
 
 
         var map = new google.maps.Map(document.getElementById('map-main'), {
@@ -74,13 +80,18 @@
                 return function () {
                     ib.setOptions(boxOptions);
                     // the code below is for showing the popup on map
-                    boxText.innerHTML = locationData("#1", locations[i]["category"], locations[i]["place_name"], locations[i]["address"], "");
+                    boxText.innerHTML = locationData("detail_place.php?event="+ encodeURIComponent(locations[i]["activity_title"]), locations[i]["category"], locations[i]["place_name"], locations[i]["address"], "");
                     ib.close();
                     ib.open(map, marker);
                     currentInfobox = marker.id;
+                    console.log("currentinfobox value is :"+currentInfobox);
                     var latLng = eval("(" + locations[i]["coordinates"] + ")");
                     map.panTo(latLng);
                     map.panBy(0, -180);
+                    //The code below for scrolling the matched list to the appropriate place.
+                    if(currentInfobox){
+                        document.getElementById('map-item'+ currentInfobox).scrollIntoView({behavior: "instant", block: "center", inline: "nearest"});
+                    }
                     google.maps.event.addListener(ib, 'domready', function () {
                         $('.infoBox-close').click(function (e) {
                             e.preventDefault();
