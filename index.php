@@ -43,6 +43,36 @@
             </div>
         </section>
         <!-- section end -->
+
+        <a href="FAQ.php">
+        <section class="color-bg">
+
+            <div class="shapes-bg-big"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="images-collage fl-wrap">
+                            <div class="images-collage-title"><span>SERENE</span></div>
+                            <div class="images-collage-main images-collage-item"><img src="picture/home/6.jpeg" alt=""></div>
+                            <div class="images-collage-other images-collage-item" data-position-left="23" data-position-top="10" data-zindex="2"><img src="picture/home/1.jpeg" alt=""></div>
+                            <div class="images-collage-other images-collage-item" data-position-left="62" data-position-top="54" data-zindex="5"><img src="picture/home/3.jpeg" alt=""></div>
+                            <div class="images-collage-other images-collage-item anim-col" data-position-left="18" data-position-top="70" data-zindex="11"><img src="picture/home/4.jpeg" alt=""></div>
+                            <div class="images-collage-other images-collage-item" data-position-left="37" data-position-top="90" data-zindex="1"><img src="picture/Activities/color.jpeg" alt=""></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="color-bg-text">
+                            <h3>What Is SERENE?</h3>
+                            <p>SERENE helps low income single parent families with behavioral issues children, by locating affordable activities that benefit children with Oppositional Defiant Disorders (ODD), Attention Deficit Hyperactivity Disorder (ADHD), Conduct Disorder (CD) and Autism Spectrum Disorders (ASD). It also helps parents to identify and locate parks and facilities that provide amenities and features built to help children with behavioral problems.</p>
+                            <!--                                        <a href="#" class="color-bg-link modal-open">Sign In Now</a>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        </a>
+
         <!--section -->
         <section class="gray-section" id="sec3">
             <div class="container">
@@ -253,30 +283,7 @@
             </div>
         </section>
         <!-- section end -->
-        <section class="color-bg">
-            <div class="shapes-bg-big"></div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="images-collage fl-wrap">
-                            <div class="images-collage-title"><span>SERENE</span></div>
-                            <div class="images-collage-main images-collage-item"><img src="picture/home/6.jpeg" alt=""></div>
-                            <div class="images-collage-other images-collage-item" data-position-left="23" data-position-top="10" data-zindex="2"><img src="picture/home/1.jpeg" alt=""></div>
-                            <div class="images-collage-other images-collage-item" data-position-left="62" data-position-top="54" data-zindex="5"><img src="picture/home/3.jpeg" alt=""></div>
-                            <div class="images-collage-other images-collage-item anim-col" data-position-left="18" data-position-top="70" data-zindex="11"><img src="picture/home/4.jpeg" alt=""></div>
-                            <div class="images-collage-other images-collage-item" data-position-left="37" data-position-top="90" data-zindex="1"><img src="picture/Activities/color.jpeg" alt=""></div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="color-bg-text">
-                            <h3>What Is SERENE?</h3>
-                            <p>SERENE helps low income single parent families with behavioral issues children, by locating affordable activities that benefit children with Oppositional Defiant Disorders (ODD), Attention Deficit Hyperactivity Disorder (ADHD), Conduct Disorder (CD) and Autism Spectrum Disorders (ASD). It also helps parents to identify and locate parks and facilities that provide amenities and features built to help children with behavioral problems.</p>
-                            <!--                                        <a href="#" class="color-bg-link modal-open">Sign In Now</a>-->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+
         <!--section -->
         <section>
             <div class="container">
@@ -343,12 +350,8 @@
 
 <!--The script below for password when access our website-->
 <script>
-<!--    --><?php //$password = "whitecaps";?>
-//    var password = '<?php //echo $password;?>//';//"whitecaps";
-
 
 //     var password = "whitecaps";
-// //alert(password);
 //     var passwd = document.cookie;
 //     var psw = "";
 //     if (passwd.indexOf(";")> -1){
@@ -380,4 +383,3 @@
 <script type="text/javascript" src="complete.js"></script>
 </body>
 </html>
-<script type="text/javascript" src="complete.js"></script>
