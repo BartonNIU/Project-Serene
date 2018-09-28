@@ -64,6 +64,23 @@ if(isset($_POST["action"]))
         }
     }
 
+    if(isset($_POST["disorder"]) && $_POST["disorder"] != 'All Disorder'&& !empty($_POST["disorder"]) ){
+        $search_text = $_POST["disorder"];
+
+        if (strpos($search_text, 'ASD') !== false) {
+            $query .= " AND asd='Y'";
+        }
+        else if (strpos($search_text, 'CDD') !== false) {
+            $query .= " AND odd='Y' ";
+        }
+        else if (strpos($search_text, 'CD') !== false) {
+            $query .= " AND cd='Y' ";
+        }
+        else if (strpos($search_text, 'ADHD') !== false) {
+            $query .= " AND adhd='Y' ";
+        }
+    }
+
     if (isset($_POST["Parent"])) {
         $query .= "
 		 AND parent='Y' ";
@@ -74,10 +91,10 @@ if(isset($_POST["action"]))
 		 AND child='Y' ";
     }
 
+    $query .= " ORDER BY date_format ASC";
     $output = '';
-//    echo $query;
+    echo $query;
     $result = mysqli_query($connect, $query);
-
 
     if(mysqli_num_rows($result) > 0)
     {
@@ -95,6 +112,7 @@ if(isset($_POST["action"]))
                                     <div class="geodir-category-img">
                                         <img src=picture/it2/Activities/'.$orderPict.'.jpeg>
                                         <div class="overlay"></div>
+                                        <div class="list-post-counter"><span>'.$row['date'].'</span><i class="fa fa-calendar"></i></div>
                                         </div>
                                         </a>
                                             <div class="geodir-category-content fl-wrap">                                     

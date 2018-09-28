@@ -16,7 +16,7 @@ $(document).ready(function(){
             });
         }
     });
-    $(document).on('click', 'li', function(){
+    $('#postcodeList').on('click', 'li', function(){
         $('#postcode').val($(this).text());
         $('#postcodeList').fadeOut();
     });

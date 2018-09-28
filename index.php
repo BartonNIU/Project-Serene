@@ -28,8 +28,16 @@
                             <div class="main-search-input fl-wrap">
                                 <div class="main-search-input-item">
                                     <input id="postcode" name="postcode" type="text" placeholder="Search by Postcode Or Suburb"/>
-                                    <div></div>
                                     <div id="postcodeList"></div>
+                                </div>
+                                <div class="main-search-input-item">
+                                    <select name="disorder" data-placeholder="All Behavioral Disorder Type" class="chosen-select" id="disorder" >
+                                        <option value="All Disorder">All Behavioral Disorder Type</option>
+                                        <option value="ASD">Autism Spectrum Disorder (ASD)</option>
+                                        <option value="CDD">Oppositional Defiant Disorder (CDD)</option>
+                                        <option value="CD">Conduct Disorder (CD)</option>
+                                        <option value="ADHD">Attention Deficit Hyperactivity Disorder(ADHD)</option>
+                                    </select>
                                 </div>
                                 <button type="submit" class="main-search-button" name="submit" ">Search</button>
                             </div>
@@ -89,7 +97,7 @@
                 <div class="listing-carousel  fl-wrap ">
                     <?php
                     //Free Activity
-                    $query = $connect->query("Select * from activity WHERE Fee='Free'");
+                    $query = $connect->query("Select * from activity WHERE Fee='Free' ORDER BY date_format ASC;");
                     while($row = $query->fetch_array())
                     {
                         $orderPict = $row['id'];
@@ -118,6 +126,7 @@
                         echo '<div class="overlay"></div>';
                         echo '</div>';
                         echo '</a>';
+                        echo '<div class="list-post-counter"><span>'.$row['date'].'</span><i class="fa fa-calendar"></i></div>';
                         echo '<div class="geodir-category-content fl-wrap">';
                         echo '<a class="listing-geodir-category" href="listing_act.php">'. $row['fee']. '</a>';
                         echo '<h3><a href=detail_act.php?event=',urlencode($actName),'>'. $row['activity_title']. '</a></h3>';
@@ -154,22 +163,22 @@
 
                 <!--Category Listing-->
                 <?php
-                $result_garden = $connect->query("SELECT * from explore WHERE Category='Garden'");
+                $result_garden = $connect->query("SELECT * from explore WHERE category='Garden'");
                 $row_cnt_garden = $result_garden ->num_rows;
 
-                $result_indoor = $connect->query("SELECT * from explore WHERE Category='Indoor Facility'");
+                $result_indoor = $connect->query("SELECT * from explore WHERE category='Indoor Facility'");
                 $row_cnt_indoor = $result_indoor ->num_rows; //4
 
-                $result_outdoor = $connect->query("SELECT * from explore WHERE Category='Outdoor Venue'");
+                $result_outdoor = $connect->query("SELECT * from explore WHERE category='Outdoor Venue'");
                 $row_cnt_outdoor = $result_outdoor ->num_rows; //3
 
-                $result_park = $connect->query("SELECT * from explore WHERE Category='Park'");
+                $result_park = $connect->query("SELECT * from explore WHERE category='Park'");
                 $row_cnt_park = $result_park ->num_rows; //23
 
-                $result_reserve = $connect->query("SELECT * from explore WHERE Category='Reserve'");
+                $result_reserve = $connect->query("SELECT * from explore WHERE category='Reserve'");
                 $row_cnt_reserve = $result_reserve ->num_rows; //4
 
-                $result_sport = $connect->query("SELECT * from explore WHERE Category='Sports Center'");
+                $result_sport = $connect->query("SELECT * from explore WHERE category='Sports Center'");
                 $row_cnt_sport = $result_sport ->num_rows; //15
 
                 $garden = "Garden";
