@@ -55,6 +55,10 @@
             padding: 5px;
             height: 100vh;
         }
+
+        popup{
+            overflow:scroll;
+        }
     </style>
 
 </head>

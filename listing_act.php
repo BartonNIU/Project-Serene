@@ -22,6 +22,12 @@
                     <div class="listsearch-header fl-wrap">
 
                         <?php
+                        $disorder = 'none';
+                        $tempDisorder = $_POST['disorder'];
+                        if ($tempDisorder != 'All Disorder' && $tempDisorder != '')
+                        {
+                            $disorder = $tempDisorder;
+                        }
                         $postAndSuburb = mysqli_real_escape_string($connect, $_POST['postcode']);
                         //echo $postAndSuburb;
                         $query = "SELECT * FROM address WHERE postnsuburb ='$postAndSuburb' ";
@@ -65,6 +71,8 @@
                                 <i class="mbri-key single-i"></i>
                                 <input type="text" name="userinput_activity" placeholder="Search by Postcode" value="" id="search_text" onchange="ajaxSearch_activity()"/>
                             </div>
+
+
                             <div class="listsearch-input-item">
                                 <select name="value" data-placeholder="All Range Budgets" class="chosen-select" id="value" onchange="ajaxSearch_activity()">
                                     <option value="All Budget Ranges">All Budget Ranges</option>
@@ -75,6 +83,17 @@
                                     <option value="more than $100">more than $100</option>
                                 </select>
                                 <input type="hidden" name="hidden_category" id="hidden_category" />
+                            </div>
+
+                            <div class="listsearch-input-item">
+                                <select name="disorder" data-placeholder="All Behavioral Disorder Type" class="chosen-select" id="disorder" >
+                                    <option value="All Disorder">All Behavioral Disorder Type</option>
+                                    <option value="ASD">Autism Spectrum Disorder (ASD)</option>
+                                    <option value="CDD">Oppositional Defiant Disorder (CDD)</option>
+                                    <option value="CD">Conduct Disorder (CD)</option>
+                                    <option value="ADHD">Attention Deficit Hyperactivity Disorder(ADHD)</option>
+                                </select>
+                                <input type="hidden" name="hidden_disorder" id="hidden_disorder" />
                             </div>
 
                             <!-- hidden-listing-filter -->
@@ -88,10 +107,10 @@
                                     <label for="Children">Children</label>
                                 </div>
                             </div>
-                            <button type ="button" class="button fs-map-btn">Update</button>
+
                             <!-- hidden-listing-filter end -->
                             <br/><br/><br/><br/>
-
+                            <button name="submit" type="submit" class="button fs-map-btn">Clear Selections</button>
 
                             <div class="more-filter-option">More Filters <span></span></div>
                         </div>
@@ -99,6 +118,21 @@
                     <!-- listsearch-input-wrap end -->
                 </div>
             </div>
+            <?php
+                $tempPostcode = $_POST['userinput_activity'];
+                echo "-----";
+                echo $disorder;
+                echo $_POST['userinput_activity'];
+                echo "and";
+                echo $postcode;
+             if($tempPostcode != "")
+             {
+                 $postcode = $tempPostcode;
+                 echo $postcode;
+             }
+
+            ?>
+
             <!-- list-main-wrap-->
             <div class="list-main-wrap fl-wrap card-listing scroller">
                 <!--                <a class="custom-scroll-link back-to-filters btf-l" href="#lisfw"><i class="fa fa-angle-double-up"></i><span>Back to Filters</span></a>-->
@@ -152,6 +186,10 @@ $_SESSION['userinput'] = $_POST['postcode'];
 <script>
     $(document).ready(function()
     {
+        function refresh(e){
+
+        }
+
         filter_data();
         function filter_data(query)
         {
@@ -160,6 +198,7 @@ $_SESSION['userinput'] = $_POST['postcode'];
             var Parent = get_filter('Parent');
             var Children = get_filter('Children');
             var category = $('#value').val();
+            var disorder = $('#disorder').val();
             var lengthParent = Parent.length;
             var lenthChildren = Children.length;
 
@@ -167,6 +206,14 @@ $_SESSION['userinput'] = $_POST['postcode'];
             postcode = <?php echo json_encode($postcode, JSON_HEX_TAG); ?>;
             var suburb = '';
             suburb = <?php echo json_encode($suburb, JSON_HEX_TAG); ?>;
+
+            var homeInputDisorder = '';
+            homeInputDisorder = <?php echo json_encode($disorder, JSON_HEX_TAG); ?>;
+            if(homeInputDisorder != 'none'  && homeInputDisorder != disorder)
+            {
+                disorder = homeInputDisorder;
+            }
+
             // document.getElementById("demo").innerHTML = 'query:' + query;
             // document.getElementById("demo").innerHTML = 'parent:' + Parent.length;
             // if(query!='' || Parent !== [] || Children !== [] || category !='')
@@ -179,7 +226,7 @@ $_SESSION['userinput'] = $_POST['postcode'];
             $.ajax({
                 url:"fetch_act.php",
                 method:"POST",
-                data:{action:action, query:query, Parent:Parent, Children:Children, category:category, postcode:postcode, suburb:suburb},
+                data:{action:action, query:query, Parent:Parent, Children:Children, category:category, postcode:postcode, suburb:suburb, disorder:disorder},
                 success:function(data){
                     $('.filter_data').html(data);
                 }
@@ -218,6 +265,16 @@ $_SESSION['userinput'] = $_POST['postcode'];
 
             filter_data();
         });
+
+        //disorder one value list
+        $('#disorder').change(function(){
+            $('#hidden_disorder').val($('#disorder').val());
+            var disorder = $('#hidden_disorder').val();
+
+            filter_data();
+        });
+
+
 
     });
 
