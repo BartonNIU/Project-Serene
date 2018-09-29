@@ -1,29 +1,66 @@
 <?php
+session_start();
 include "mysql_connect.php";
 
-$postcode;
-$suburb;
-if(isset($_POST["postcode"], $_POST["suburb"]))
-{
+//$postcode;
+//$suburb;
+/*
+    keyword_main represents the input value passed from homepage,
+    keyword represents the input value passed from activity page
+    option represents the category value in activity page
+*/
+$keyword_main = "";
+$keyword = "";
+$option = "";
 
-    if($_POST["postcode"] !== 'none' && $_POST["suburb"] !== 'none')
-    {
-        $postcode = $_POST["postcode"];
-        $suburb = $_POST["suburb"];
-        $query = "
-		SELECT * FROM activity WHERE post_code='$postcode' AND suburb='$suburb'";
+$query = "
+		SELECT * FROM activity WHERE activity_title !='' ";
 
-        $output = '';
-        $result = mysqli_query($connect, $query);
-    }
+if (isset($_POST['userinput_activity'])){
+    $keyword = $_POST['userinput_activity'];
+    $sql .= " and (post_code like '%$keyword%'or suburb like '%$keyword%')";
 }
 
+if (isset($_POST['value'])){
+    $option = $_POST['value'];
+}
 
-if(isset($_POST["action"]))
-{
+/*
+    to check if user input any value on listing_activity page, if true,
+    the keyword_main will be set to empty to avoid the influence from homepage
+*/
+if (isset($_SESSION['userinput'])){
+    $keyword_main = $_SESSION['userinput'];
+    if( strpos($keyword_main, ",") !== false ) {
+        $keyword_main = explode(",",$keyword_main)[0];
+    }
+    if ($keyword != "" or $option != "") {
+        $keyword_main="";
+    }
+    //echo "keyword main2 is: ". $keyword_main."<br>";
+    $query .= " and (post_code like '%$keyword_main%' or suburb like '%$keyword_main%')";
+}
 
-    $query = "
-		SELECT * FROM activity WHERE activity_title !='' ";
+//if(isset($_POST["postcode"], $_POST["suburb"]))
+//{
+//
+//    if($_POST["postcode"] !== 'none' && $_POST["suburb"] !== 'none')
+//    {
+//        $postcode = $_POST["postcode"];
+//        $suburb = $_POST["suburb"];
+//        $query = "
+//		SELECT * FROM activity WHERE post_code='$postcode' AND suburb='$suburb'";
+//
+//        $output = '';
+//        $result = mysqli_query($connect, $query);
+//    }
+//}
+
+
+//if(isset($_POST["action"]))
+//{
+
+
 
     if(isset($_POST["query"]) && !empty($_POST["query"]))
     {
@@ -32,13 +69,13 @@ if(isset($_POST["action"]))
 		 AND post_code LIKE '%".$search."%'  ";
     }
 
-    if($_POST["postcode"] !== 'none' && $_POST["suburb"] !== 'none')
-    {
-        $postcode = $_POST["postcode"];
-        $suburb = $_POST["suburb"];
-        $query .= "
-		 AND post_code='$postcode' AND suburb='$suburb'";
-    }
+//    if($_POST["postcode"] !== 'none' && $_POST["suburb"] !== 'none')
+//    {
+//        $postcode = $_POST["postcode"];
+//        $suburb = $_POST["suburb"];
+//        $query .= "
+//		 AND post_code='$postcode' AND suburb='$suburb'";
+//    }
 
 
     if(isset($_POST["category"]) && $_POST["category"] != 'All Categories'&& !empty($_POST["category"]) ){
@@ -91,7 +128,7 @@ if(isset($_POST["action"]))
 		 AND child='Y' ";
     }
 
-    $query .= " ORDER BY date_format ASC";
+    //$query .= " ORDER BY date_format ASC";
     $output = '';
     echo $query;
     $result = mysqli_query($connect, $query);
@@ -115,14 +152,14 @@ if(isset($_POST["action"]))
                                         <div class="list-post-counter"><span>'.$row['date'].'</span><i class="fa fa-calendar"></i></div>
                                         </div>
                                         </a>
-                                            <div class="geodir-category-content fl-wrap">                                     
+                                            <div class="geodir-category-content fl-wrap" >                                     
                                                 <a class="listing-geodir-category">'. $row['fee'].'</a>
                                                     <h3><a href=detail_act.php?event='.urlencode($actName).' > '. $row['activity_title'].' </a></h3>
                                               
                                             
-                                                    <p>'. $row['description'].'</p>
+                                                    <p id="map-item'.$index.'">'. $row['description'].'</p>
                                                     <div class="geodir-category-options fl-wrap">
-                                                      <div class="geodir-category-location"><a  href="#'.$index.'" class="map-item" id="map-item'.$index.'"><i class="fa fa-map-marker" aria-hidden="true"></i>'. $row['address'].'</a></div>
+                                                      <div class="geodir-category-location"><a  href="#'.$index.'" class="map-item" ><i class="fa fa-map-marker" aria-hidden="true"></i>'. $row['address'].'</a></div>
                                                     </div>
                                             </div>
                                  </article>
@@ -142,7 +179,7 @@ if(isset($_POST["action"]))
         echo'<p></p>';
         echo '<p> We apologize, there is no data found for your selection </p>';
     }
-}
+//}
 
     /* close connection */
     $connect->close();

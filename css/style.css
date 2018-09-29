@@ -5447,7 +5447,7 @@ footer.main-footer.fixed-footer {
 }
 .color-bg-text p {
 	text-align:justify;
-	color: rgba(255,255,255,0.81);
+	color: rgba(255,255,255,1);
 }
 .color-bg-link {
 	float:left;

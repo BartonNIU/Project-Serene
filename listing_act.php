@@ -226,7 +226,7 @@ $_SESSION['userinput'] = $_POST['postcode'];
             $.ajax({
                 url:"fetch_act.php",
                 method:"POST",
-                data:{action:action, query:query, Parent:Parent, Children:Children, category:category, postcode:postcode, suburb:suburb, disorder:disorder},
+                data:{action:action, query:query, Parent:Parent, Children:Children, category:category, disorder:disorder},
                 success:function(data){
                     $('.filter_data').html(data);
                 }

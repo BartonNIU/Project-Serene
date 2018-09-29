@@ -47,13 +47,13 @@
             </div>
             <div class="bubble-bg"> </div>
             <div class="header-sec-link">
-                <div class="container"><a href="#sec3" class="custom-scroll-link">Find More</a></div>
+                <div class="container"><a href="#sec4" class="custom-scroll-link">Find More</a></div>
             </div>
         </section>
         <!-- section end -->
 
         <a href="FAQ.php">
-        <section class="color-bg">
+        <section class="color-bg" id="sec4">
 
             <div class="shapes-bg-big"></div>
             <div class="container">
@@ -97,7 +97,7 @@
                 <div class="listing-carousel  fl-wrap ">
                     <?php
                     //Free Activity
-                    $query = $connect->query("Select * from activity WHERE Fee='Free' ORDER BY date_format ASC;");
+                    $query = $connect->query("Select * from activity WHERE Fee='Free';");// ORDER BY date_format ASC;");
                     while($row = $query->fetch_array())
                     {
                         $orderPict = $row['id'];
