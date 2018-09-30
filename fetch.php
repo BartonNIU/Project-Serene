@@ -1,10 +1,24 @@
 <?php
+session_start();
 include "mysql_connect.php";
+
+$query = "
+		SELECT * FROM explore WHERE place_name!='' ";
+
+if (isset($_SESSION["category"])){
+    $keyword_main = $_SESSION['category'];
+
+        $query .= " AND category LIKE '%".$keyword_main."%'
+            ";
+
+    session_destroy();
+}
+
 
 if(isset($_POST["action"]))
 {
-    $query = "
-		SELECT * FROM explore WHERE place_name!='' ";
+//    $query = "
+//		SELECT * FROM explore WHERE place_name!='' ";
 
     if(isset($_POST["query"]) && !empty($_POST["query"]))
     {
@@ -13,7 +27,8 @@ if(isset($_POST["action"]))
 		 AND post_code LIKE '%".$search."%'  ";
     }
 
-    if(isset($_POST["category"]) && $_POST["category"] != 'All Categories'&& !empty($_POST["category"]) )
+
+    if(isset($_POST["category"]) && $_POST["category"] != '*'&& !empty($_POST["category"]) )
     {
         $search_text = "'" . implode("', '", $_POST["category"]) . "'";
 //        print_r($_POST["category"]);
@@ -100,7 +115,7 @@ if(isset($_POST["action"]))
     }
 
     $output = '';
-//    echo $query;
+    echo $query;
     $result = mysqli_query($connect, $query);
 
     if(mysqli_num_rows($result) > 0)
@@ -110,6 +125,20 @@ if(isset($_POST["action"]))
         {
             $orderPict = $row['id'];
             $placeName = $row['place_name'];
+
+            $description = $row['description'] . ' ' . $placeName;
+            $string = strip_tags($description);
+            if (strlen($string) > 200) {
+
+                // truncate string
+                $stringCut = substr($string, 0, 1200);
+                $endPoint = strrpos($stringCut, ' ');
+
+                //if the string doesn't contain any space then it will cut without word basis.
+                $string = $endPoint? substr($stringCut, 0, $endPoint):substr($stringCut, 0);
+                $string .= '... <a href=detail_act.php?event='.urlencode($placeName).' >Read More</a>';
+            }
+
             $output .='
                                 <!-- listing-item -->
                              <div class="listing-item list-layout">
@@ -124,7 +153,7 @@ if(isset($_POST["action"]))
                                          <a class="listing-geodir-category">'. $row['category'] .'</a>
                                           <h3><a href=detail_place.php?place='.urlencode($placeName).' > '. $row['place_name'].' </a></h3>
   
-                                          <p>'. $row['description'].'</p>
+                                          <p>'. $string.'</p>
                                           <div class="geodir-category-options fl-wrap">
                                           
                                       

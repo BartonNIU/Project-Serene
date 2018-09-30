@@ -1,3 +1,9 @@
+<?php
+$homeActive = "act-link";
+$actActive = "";
+$expActive = "";
+$faqActive = "";
+?>
 <?php include "includes/header.php"; ?>
 <?php include "mysql_connect.php"; ?>
 <?php error_reporting (E_ALL ^ E_NOTICE); ?>
@@ -28,13 +34,14 @@
                             <div class="main-search-input fl-wrap">
                                 <div class="main-search-input-item">
                                     <input id="postcode" name="postcode" type="text" placeholder="Search by Postcode Or Suburb"/>
+
                                     <div id="postcodeList"></div>
                                 </div>
                                 <div class="main-search-input-item">
-                                    <select name="disorder" data-placeholder="All Behavioral Disorder Type" class="chosen-select" id="disorder" >
+                                    <select name="disorderInput" data-placeholder="All Behavioral Disorder Type" class="chosen-select" id="disorderInput" >
                                         <option value="All Disorder">All Behavioral Disorder Type</option>
                                         <option value="ASD">Autism Spectrum Disorder (ASD)</option>
-                                        <option value="CDD">Oppositional Defiant Disorder (CDD)</option>
+                                        <option value="CDD">Oppositional Defiant Disorder (ODD)</option>
                                         <option value="CD">Conduct Disorder (CD)</option>
                                         <option value="ADHD">Attention Deficit Hyperactivity Disorder(ADHD)</option>
                                     </select>
@@ -54,7 +61,6 @@
 
         <a href="FAQ.php">
         <section class="color-bg">
-
             <div class="shapes-bg-big"></div>
             <div class="container">
                 <div class="row">
@@ -80,6 +86,56 @@
 
         </section>
         </a>
+
+        <!--section -->
+        <section>
+            <div class="container">
+                <div class="section-title">
+                    <h2>How it WORKS?</h2>
+                    <span class="section-separator"></span>
+                    <p>We help you to find and locate activities specially catered towards children with behavioural issues</p>
+                </div>
+                <!--process-wrap  -->
+                <div class="process-wrap fl-wrap">
+                    <ul>
+                        <li>
+                            <a href=listing_act.php>
+                                <div class="process-item">
+
+                                    <span class="process-count">01 . </span>
+                                    <div class="time-line-icon"><i class="fa fa-map-o"></i></div>
+                                    <h4> Find an Activity</h4>
+                                    <p>Serene offers you and your children activities in Melbourne that promote their behaviour through intellectual and physical activities</p>
+                                </div>
+                            </a>
+                            <span class="pr-dec"></span>
+                        </li>
+                        <li>
+                            <a href=listing.php>
+                                <div class="process-item">
+                                    <span class="process-count">02 .</span>
+                                    <div class="time-line-icon"><i class="fa fa-map-marker"></i></div>
+                                    <h4> Locate Facilities </h4>
+                                    <p>You can look for free to access playgrounds, parks, gardens and sport centres that may offer activities catered to children</p>
+                                </div>
+                            </a>
+                            <span class="pr-dec"></span>
+                        </li>
+                        <li>
+                            <a href=FAQ.php>
+                                <div class="process-item">
+                                    <span class="process-count">03 .</span>
+                                    <div class="time-line-icon"><i class="fa fa-heart-o"></i></div>
+                                    <h4>For parents</h4>
+                                    <p>Look up activities specially catered to parents with special needs children, that help you understand their behavious and provide you with skills to calm them</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!--process-wrap   end-->
+            </div>
+        </section>
 
         <!--section -->
         <section class="gray-section" id="sec3">
@@ -203,8 +259,8 @@
                 echo "</a>";
                 echo "                                            <div class=\"listing-counter\"><a href=listing.php?category=",urlencode($garden),"><span>".$row_cnt_garden."</span> Locations </a></div>\n";
                 echo "                                            <div class=\"listing-item-cat\">\n";
-                echo                                               "<h3><a href=listing.php?category=",urlencode($garden),">Garden</a></h3>\n";
-                echo "                                                <p>Explore Melbourne's finest gardens</p>\n";
+                echo                                               "<h3><a href=listing.php?category=",urlencode($garden),">Garden</h3>\n";
+                echo "                                                <p>Explore Melbourne's finest gardens</p></a>\n";
                 echo "                                            </div>\n";
                 echo "                                        </div>\n";
 
@@ -217,11 +273,11 @@
                 echo "                                <div class=\"gallery-item gallery-item-second\">\n";
                 echo "                                    <div class=\"grid-item-holder\">\n";
                 echo "                                        <div class=\"listing-item-grid\">\n";
-                echo "                                            <img  src=\"picture/Outdoor/outdoor1.jpeg\"   alt=\"\">\n";
-                echo "                                            <div class=\"listing-counter\"><a href=listing.php?category=",urlencode($outdoor),"><span>".$row_cnt_outdoor."</span> Locations</a></div>\n";
+                echo "                                            <img  src=\"picture/Parks/park.jpeg\"   alt=\"\">\n";
+                echo "                                            <div class=\"listing-counter\"><a href=listing.php?category=",urlencode($park),"><span>".$row_cnt_park."</span> Locations</a></div>\n";
                 echo "                                            <div class=\"listing-item-cat\">\n";
-                echo                                                "<h3><a href=listing.php?category=",urlencode($outdoor),">Outdoor Venue</a></h3>\n";
-                echo "                                                <p>Look for activities in open areas and venues across Melbourne</p>\n";
+                echo "                                                <h3><a href=listing.php?category=",urlencode($park),">Park</h3>\n";
+                echo "                                                <p>Spend time in some of the tranquil locations in Melbourne</p></a>\n";
                 echo "                                            </div>\n";
                 echo "                                        </div>\n";
                 echo "                                    </div>\n";
@@ -234,8 +290,8 @@
                 echo "                                            <img src=\"picture/Indoor/indoor.jpeg\"   alt=\"\">\n";
                 echo "                                            <div class=\"listing-counter\"><a href=listing.php?category=",urlencode($indoor),"><span>".$row_cnt_indoor."</span> Locations</a></div>\n";
                 echo "                                            <div class=\"listing-item-cat\">\n";
-                echo "                                                <h3><a href=listing.php?category=",urlencode($indoor),">Indoor Facility</a></h3>\n";
-                echo "                                                <p>Locate facilities that offer indoor play and sport activities</p>\n";
+                echo "                                                <h3><a href=listing.php?category=",urlencode($indoor),">Indoor Facility</h3>\n";
+                echo "                                                <p>Locate facilities that offer indoor play and sport activities</p></a>\n";
                 echo "                                            </div>\n";
                 echo "                                        </div>\n";
                 echo "                                    </div>\n";
@@ -245,11 +301,11 @@
                 echo "                                <div class=\"gallery-item\">\n";
                 echo "                                    <div class=\"grid-item-holder\">\n";
                 echo "                                        <div class=\"listing-item-grid\">\n";
-                echo "                                            <img  src=\"picture/Parks/park.jpeg\"   alt=\"\">\n";
-                echo "                                            <div class=\"listing-counter\"><a href=listing.php?category=",urlencode($park),"><span>".$row_cnt_park."</span> Locations</a></div>\n";
+                echo "                                            <img  src=\"picture/Outdoor/outdoor1.jpeg\"   alt=\"\">\n";
+                echo "                                            <div class=\"listing-counter\"><a href=listing.php?category=",urlencode($outdoor),"><span>".$row_cnt_outdoor."</span> Locations</a></div>\n";
                 echo "                                            <div class=\"listing-item-cat\">\n";
-                echo "                                                <h3><a href=listing.php?category=",urlencode($park),">Park</a></h3>\n";
-                echo "                                                <p>Spend time in some of the tranquil locations in and around Melbourne</p>\n";
+                echo                                                "<h3><a href=listing.php?category=",urlencode($outdoor),">Outdoor Venue</h3>\n";
+                echo "                                                <p>Look for activities in open areas and venues across Melbourne</p></a>\n";
                 echo "                                            </div>\n";
                 echo "                                        </div>\n";
                 echo "                                    </div>\n";
@@ -262,8 +318,8 @@
                 echo "                                            <img  src=\"picture/Reserves/reserve.jpeg\"   alt=\"\">\n";
                 echo "                                            <div class=\"listing-counter\"><a href=listing.php?category=",urlencode($reserve),"><span>".$row_cnt_reserve."</span> Locations</a></div>\n";
                 echo "                                            <div class=\"listing-item-cat\">\n";
-                echo "                                                <h3><a href=listing.php?category=",urlencode($reserve),">Reserve</a></h3>\n";
-                echo "                                                <p>Visit some of the historical locations across Victoria</p>\n";
+                echo "                                                <h3><a href=listing.php?category=",urlencode($reserve),">Reserve</h3>\n";
+                echo "                                                <p>Visit some of the historical locations across Victoria</p></a>\n";
                 echo "                                            </div>\n";
                 echo "                                        </div>\n";
                 echo "                                    </div>\n";
@@ -276,8 +332,8 @@
                 echo "                                            <img  src=\"picture/Sport Centers/sport.jpeg\"   alt=\"\">\n";
                 echo "                                            <div class=\"listing-counter\"><a href=listing.php?category=",urlencode($sport),"><span>".$row_cnt_sport."</span> Locations</a></div>\n";
                 echo "                                            <div class=\"listing-item-cat\">\n";
-                echo "                                                <h3><a href=listing.php?category=",urlencode($sport),">Sport Center</a></h3>\n";
-                echo "                                                <p>Melbourne is home to some of the best sports facilities</p>\n";
+                echo "                                                <h3><a href=listing.php?category=",urlencode($sport),">Sport Center</h3>\n";
+                echo "                                                <p>Melbourne is home to some of the best sports facilities</p></a>\n";
                 echo "                                            </div>\n";
                 echo "                                        </div>\n";
                 echo "                                    </div>\n";
@@ -293,55 +349,7 @@
         </section>
         <!-- section end -->
 
-        <!--section -->
-        <section>
-            <div class="container">
-                <div class="section-title">
-                    <h2>How it WORKS?</h2>
-                    <span class="section-separator"></span>
-                    <p>We help you to find and locate activities specially catered towards children with behavioural issues</p>
-                </div>
-                <!--process-wrap  -->
-                <div class="process-wrap fl-wrap">
-                    <ul>
-                        <li>
-                            <a href=listing_act.php>
-                                <div class="process-item">
 
-                                    <span class="process-count">01 . </span>
-                                    <div class="time-line-icon"><i class="fa fa-map-o"></i></div>
-                                    <h4> Find an Activity</h4>
-                                    <p>Serene offers you and your children activities in Melbourne that promote their behaviour through intellectual and physical activities</p>
-                                </div>
-                            </a>
-                            <span class="pr-dec"></span>
-                        </li>
-                        <li>
-                            <a href=listing.php>
-                                <div class="process-item">
-                                    <span class="process-count">02 .</span>
-                                    <div class="time-line-icon"><i class="fa fa-map-marker"></i></div>
-                                    <h4> Locate Facilities </h4>
-                                    <p>You can look for free to access playgrounds, parks, gardens and sport centres that may offer activities catered to children</p>
-                                </div>
-                            </a>
-                            <span class="pr-dec"></span>
-                        </li>
-                        <li>
-                            <a href=FAQ.php>
-                                <div class="process-item">
-                                    <span class="process-count">03 .</span>
-                                    <div class="time-line-icon"><i class="fa fa-heart-o"></i></div>
-                                    <h4>For parents</h4>
-                                    <p>Look up activities specially catered to parents with special needs children, that help you understand their behavious and provide you with skills to calm them</p>
-                                </div>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <!--process-wrap   end-->
-            </div>
-        </section>
     </div>
     <!-- Content end -->
 </div>

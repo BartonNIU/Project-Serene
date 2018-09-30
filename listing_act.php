@@ -1,5 +1,12 @@
+<?php
+$homeActive = "";
+$actActive = "act-link";
+$expActive = "";
+$faqActive = "";
+?>
 <?php include "includes/header.php"; ?>
 <?php include "mysql_connect.php"; ?>
+
 <?php error_reporting (E_ALL ^ E_NOTICE); ?>
 
 
@@ -58,19 +65,29 @@
 
                         <div class="listing-view-layout">
                             <ul>
-                                <!--                                <li><a class="grid active" href="#"><i class="fa fa-th-large"></i></a></li>-->
-                                <!--                                <li><a class="list" href="#"><i class="fa fa-list-ul"></i></a></li>-->
+                                <li><a class="grid active" href="#"><i class="fa fa-th-large"></i></a></li>
+                                <li><a class="list" href="#"><i class="fa fa-list-ul"></i></a></li>
                             </ul>
                         </div>
                     </div>
 
-                    <form  id = "pageinput">
+                    <form id= "pageinput">
                         <!-- listsearch-input-wrap  -->
                         <div class="listsearch-input-wrap fl-wrap">
                             <div class="listsearch-input-item">
                                 <i class="mbri-key single-i"></i>
                                 <input type="text" name="userinput_activity" placeholder="Search by Postcode" value="" id="search_text" onchange="ajaxSearch_activity()"/>
+                                <div class="menu-item" id="postcodeList"></div>
                             </div>
+<!--                            <div class="header-search-select-item">-->
+<!--                                <select data-placeholder="Select Postcode" class="chosen-select" >-->
+<!--                                    --><?php //include "search.php"; ?>
+<!--                                    --><?php //foreach ($result as $output) {?>
+<!--                                    <option>Search by Postcode</option>-->
+<!--                                    <option>--><?php //echo $output["postnsuburb"];?><!--</option>-->
+<!--                                    --><?php //}?>
+<!--                                </select>-->
+<!--                            </div>-->
 
 
                             <div class="listsearch-input-item">
@@ -89,7 +106,7 @@
                                 <select name="disorder" data-placeholder="All Behavioral Disorder Type" class="chosen-select" id="disorder" >
                                     <option value="All Disorder">All Behavioral Disorder Type</option>
                                     <option value="ASD">Autism Spectrum Disorder (ASD)</option>
-                                    <option value="CDD">Oppositional Defiant Disorder (CDD)</option>
+                                    <option value="CDD">Oppositional Defiant Disorder (ODD)</option>
                                     <option value="CD">Conduct Disorder (CD)</option>
                                     <option value="ADHD">Attention Deficit Hyperactivity Disorder(ADHD)</option>
                                 </select>
@@ -122,6 +139,7 @@
                 $tempPostcode = $_POST['userinput_activity'];
                 echo "-----";
                 echo $disorder;
+                echo "-*****";
                 echo $_POST['userinput_activity'];
                 echo "and";
                 echo $postcode;
@@ -152,6 +170,7 @@
 <?php
 // pass data to response_activity.php for map searching
 $_SESSION['userinput'] = $_POST['postcode'];
+$_SESSION['inputDisorder'] = $_POST['disorderInput'];
 //$_SESSION['suburb_activity'] = $_POST['suburb'];
 //$_SESSION['budget_activity'] = $_POST['value'];
 ?>
@@ -173,6 +192,8 @@ $_SESSION['userinput'] = $_POST['postcode'];
 <script type="text/javascript" src="js/map_infobox.js"></script>
 <script type="text/javascript" src="js/markerclusterer.js"></script>
 <script type="text/javascript" src="js/maps_activity.js"></script>
+
+<!--<script type="text/javascript" src="completeActPost.js"></script>-->
 
 <style>
     #loading
@@ -226,7 +247,8 @@ $_SESSION['userinput'] = $_POST['postcode'];
             $.ajax({
                 url:"fetch_act.php",
                 method:"POST",
-                data:{action:action, query:query, Parent:Parent, Children:Children, category:category, postcode:postcode, suburb:suburb, disorder:disorder},
+                // data:{action:action, query:query, Parent:Parent, Children:Children, category:category, postcode:postcode, suburb:suburb, disorder:disorder},
+                data:$("#pageinput").serialize(),
                 success:function(data){
                     $('.filter_data').html(data);
                 }

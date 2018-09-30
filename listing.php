@@ -1,3 +1,9 @@
+<?php
+$homeActive = "";
+$actActive = "";
+$expActive = "act-link";
+$faqActive = "";
+?>
 <?php include "includes/header.php"; ?>
 <?php error_reporting (E_ALL ^ E_NOTICE); ?>
 <!-- wrapper -->
@@ -30,12 +36,12 @@
 
                         <div class="listing-view-layout">
                             <ul>
-                                <!--                                            <li><a class="grid active" href="#"><i class="fa fa-th-large"></i></a></li>-->
-                                <!--                                            <li><a class="list" href="#"><i class="fa fa-list-ul"></i></a></li>-->
+                                <li><a class="grid active" href="#"><i class="fa fa-th-large"></i></a></li>
+                                <li><a class="list" href="#"><i class="fa fa-list-ul"></i></a></li>
                             </ul>
                         </div>
                     </div>
-                    <form  id = "pageinput">
+                    <form  id= "pageinput">
                     <!-- listsearch-input-wrap  -->
                     <!-- Insert Postcode  -->
                     <div class="listsearch-input-wrap fl-wrap">
@@ -46,8 +52,8 @@
 
                         <!-- Select Category  -->
                         <div class="listsearch-input-item">
-                            <select multiple="multiple" name="category[]" data-placeholder="Categories" class="chosen-select" id="value" onchange="ajaxSearch_place()">
-                                <!--                                            <option value="*">All Categories</option>-->
+                            <select multiple="multiple" name="category[]" data-placeholder="All Categories" class="chosen-select" id="value" onchange="ajaxSearch_place()">
+<!--                                                                            <option value="*">All Categories</option>-->
                                 <option value="Garden">Garden</option>
                                 <option value="Indoor Facility">Indoor Facility</option>
                                 <option value="Outdoor Venue">Outdoor Venue</option>
@@ -72,14 +78,10 @@
                         }
                         //echo $catCatch;
                         ?>
-
-                        <!-- hidden-listing-filter -->
-                        <div class="hidden-listing-filter fl-wrap">
-                            <!-- Checkboxes Filter-->
-                            <div class=" fl-wrap filter-tags">
-                                <h4>Filter by Amenities</h4>
-                                <ul>
-                                    <li>
+                        <div class=" fl-wrap filter-tags">
+                            <h4>Filter by Amenities</h4>
+                            <ul>
+                                <li>
                                     <input id="disabled_access" type="checkbox" name="check_disable" class="common_selector disabled_access" value="disabled_access" onchange="ajaxSearch_place()">
                                     <label for="disabled_access">Disabled Access </label>
                                     <input id="fencing" type="checkbox" name="check_fencing" class="common_selector fencing" value="fencing" onchange="ajaxSearch_place()">
@@ -89,8 +91,18 @@
                                     <input id="toilet" type="checkbox" name="check_toilet" class="common_selector toilet" value="toilet" onchange="ajaxSearch_place()">
                                     <label for="toilet">Public Toilet</label>
 
-                                    </li>
-                                    <br><br><br><br>
+                                </li>
+                                <span></span><br><br><br>
+                            </ul>
+                        </div>
+
+                        <!-- hidden-listing-filter -->
+                        <div class="hidden-listing-filter fl-wrap">
+                            <!-- Checkboxes Filter-->
+
+                            <div class=" fl-wrap filter-tags">
+
+                                <ul>
                                     <li>
                                         <input id="rockers" type="checkbox" name="check_rocker" class="common_selector rockers" value="rockers" onchange="ajaxSearch_place()">
                                         <label for="rockers">Rockers</label>
@@ -211,20 +223,20 @@
             catchCat  = <?php echo json_encode($catCatch, JSON_HEX_TAG); ?>;
 
 
-            if (!category)
-            {
-                if (catchCat != '') {
-                    cat.push(catchCat);
-                    category = cat;
-                }
-
-            }
-
-            else
-            if (category.length > 0){
-                const catchCat = '';
-                category = $('#value').val();
-            }
+            // if (!category)
+            // {
+            //     if (catchCat != '') {
+            //         cat.push(catchCat);
+            //         category = cat;
+            //     }
+            //
+            // }
+            //
+            // else
+            // if (category.length > 0){
+            //     const catchCat = '';
+            //     category = $('#value').val();
+            // }
 
             $.ajax({
                 url:"fetch.php",

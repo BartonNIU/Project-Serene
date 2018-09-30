@@ -1,4 +1,5 @@
 <?php session_start()?>
+
 <!DOCTYPE HTML>
 <html lang="en">
 <head>
@@ -39,11 +40,20 @@
 
 
     <style>
+        div.menu-item{
+            float: left;
+            position: relative; /* <-- added declaration */
+        }
+
         ul.selected
         {
             background-color:#ffffff;
             background-blend-mode: multiply;
             cursor:pointer;
+            position: absolute;
+            left: 0; top: 100%;  /*     here               */
+            width: 100%;         /*     and here...        */
+            transition: height 1s ease;
         }
         li{
             padding:7px;
@@ -89,22 +99,30 @@
                 <nav>
                     <ul>
                         <li>
-                            <a href="index.php">Home </a>
+                            <?php
+                            echo '<a href="index.php" class='.$homeActive.'>Home </a>';
+                            ?>
                             <!--second level -->
                             <!--second level end-->
                         </li>
                         <li>
-                            <a href="listing_act.php">Activities</a>
-
+                            <?php
+                           echo' <a href="listing_act.php" class='.$actActive.'>Activities</a>';
+                            ?>
                             <!--second level -->
                             <!--second level end-->
                         </li>
+
                         <li>
-                            <a href="listing.php">Explore</a>
+                            <?php
+                            echo '<a href="listing.php" class='.$expActive.'>Explore</a>';
+                            ?>
 
                         </li>
                         <li>
-                            <a href="FAQ.php">FAQ </a>
+                            <?php
+                            echo '<a href="FAQ.php" class='.$faqActive.'>FAQ </a>';
+                             ?>
                             <!--second level -->
                             <!--second level end-->
                         </li>

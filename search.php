@@ -3,7 +3,8 @@ include "mysql_connect.php";
 if(isset($_POST["query"]))
 {
     $output = '';
-    $query = "SELECT * FROM address WHERE postnsuburb LIKE '%".$_POST["query"]."%'";
+    $row = '';
+    $query = "SELECT * FROM address WHERE postnsuburb LIKE '%".$_POST["query"]."%' LIMIT 5";
     $result = mysqli_query($connect, $query);
     $output = '<ul class="list-unstyled selected">';
     if(mysqli_num_rows($result) > 0)

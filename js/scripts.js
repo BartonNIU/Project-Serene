@@ -270,7 +270,8 @@ function initCitybook() {
     });
     // Share   ------------------
     $(".share-container").share({
-        networks: ['facebook', 'pinterest', 'googleplus', 'twitter', 'linkedin']
+        //networks: ['facebook', 'pinterest', 'googleplus', 'twitter', 'linkedin']
+		 networks: ['facebook', 'googleplus', 'twitter', 'linkedin']
     });
     var shrcn = $(".share-container");
     function showShare() {

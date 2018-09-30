@@ -1,3 +1,10 @@
+<?php
+$homeActive = "";
+$actActive = "";
+$expActive = "";
+$faqActive = "act-link";
+?>
+
 <?php include "includes/header.php"; ?>
             <!-- wrapper -->	
             <section class="color-bg">

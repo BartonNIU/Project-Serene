@@ -1,3 +1,9 @@
+<?php
+$homeActive = "";
+$actActive = "";
+$expActive = "";
+$faqActive = "";
+?>
 <?php include "includes/header.php"; ?>
 <!-- wrapper -->
 <div id="wrapper">

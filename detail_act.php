@@ -1,3 +1,9 @@
+<?php
+$homeActive = "";
+$actActive = "";
+$expActive = "";
+$faqActive = "";
+?>
 <?php include "includes/header.php"?>
 <?php include "mysql_connect.php";?>
 <?php
@@ -18,13 +24,21 @@ if($eventCatch != "")
             <?php
             $query = $connect->query("Select * from activity WHERE activity_title='$eventName'");
             $fee ="";
+            $date = "";
+            $host = "";
             while($row = $query -> fetch_array())
             {
+                $date = $row['date_format'];
                 $orderPict = $row['id'];
                 $fee = $row['fee'];
+                $host = $row['organiser'];
                 echo ' <div class="bg par-elem"  data-bg="picture/it2/Activities/'.$orderPict.'.jpeg" data-scrollax="properties: { translateY: "30%"}"> ';
                 echo'</div>';
             }
+            $yyyy = substr($date,0,4);
+            $mm = substr($date,4,2);
+            $dd = substr($date,6,2);
+            $date2 = "$mm/$dd/$yyyy";
             ?>
             <div class="list-single-header absolute-header fl-wrap">
                 <div class="container">
@@ -87,11 +101,20 @@ if($eventCatch != "")
                                         <div class="row">
                                             <div class="col-md-8">
                                                 <?php
+//                                                echo $date2;
+//                                                echo '---------------';
+//                                                echo "year: $yyyy" ;
+//                                                echo "month: $mm" ;
+//                                                echo "day : $dd" ;
                                                 echo '<h2>'.$eventName.'</h2>';
                                                 echo '</div>';
                                                 echo '<div class="col-md-4">';
                                                     echo '<div class="fl-wrap list-single-header-column">';
                                                             echo '<span class="viewed-counter"><i class="fa fa-money"></i>Fee: '.$fee.'</span>';
+                                                    echo '</div>';
+                                                    echo '<div class="share-holder hid-share">';
+                                                        echo '<div class="showshare"><span>Share </span><i class="fa fa-share"></i></div>';
+                                                         echo '<div class="share-container  isShare"></div>';
                                                     echo '</div>';
                                                 echo '</div>';
 
@@ -101,8 +124,34 @@ if($eventCatch != "")
                                 </div>
                             </div>
                             <!-- list-single-header end -->
-                            <div class="list-single-facts fl-wrap gradient-bg">
-                            </div>
+
+                                <div class="box-widget-item fl-wrap">
+                                    <div class="box-widget-item-header">
+                                        <br><br>
+                                        <h3>Event Will Begin : </h3>
+                                    </div>
+                                    <?php
+                                   echo' <div class="box-widget counter-widget gradient-bg" data-countDate='. $date2.'>';
+                                    ?>
+                                        <div class="countdown fl-wrap">
+                                            <div class="countdown-item">
+                                                <span class="days rot">00</span>
+                                                <p>days</p>
+                                            </div>
+                                            <div class="countdown-item">
+                                                <span class="hours rot">00</span>
+                                                <p>hours </p>
+                                            </div>
+                                            <div class="countdown-item no-dec">
+                                                <span class="minutes rot2">00</span>
+                                                <p>minutes </p>
+                                            </div>
+                                            <div class="countdown-item-seconds">
+                                                <span class="seconds rot2">00</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
                             <div class="list-single-main-item fl-wrap">
                                 <div class="list-single-main-item-title fl-wrap">
@@ -112,6 +161,7 @@ if($eventCatch != "")
                                     {
                                         echo' <h3>About '.$eventName.' </h3>';
                                         echo'</div>';
+                                        echo'<p>Organized by: '.$host.' </p>';
                                         echo '<p>'.$row['description'].'</p>';
                                         //                                 echo '<a href="#" class="btn transparent-btn float-btn">Visit Website <i class="fa fa-angle-right"></i></a>';
                                         echo'<span class="fw-separator"></span>';
@@ -128,11 +178,66 @@ if($eventCatch != "")
                                         {
                                             echo '<li><img src="picture/icon2/children.png" height="15%" width="15%">  Children </li>';
                                         }
+
+                                        echo '</ul>';
+                                        echo'<span class="fw-separator"></span>';
+                                        echo'<div class="list-single-main-item-title fl-wrap">';
+                                        echo '<h3>Who Benefits Most</h3>';
+                                        echo '</div>';
+
+                                        echo '<ul>';
+                                        if($row['odd'] === 'Y')
+                                        {
+                                            echo '<li data-toggle="tooltip" data-placement="top" title="Oppositional Defiant Disorder"><img src="picture/icon2/child.png" height="15%" width="15%">  ODD Children </li>';
+                                        }
+                                        if($row['cd'] === 'Y')
+                                        {
+                                            echo '<li data-toggle="tooltip" data-placement="top" title="Conduct Disorder"><img src="picture/icon2/child.png" height="15%" width="15%" >  CD Children </li>';
+                                        }
+                                        if($row['adhd'] === 'Y')
+                                        {
+                                            echo '<li data-toggle="tooltip" data-placement="top" title="Attention Deficit Hyperactivity Disorder"><img src="picture/icon2/child.png" height="15%" width="15%">   ADHD Children  </li>';
+                                        }
+                                        if($row['asd'] === 'Y')
+                                        {
+                                            echo '<li data-toggle="tooltip" data-placement="top" title="Autism Spectrum Disorder"><img src="picture/icon2/child.png" height="15%" width="15%">   ASD Children </li>';
+                                        }
+
+                                        echo '</ul>';
                                     }
                                     ?>
-                                    </ul>
+
                                 </div>
                             </div>
+                            <!-- Map and Direction-->
+                                <div class="list-single-main-item fl-wrap">
+                                    <div class="list-single-main-item-title fl-wrap">
+                                    <h3>Location: </h3>
+                                        <br>
+                                        <div class="map-container">
+                                    <?php
+                                    $query = $connect->query("Select * from activity WHERE activity_title='$eventName'");
+                                    $lat='';
+                                    $long='';
+                                    while($row = $query -> fetch_array()){
+                                        $lat = $row['lat_coordinates'];
+                                        $long = $row['lng_coordinates'];
+                                        echo '<div id="singleMap" data-latitude="'.$row['lat_coordinates'].'" data-longitude="'.$row['lng_coordinates'].'" data-mapTitle="Our Location"></div>';
+                                        echo '</div>';
+                                        echo '<div class="list-author-widget-contacts list-item-widget-contacts">';
+                                        echo '<ul>';
+//                                        echo '<li><span><i class="fa fa-map-marker"></i> Address :</span> <a href="https://www.google.com/maps?saddr=My+Location&daddr='.$lat.','.$long.'">'.$row['address'].'</a></li>';
+                                        echo '<li><span><p><i class="fa fa-map-marker"></i> Address : </span>'.$row['address'].'</p></li>';
+                                        echo '<button class="btn fs-map-btn  color-bg flat-btn" onclick="openLocation()">Direction <i class="fa fa-location-arrow" aria-hidden="true"></i></button>';
+
+
+                                        echo '</div>';
+                                    }
+                                    ?>
+                                    </div>
+                                </div>
+                              <!-- End Map and Direction-->
+
                             <div class="accordion">
                             </div>
                         </div>
@@ -161,8 +266,11 @@ if($eventCatch != "")
                                             $timeStart = $row['time_start'];
                                             $timeEnd = $row['time_end'];
                                             $location = $row['address'];
+                                            $start = $row['start'] ;
+                                            $end = $row['end'];
+                                            $eventTime = "$start - $end";
                                             echo '<li><span class="opening-hours-day">Date </span><span class="opening-hours-time">'.$row['date'].'</span></li>';
-                                            echo '<li><span class="opening-hours-day">Time </span><span class="opening-hours-time">'.$row['time'].'</span></li>';
+                                            echo '<li><span class="opening-hours-day">Time </span><span class="opening-hours-time">'.$eventTime.'</span></li>';
                                             echo '<button class="btn color-bg flat-btn" onclick="popUpCal();">+  Add Event to Your Google Calender</button>';
                                             echo '</ul>';
                                         }
@@ -184,29 +292,29 @@ if($eventCatch != "")
                             </div>
                             <!--box-widget-item end -->
                             <!--box-widget-item -->
-                            <div class="box-widget-item fl-wrap">
-                                <div class="box-widget-item-header">
-                                    <h3>Location: </h3>
-                                </div>
-                                <div class="box-widget">
-                                    <div class="map-container">
-                                        <?php
-                                        $query = $connect->query("Select * from activity WHERE activity_title='$eventName'");
-                                        while($row = $query -> fetch_array()){
-                                            echo '<div id="singleMap" data-latitude="'.$row['lat_coordinates'].'" data-longitude="'.$row['lng_coordinates'].'" data-mapTitle="Our Location"></div>';
-//                                                 <div id="singleMap" data-latitude="40.7427837" data-longitude="-73.11445617675781" data-mapTitle="Our Location"></div>
-                                            echo '</div>';
-                                            echo '<div class="box-widget-content">';
-                                            echo '<div class="list-author-widget-contacts list-item-widget-contacts">';
-                                            echo '<ul>';
-                                            echo '<li><span><i class="fa fa-map-marker"></i> Address :</span> <a href="#">'.$row['address'].'</a></li>';
-                                        }
-                                        ?>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<!--                            <div class="box-widget-item fl-wrap">-->
+<!--                                <div class="box-widget-item-header">-->
+<!--                                    <h3>Location: </h3>-->
+<!--                                </div>-->
+<!--                                <div class="box-widget">-->
+<!--                                    <div class="map-container">-->
+<!--                                        --><?php
+//                                        $query = $connect->query("Select * from activity WHERE activity_title='$eventName'");
+//                                        while($row = $query -> fetch_array()){
+//                                            echo '<div id="singleMap" data-latitude="'.$row['lat_coordinates'].'" data-longitude="'.$row['lng_coordinates'].'" data-mapTitle="Our Location"></div>';
+////                                                 <div id="singleMap" data-latitude="40.7427837" data-longitude="-73.11445617675781" data-mapTitle="Our Location"></div>
+//                                            echo '</div>';
+//                                            echo '<div class="box-widget-content">';
+//                                            echo '<div class="list-author-widget-contacts list-item-widget-contacts">';
+//                                            echo '<ul>';
+//                                            echo '<li><span><i class="fa fa-map-marker"></i> Address :</span> <a href="#">'.$row['address'].'</a></li>';
+//                                        }
+//                                        ?>
+<!--                                        </ul>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
                     </div>
                 </div>
                 <!--box-widget-wrap end -->
@@ -223,7 +331,7 @@ if($eventCatch != "")
 <?php include "includes/footer.php"; ?>
 <!--footer end  -->
 <!--register form -->
-<?php include "includes/registerform.php"; ?>
+<?php //include "includes/registerform.php"; ?>
 <!--register form end -->
 <a class="to-top"><i class="fa fa-angle-up"></i></a>
 </div>
@@ -300,6 +408,27 @@ if($eventCatch != "")
     function openLink()
     {
         window.open('https://www.google.com/calendar/render?action=TEMPLATE&text=Your+Event+Name&dates=20180927T144000/20180927T221500&details=For+details,+link+here:+http://www.example.com&location=Waldorf+Astoria,+301+Park+Ave+,+New+York,+NY+10022&ctz=AET&sf=true&output=xml','1429893142534','width=' + (parseInt(window.innerWidth) * 0.5) + ',height=' + (parseInt(window.innerHeight) * .5) + ',toolbar=0,menubar=0,location=0,status=0,resizable=yes,scrollbars=yes,left=0,top=0');
+        return false;
+    }
+
+    function openLocation()
+    {
+        var lat = "";
+        var long = "";
+        lat = <?php echo json_encode($lat, JSON_HEX_TAG); ?>;
+        long = <?php echo json_encode($long, JSON_HEX_TAG); ?>;
+
+        var width = parseInt((screen.availWidth/1.5));
+        var height = parseInt((screen.availHeight/2));
+        var left = parseInt((screen.availWidth/2) - (width/2));
+        var top = parseInt((screen.availHeight/2) - (height/2));
+        var windowFeatures = "width=" + width + ",height=" + height +
+            ",status,resizable,left=" + left + ",top=" + top +
+            "screenX=" + left + ",screenY=" + top + ",scrollbars=yes";
+
+
+        var url = "https://www.google.com/maps?saddr=My+Location&daddr="+ lat +","+ long;
+        window.open(url,'Event Direction', windowFeatures);
         return false;
     }
 </script>

@@ -1,6 +1,6 @@
 
 $(document).ready(function(){
-    $('#postcode').keyup(function(){
+    $('#search_text').keyup(function(){
         var query = $(this).val();
         if(query != '')
         {
@@ -16,13 +16,9 @@ $(document).ready(function(){
             });
         }
     });
-
-
     $('#postcodeList').on('click', 'li', function(){
-        $('#postcode').val($(this).text());
+        $('#search_text').val($(this).text());
+        $('#userinput_activity').val($(this).text());
         $('#postcodeList').fadeOut();
     });
-
-
-
 });
