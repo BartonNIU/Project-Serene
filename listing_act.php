@@ -57,7 +57,7 @@ $faqActive = "";
                             echo '<h3>Results For : <span>'.$_POST['value'].'</span></h3>';
                         }
                         elseif ($_POST['value'] == ""){
-                            echo '<h3>Activities For Behavioral Issues Children</span></h3>';
+                            echo '<h3>Activities For Children With Behavioral Issues</span></h3>';
                         }
                         ?>
 
@@ -92,8 +92,8 @@ $faqActive = "";
                             </div>
 
                             <div class="listsearch-input-item">
-                                <select name="disorder" data-placeholder="All Behavioral Disorder Type" class="chosen-select" id="disorder" >
-                                    <option value="All Disorder">All Behavioral Disorder Type</option>
+                                <select name="disorder" data-placeholder="All Behavioral Disorders" class="chosen-select" id="disorder" >
+                                    <option value="All Disorder">All Behavioral Disorders</option>
                                     <option value="ASD">Autism Spectrum Disorder (ASD)</option>
                                     <option value="CDD">Oppositional Defiant Disorder (ODD)</option>
                                     <option value="CD">Conduct Disorder (CD)</option>

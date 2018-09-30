@@ -24,7 +24,7 @@ if($placeCatch != "")
             $query = $connect->query("Select * from explore WHERE place_name='$placeName'");
             while($row = $query -> fetch_array())
             {
-                $orderPict = $row['ID'];
+                $orderPict = $row['id'];
                 echo ' <div class="bg par-elem"  data-bg="picture/it2/Explore/'.$orderPict.'.jpeg" data-scrollax="properties: { translateY: "30%"}"> ';
                 echo'</div>';
             }
@@ -161,6 +161,15 @@ if($placeCatch != "")
                                         {
                                             echo '<li><img src="picture/icon2/clamber.png" height="10%" width="10%">   Chinup Bar</li>';
                                         }
+                                        if($row['bus_stops'] === 'Y')
+                                        {
+                                            echo '<li><img src="picture/icon2/bus.png" height="10%" width="10%">   Bus Access</li>';
+                                        }
+                                        if($row['trains_stops'] === 'Y')
+                                        {
+                                            echo '<li><img src="picture/icon2/train.png" height="10%" width="10%">  Train Access</li>';
+                                        }
+
 
 
                                         echo '</ul>';
@@ -170,21 +179,26 @@ if($placeCatch != "")
                                         echo '</div>';
 
                                         echo '<ul>';
+                                        $swing = "The Liberty Swing is a world-first Australian innovation – a swing that allows children in wheelchairs the opportunity to experience the joy of having a swing in the park. It is the only swing of its type that is fully lockable and allows a maximum swing height – that is, really swinging, not just rocking back and forth.";
+                                        $windChime = "The facility has access to sensory equipment such as windchimes, musical sidewalks, bells and other sounds to aid the visually impaired";
+                                        $fencing = "Fencing around a park could either be metallic or wooden. They are a key aspect of landscaping and essential for barricading and safety";
+                                        $disable = "Access to these facilities may be wheelchair-accessible toilets, lift buttons within reach, tactile and audible lift signals for people with vision impairments";
+
                                         if($row['disabled_access'] === 'Y')
                                         {
-                                            echo '<li><img src="picture/icon2/disable.png" height="10%" width="10%">   Disabled Access</li>';
+                                            echo '<li data-toggle="tooltip" data-placement="top" title="Access to these facilities may be wheelchair-accessible toilets, lift buttons within reach, tactile and audible lift signals for people with vision impairments"><img src="picture/icon2/disable.png" height="10%" width="10%">   Disabled Access</li>';
                                         }
                                         if($row['bells_chimes'] === 'Y')
                                         {
-                                            echo '<li><img src="picture/icon2/alarm.png" height="10%" width="10%">   Bells Chimes</li>';
+                                            echo '<li data-toggle="tooltip" data-placement="top" title="The facility has access to sensory equipment such as windchimes, musical sidewalks, bells and other sounds to aid the visually impaired"><img src="picture/icon2/alarm.png" height="10%" width="10%">   Wind Chimes</li>';
                                         }
                                         if($row['liberty_swings'] === 'Y')
                                         {
-                                            echo '<li><img src="picture/icon2/swing.png" height="10%" width="10%">   Liberty Swings</li>';
+                                            echo '<li  data-toggle="tooltip" data-placement="top" title="The Liberty Swing is a world-first Australian innovation – a swing that allows children in wheelchairs the opportunity to experience the joy of having a swing in the park. It is the only swing of its type that is fully lockable and allows a maximum swing height – that is, really swinging, not just rocking back and forth."><img src="picture/icon2/swing.png" height="10%" width="10%">   Liberty Swings</li>';
                                         }
                                         if($row['fencing'] === 'Y')
                                         {
-                                            echo '<li><img src="picture/icon2/fence.png" height="10%" width="10%">   Fencing</li>';
+                                            echo '<li data-toggle="tooltip" data-placement="top" title="Fencing around a park could either be metallic or wooden. They are a key aspect of landscaping and essential for barricading and safety"><img src="picture/icon2/fence.png" height="10%" width="10%">   Fencing</li>';
                                         }
 
                                         echo '</ul>';
@@ -222,7 +236,7 @@ if($placeCatch != "")
                                     echo '<ul>';
 //                                        echo '<li><span><i class="fa fa-map-marker"></i> Address :</span> <a href="https://www.google.com/maps?saddr=My+Location&daddr='.$lat.','.$long.'">'.$row['address'].'</a></li>';
                                     echo '<li><span><p><i class="fa fa-map-marker"></i> Address : </span>'.$row['address'].'</p></li>';
-                                    echo '<button class="btn fs-map-btn  color-bg flat-btn" onclick="openLocation()">Direction <i class="fa fa-location-arrow" aria-hidden="true"></i></button>';
+                                    echo '<button class="btn fs-map-btn  color-bg flat-btn" onclick="openLocation()">Directions <i class="fa fa-location-arrow" aria-hidden="true"></i></button>';
 
 
                                     echo '</div>';

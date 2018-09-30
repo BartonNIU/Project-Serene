@@ -49,6 +49,16 @@ if(isset($_POST["action"]))
         }
     }
 
+    if (isset($_POST["bus_stops"])) {
+        $query .= "
+		 AND bus_stops='Y' ";
+    }
+
+    if (isset($_POST["trains_stops"])) {
+        $query .= "
+		 AND trains_stops='Y' ";
+    }
+
     if (isset($_POST["disabled_access"])) {
         $query .= "
 		 AND disabled_access='Y' ";
@@ -131,12 +141,12 @@ if(isset($_POST["action"]))
             if (strlen($string) > 200) {
 
                 // truncate string
-                $stringCut = substr($string, 0, 1200);
+                $stringCut = substr($string, 0, 200);
                 $endPoint = strrpos($stringCut, ' ');
 
                 //if the string doesn't contain any space then it will cut without word basis.
                 $string = $endPoint? substr($stringCut, 0, $endPoint):substr($stringCut, 0);
-                $string .= '... <a href=detail_act.php?event='.urlencode($placeName).' >Read More</a>';
+                $string .= '... <a href=detail_place.php?place='.urlencode($placeName).' >Read More</a>';
             }
 
             $output .='
@@ -145,7 +155,7 @@ if(isset($_POST["action"]))
                                 <article class="geodir-category-listing fl-wrap">
                                 <a href=detail_place.php?place='.urlencode($placeName).'>
                                   <div class="geodir-category-img">
-                                    <img src=picture/it2/Explore/'.$orderPict.'.jpeg>
+                                    <img src=picture/it3/exp/Small/'.$orderPict.'.jpeg>
                                     <div class="overlay"></div>
                                     </div>
                                     </a>

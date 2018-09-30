@@ -46,7 +46,7 @@ if (isset($_SESSION['userinput']) || isset($_SESSION['inputDisorder'])){
     }
 
     //echo "keyword main2 is: ". $keyword_main."<br>";
-    $query .= " and (post_code like '%$keyword_main%' or suburb like '%$keyword_suburb%')";
+    $query .= " and (post_code like '%$keyword_main%' or suburb like '%$keyword_main%')";
 
     $search_text = $_SESSION['inputDisorder'];
     if (strpos($search_text, 'ASD') !== false) {
@@ -149,10 +149,10 @@ if(mysqli_num_rows($result) > 0)
         $orderPict = $row['id'];
         $description = $row['description'] . ' ' . $actName;
         $string = strip_tags($description);
-        if (strlen($string) > 200) {
+        if (strlen($string) > 180) {
 
             // truncate string
-            $stringCut = substr($string, 0, 1200);
+            $stringCut = substr($string, 0, 180);
             $endPoint = strrpos($stringCut, ' ');
 
             //if the string doesn't contain any space then it will cut without word basis.
@@ -167,7 +167,7 @@ if(mysqli_num_rows($result) > 0)
                                 <article class="geodir-category-listing fl-wrap">
                                 <a href=detail_act.php?event='.urlencode($actName).'>
                                     <div class="geodir-category-img">
-                                        <img src=picture/it2/Activities/'.$orderPict.'.jpeg>
+                                        <img src=picture/it3/act/Small/'.$orderPict.'.jpeg>
                                         <div class="overlay"></div>
                                         <div class="list-post-counter"><span>'.$row['date'].'</span><i class="fa fa-calendar"></i></div>
                                     </div>

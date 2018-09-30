@@ -37,8 +37,8 @@ $faqActive = "";
                                     <div id="postcodeList"></div>
                                 </div>
                                 <div class="main-search-input-item">
-                                    <select name="disorderInput" data-placeholder="All Behavioral Disorder Type" class="chosen-select" id="disorderInput" >
-                                        <option value="All Disorder">All Behavioral Disorder Type</option>
+                                    <select name="disorderInput" data-placeholder="All Behavioral Disorder Types" class="chosen-select" id="disorderInput" >
+                                        <option value="All Disorder">All Behavioral Disorders</option>
                                         <option value="ASD">Autism Spectrum Disorder (ASD)</option>
                                         <option value="CDD">Oppositional Defiant Disorder (ODD)</option>
                                         <option value="CD">Conduct Disorder (CD)</option>
@@ -178,7 +178,7 @@ $faqActive = "";
                         echo '<article class="geodir-category-listing fl-wrap">';
                         echo '<a href=detail_act.php?event=',urlencode($actName),'>';
                         echo '<div class="geodir-category-img">';
-                        echo '<img src=picture/it2/Activities/'.$orderPict.'.jpeg>';
+                        echo '<img src=picture/it3/act/Small/'.$orderPict.'.jpeg>';
                         echo '<div class="overlay"></div>';
                         echo '</div>';
                         echo '</a>';
@@ -222,11 +222,11 @@ $faqActive = "";
                 $result_garden = $connect->query("SELECT * from explore WHERE category='Garden'");
                 $row_cnt_garden = $result_garden ->num_rows;
 
-                $result_indoor = $connect->query("SELECT * from explore WHERE category='Indoor Facility'");
-                $row_cnt_indoor = $result_indoor ->num_rows; //4
+                $result_venue = $connect->query("SELECT * from explore WHERE category='Venue'");
+                $row_cnt_venue = $result_venue ->num_rows; //4
 
-                $result_outdoor = $connect->query("SELECT * from explore WHERE category='Outdoor Venue'");
-                $row_cnt_outdoor = $result_outdoor ->num_rows; //3
+                $result_farm = $connect->query("SELECT * from explore WHERE category='Farm'");
+                $row_cnt_farm = $result_farm ->num_rows; //3
 
                 $result_park = $connect->query("SELECT * from explore WHERE category='Park'");
                 $row_cnt_park = $result_park ->num_rows; //23
@@ -239,8 +239,8 @@ $faqActive = "";
 
                 $garden = "Garden";
                 $park = "Park";
-                $outdoor = "Outdoor Venue";
-                $indoor = "Indoor Facility";
+                $farm = "Farm";
+                $venue = "Venue";
                 $reserve = "Reserve";
                 $sport = "Sports Center";
 
@@ -288,10 +288,10 @@ $faqActive = "";
                 echo "                                    <div class=\"grid-item-holder\">\n";
                 echo "                                        <div class=\"listing-item-grid\">\n";
                 echo "                                            <img src=\"picture/Indoor/indoor.jpeg\"   alt=\"\">\n";
-                echo "                                            <div class=\"listing-counter\"><a href=listing.php?category=",urlencode($indoor),"><span>".$row_cnt_indoor."</span> Locations</a></div>\n";
+                echo "                                            <div class=\"listing-counter\"><a href=listing.php?category=",urlencode($venue),"><span>".$row_cnt_venue."</span> Locations</a></div>\n";
                 echo "                                            <div class=\"listing-item-cat\">\n";
-                echo "                                                <h3><a href=listing.php?category=",urlencode($indoor),">Indoor Facility</h3>\n";
-                echo "                                                <p>Locate facilities that offer indoor play and sport activities</p></a>\n";
+                echo "                                                <h3><a href=listing.php?category=",urlencode($venue),">Venue</h3>\n";
+                echo "                                                <p>Locate venue that offer facilities and sport activities</p></a>\n";
                 echo "                                            </div>\n";
                 echo "                                        </div>\n";
                 echo "                                    </div>\n";
@@ -301,11 +301,11 @@ $faqActive = "";
                 echo "                                <div class=\"gallery-item\">\n";
                 echo "                                    <div class=\"grid-item-holder\">\n";
                 echo "                                        <div class=\"listing-item-grid\">\n";
-                echo "                                            <img  src=\"picture/Outdoor/outdoor1.jpeg\"   alt=\"\">\n";
-                echo "                                            <div class=\"listing-counter\"><a href=listing.php?category=",urlencode($outdoor),"><span>".$row_cnt_outdoor."</span> Locations</a></div>\n";
+                echo "                                            <img  src=\"picture/it3/45.jpeg\"   alt=\"\">\n";
+                echo "                                            <div class=\"listing-counter\"><a href=listing.php?category=",urlencode($farm),"><span>".$row_cnt_farm."</span> Locations</a></div>\n";
                 echo "                                            <div class=\"listing-item-cat\">\n";
-                echo                                                "<h3><a href=listing.php?category=",urlencode($outdoor),">Outdoor Venue</h3>\n";
-                echo "                                                <p>Look for activities in open areas and venues across Melbourne</p></a>\n";
+                echo                                                "<h3><a href=listing.php?category=",urlencode($farm),">Farm</h3>\n";
+                echo "                                                <p>--------------------------------</p></a>\n";
                 echo "                                            </div>\n";
                 echo "                                        </div>\n";
                 echo "                                    </div>\n";

@@ -32,7 +32,7 @@ if($eventCatch != "")
                 $orderPict = $row['id'];
                 $fee = $row['fee'];
                 $host = $row['organiser'];
-                echo ' <div class="bg par-elem"  data-bg="picture/it2/Activities/'.$orderPict.'.jpeg" data-scrollax="properties: { translateY: "30%"}"> ';
+                echo ' <div class="bg par-elem"  data-bg="picture/it3/act/Large/'.$orderPict.'.jpeg" data-scrollax="properties: { translateY: "30%"}"> ';
                 echo'</div>';
             }
             $yyyy = substr($date,0,4);
@@ -128,7 +128,7 @@ if($eventCatch != "")
                                 <div class="box-widget-item fl-wrap">
                                     <div class="box-widget-item-header">
                                         <br><br>
-                                        <h3>Event Will Begin : </h3>
+                                        <h3>Activity Will Begin In : </h3>
                                     </div>
                                     <?php
                                    echo' <div class="box-widget counter-widget gradient-bg" data-countDate='. $date2.'>';
@@ -182,7 +182,7 @@ if($eventCatch != "")
                                         echo '</ul>';
                                         echo'<span class="fw-separator"></span>';
                                         echo'<div class="list-single-main-item-title fl-wrap">';
-                                        echo '<h3>Who Benefits Most</h3>';
+                                        echo '<h3>Who Benefits The Most</h3>';
                                         echo '</div>';
 
                                         echo '<ul>';
@@ -228,7 +228,7 @@ if($eventCatch != "")
                                         echo '<ul>';
 //                                        echo '<li><span><i class="fa fa-map-marker"></i> Address :</span> <a href="https://www.google.com/maps?saddr=My+Location&daddr='.$lat.','.$long.'">'.$row['address'].'</a></li>';
                                         echo '<li><span><p><i class="fa fa-map-marker"></i> Address : </span>'.$row['address'].'</p></li>';
-                                        echo '<button class="btn fs-map-btn  color-bg flat-btn" onclick="openLocation()">Direction <i class="fa fa-location-arrow" aria-hidden="true"></i></button>';
+                                        echo '<button class="btn fs-map-btn  color-bg flat-btn" onclick="openLocation()">Directions <i class="fa fa-location-arrow" aria-hidden="true"></i></button>';
 
 
                                         echo '</div>';
@@ -248,7 +248,7 @@ if($eventCatch != "")
                             <!--box-widget-item -->
                             <div class="box-widget-item fl-wrap">
                                 <div class="box-widget-item-header">
-                                    <h3><i class="fa fa-clock-o"> </i>  Event's Date : </h3>
+                                    <h3><i class="fa fa-clock-o"> </i>  Activity's Schedule : </h3>
                                 </div>
                                 <div class="box-widget opening-hours">
                                     <div class="box-widget-content">

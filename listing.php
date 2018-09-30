@@ -55,8 +55,8 @@ $faqActive = "";
                             <select multiple="multiple" name="category[]" data-placeholder="All Categories" class="chosen-select" id="value" onchange="ajaxSearch_place()">
 <!--                                                                            <option value="*">All Categories</option>-->
                                 <option value="Garden">Garden</option>
-                                <option value="Indoor Facility">Indoor Facility</option>
-                                <option value="Outdoor Venue">Outdoor Venue</option>
+                                <option value="Farm">Farm</option>
+                                <option value="Venue">Venue</option>
                                 <option value="Park">Park</option>
                                 <option value="Reserve">Reserve</option>
                                 <option value="Sports Center">Sports Center</option>
@@ -114,6 +114,8 @@ $faqActive = "";
                                         <label for="swings">Swings</label>
                                         <input id="shade" type="checkbox" name="check_shade" class="common_selector shade" value="shade" onchange="ajaxSearch_place()">
                                         <label for="shade">Shade</label>
+                                        <input id="bus_stops" type="checkbox" name="check_bus_stops" class="common_selector bus_stops" value="bus_stops" onchange="ajaxSearch_place()">
+                                        <label for="bus_stops">Bus Access</label>
                                     </li>
 
                                     <br><br>
@@ -126,7 +128,9 @@ $faqActive = "";
                                     <input id="chinup_bar" type="checkbox" name="check_chinup" class="common_selector chinup_bar" value="chinup_bar" onchange="ajaxSearch_place()">
                                     <label for="chinup_bar">Chinup Bars &nbsp</label>
                                     <input id="bells_chimes" type="checkbox" name="check_bell" class="common_selector bells_chimes" value="bells_chimes" onchange="ajaxSearch_place()">
-                                    <label for="bells_chimes">Bells Chimes</label>
+                                    <label for="bells_chimes">Wind Chimes</label>
+                                    <input id="trains_stops" type="checkbox" name="check_trains_stops" class="common_selector trains_stops" value="trains_stops" onchange="ajaxSearch_place()">
+                                    <label for="trains_stops">Train Access</label>
                                     </li>
 
                                 </ul>
@@ -213,6 +217,8 @@ $faqActive = "";
             var chinup_bar = get_filter('chinup_bar');
             var bells_chimes = get_filter('bells_chimes');
             var shade = get_filter('shade');
+            var bus_stops = get_filter('bus_stops');
+            var trains_stops = get_filter('trains_stops');
 
             var category = $('#value').val();
 
@@ -244,7 +250,7 @@ $faqActive = "";
                 data:{action:action, query:query, disabled_access:disabled_access, toilet:toilet, fencing:fencing,
                     slides:slides, category:category, rockers:rockers,climbers:climbers, see_saws:see_saws,
                     swings:swings,liberty_swings:liberty_swings,play_structure:play_structure,
-                    chinup_bar:chinup_bar, bells_chimes:bells_chimes, shade:shade},
+                    chinup_bar:chinup_bar, bells_chimes:bells_chimes, shade:shade, bus_stops:bus_stops, trains_stops:trains_stops},
                 success:function(data){
                     $('.filter_data').html(data);
                 }
