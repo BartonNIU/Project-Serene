@@ -34,7 +34,6 @@ $faqActive = "";
                             <div class="main-search-input fl-wrap">
                                 <div class="main-search-input-item">
                                     <input id="postcode" name="postcode" type="text" placeholder="Search by Postcode Or Suburb"/>
-
                                     <div id="postcodeList"></div>
                                 </div>
                                 <div class="main-search-input-item">
@@ -54,13 +53,14 @@ $faqActive = "";
             </div>
             <div class="bubble-bg"> </div>
             <div class="header-sec-link">
-                <div class="container"><a href="#sec3" class="custom-scroll-link">Find More</a></div>
+                <div class="container"><a href="#sec4" class="custom-scroll-link">Find More</a></div>
             </div>
         </section>
         <!-- section end -->
 
         <a href="FAQ.php">
-        <section class="color-bg">
+        <section class="color-bg" id="sec4">
+
             <div class="shapes-bg-big"></div>
             <div class="container">
                 <div class="row">

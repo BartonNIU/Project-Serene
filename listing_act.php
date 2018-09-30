@@ -6,7 +6,6 @@ $faqActive = "";
 ?>
 <?php include "includes/header.php"; ?>
 <?php include "mysql_connect.php"; ?>
-
 <?php error_reporting (E_ALL ^ E_NOTICE); ?>
 
 
@@ -77,17 +76,7 @@ $faqActive = "";
                             <div class="listsearch-input-item">
                                 <i class="mbri-key single-i"></i>
                                 <input type="text" name="userinput_activity" placeholder="Search by Postcode" value="" id="search_text" onchange="ajaxSearch_activity()"/>
-                                <div class="menu-item" id="postcodeList"></div>
                             </div>
-<!--                            <div class="header-search-select-item">-->
-<!--                                <select data-placeholder="Select Postcode" class="chosen-select" >-->
-<!--                                    --><?php //include "search.php"; ?>
-<!--                                    --><?php //foreach ($result as $output) {?>
-<!--                                    <option>Search by Postcode</option>-->
-<!--                                    <option>--><?php //echo $output["postnsuburb"];?><!--</option>-->
-<!--                                    --><?php //}?>
-<!--                                </select>-->
-<!--                            </div>-->
 
 
                             <div class="listsearch-input-item">
@@ -139,7 +128,6 @@ $faqActive = "";
                 $tempPostcode = $_POST['userinput_activity'];
                 echo "-----";
                 echo $disorder;
-                echo "-*****";
                 echo $_POST['userinput_activity'];
                 echo "and";
                 echo $postcode;
@@ -192,8 +180,6 @@ $_SESSION['inputDisorder'] = $_POST['disorderInput'];
 <script type="text/javascript" src="js/map_infobox.js"></script>
 <script type="text/javascript" src="js/markerclusterer.js"></script>
 <script type="text/javascript" src="js/maps_activity.js"></script>
-
-<!--<script type="text/javascript" src="completeActPost.js"></script>-->
 
 <style>
     #loading

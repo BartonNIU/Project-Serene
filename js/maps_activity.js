@@ -12,6 +12,7 @@
 
 
 
+
 function mainMap(locations) {
     function locationData(locationURL, locationCategory, locationTitle, locationAddress, locationTime) {
         //return ('<div class="map-popup-wrap"><div class="map-popup"><div class="infoBox-close"><i class="fa fa-times"></i></div><div class="map-popup-category">' + locationCategory + '</div><a href="' + locationURL + '" class="listing-img-content fl-wrap"></a> <div class="listing-content fl-wrap"><div class="listing-title fl-wrap"><h4><a href=' + locationURL + '>' + locationTitle + '</a></h4><span class="map-popup-location-info"><i class="fa fa-map-marker"></i>' + locationAddress + '</span></div></div></div></div>')
@@ -20,8 +21,12 @@ function mainMap(locations) {
             '<span class="map-popup-location-info"><i class="material-icons">place</i>' + locationAddress + '</span>'+
             '<span class="map-popup-location-info"><i class="material-icons">event_available</i>' + locationTime + '</span></div>' +
             '<span class="map-popup-direction">' +
-            '<a target="_blank"  href ="https://www.google.com/maps/dir/?api=1&destination='+ locationAddress+'"><i class="material-icons">directions</i><em>Directions</em></a><a href="https://calendar.google.com" target="_blank"><i class="material-icons">share</i><em>Share</em></a></span></div></div></div></div>')
+            '<a class="google customer directions"  target="_blank"  href ="https://www.google.com/maps/dir/?api=1&destination='+ locationAddress+'">' +
+            '<i class="material-icons">directions</i><em>Directions</em></a>' +
+            '<a class="facebook customer share" href="https://www.facebook.com/sharer.php?u=serene.tk/' + locationURL + '" title="Facebook share" target="_blank">' +
+            '<i class="material-icons">share</i><em>Share</em></a></span></div></div></div></div>')
     }
+
 
 
 
@@ -94,7 +99,7 @@ function mainMap(locations) {
             return function () {
                 ib.setOptions(boxOptions);
                 // the code below is for showing the popup on map
-                boxText.innerHTML = locationData("detail_act.php?event="+ encodeURIComponent(locations[i]["activity_title"].replace(/'/g, "%27")), locations[i]["audience"], locations[i]["activity_title"], locations[i]["address"], locations[i]["date"]+ ",   "+ locations[i]["time"]);
+                boxText.innerHTML = locationData("detail_act.php?event="+ encodeURI(locations[i]["activity_title"]), locations[i]["audience"], locations[i]["activity_title"], locations[i]["address"], locations[i]["date"]+ ",   "+ locations[i]["time"]);
                 ib.close();
                 ib.open(map, marker);
                 currentInfobox = marker.id;
@@ -105,12 +110,51 @@ function mainMap(locations) {
                 //The code below for scrolling the matched list to the appropriate place.
                 if(currentInfobox){
                     document.getElementById('map-item'+ currentInfobox).scrollIntoView({behavior: "instant", block: "center", inline: "nearest"});
+                    //$('#map-item' + currentInfobox)[0].style.backgroundColor = '#49CEFF';
+                    $('#map-item' + currentInfobox)[0].style.color= '#5ad3ff';
+                    setTimeout(function() {
+                        //$('#map-item' + currentInfobox)[0].style.backgroundColor = '#FFF';
+                        setTimeout(function() {
+                            $('#map-item' + currentInfobox)[0].style.color= '#999';
+
+                        },500)
+                        $('#map-item' + currentInfobox)[0].style.color= '#e474c9';
+                    },500);
                 }
                 google.maps.event.addListener(ib, 'domready', function () {
                     $('.infoBox-close').click(function (e) {
                         e.preventDefault();
                         ib.close();
                     });
+
+                    //The function below for share icon on map marker popups
+                    $.fn.customerPopup = function (e, intWidth, intHeight, blnResize) {
+
+                        // Prevent default anchor event
+                        e.preventDefault();
+
+                        // Set values for window
+                        intWidth = intWidth || '500';
+                        intHeight = intHeight || '400';
+                        strResize = (blnResize ? 'yes' : 'no');
+
+                        // Set title and open popup with focus on it
+                        var strTitle = ((typeof this.attr('title') !== 'undefined') ? this.attr('title') : 'Social Share'),
+                            strParam = 'width=' + intWidth + ',height=' + intHeight + ',resizable=' + strResize,
+                            objWindow = window.open(this.attr('href'), strTitle, strParam).focus();
+                    };
+
+                    /* ================================================== */
+
+                    $('.customer.share').on("click", function(e) {
+                        $(this).customerPopup(e);
+                    });
+
+                    // $('.customer.directions').on("click", function(e) {
+                    //     $(this).customerPopup(e);
+                    // });
+
+                    /* =================share icon popup end==================== */
                 });
 
             }

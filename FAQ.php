@@ -155,8 +155,8 @@ $faqActive = "act-link";
                                 </div>
                                 <div class="col-md-6">
                                     <div class="accordion">
-                                        <a class="toggle" href="#"> What are some treatments for ODD? <i class="fa fa-angle-down"></i></a>
-                                        <div class="accordion-inner">
+                                        <a class="toggle act-accordion" href="#"> What are some treatments for ODD? <i class="fa fa-angle-down"></i></a>
+                                        <div class="accordion-inner visible">
                                             <p>
                                                 •	Parental training – to help the parents better manage and interact with their child, including behavioural techniques that reinforce good behaviour and discourage bad behaviour. This is the primary form of treatment and the most effective. Social support is increased if the parents are trained in groups with other parents who have children with ODD <br><br>
                                                 •	Functional family therapy – to teach all family members to communicate and problem-solve more effectively <br><br>
@@ -167,8 +167,8 @@ $faqActive = "act-link";
                                         <div class="accordion-inner">
                                             <p>One of the greatest challenges in treating a child with CD is to overcome their mistrust of others, particularly authority figures. The child’s unwillingness to follow any rules must also be considered. It may take some time to unravel the various factors that contribute to the child’s behaviour and take appropriate action. </p>
                                         </div>
-                                        <a class="toggle act-accordion" href="#"> What are the best ways to treat ADHD at home? <i class="fa fa-angle-down"></i></a>
-                                        <div class="accordion-inner visible">
+                                        <a class="toggle " href="#"> What are the best ways to treat ADHD at home? <i class="fa fa-angle-down"></i></a>
+                                        <div class="accordion-inner">
                                             <p>A child with ADHD can stretch the patience of all members of the family. Parents need to try a range of different ways to help their child learn and develop, and reduce stress in the family. It is important for parents to be consistent and work as a team to support each other. Try to have breaks often, as it is valuable to get some respite from the demands of caring for a child with ADHD. It will help if you: <br><br>
                                                 •	Develop consistent routines at home and at school.<br><br>
                                                 •	Keep rules clear and simple and give reminders calmly.<br><br>
