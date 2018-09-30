@@ -11,6 +11,7 @@ include "mysql_connect.php";
 $keyword_main = "";
 $keyword_suburb = "";
 $keyword = "";
+$disorder="";
 $option = "";
 $query = "
 		SELECT * FROM activity WHERE activity_title !='' ";
@@ -19,8 +20,8 @@ $query = "
 if (isset($_POST['userinput_activity']) && !empty($_POST["userinput_activity"])){
     $keyword = $_POST['userinput_activity'];
     $query .= " AND (post_code like '%$keyword%'or suburb like '%$keyword%')";
-    echo "+++++++++++++++++++++++";
-    echo $keyword;
+    //echo "+++++++++++++++++++++++";
+    //echo $keyword;
 
 }
 
@@ -28,6 +29,23 @@ if (isset($_POST['userinput_activity']) && !empty($_POST["userinput_activity"]))
 if (isset($_POST['value'])){
     $option = $_POST['value'];
 }
+
+if(isset($_POST["disorder"]) && $_POST["disorder"] != 'All Disorder'&& !empty($_POST["disorder"]) ){
+    $disorder = $_POST["disorder"];
+    if (strpos($disorder, 'ASD') !== false) {
+        $query .= " AND asd='Y' ";
+    }
+    else if (strpos($disorder, 'CDD') !== false) {
+        $query .= " AND odd='Y' ";
+    }
+    else if (strpos($disorder, 'CD') !== false) {
+        $query .= " AND cd='Y' ";
+    }
+    else if (strpos($disorder, 'ADHD') !== false) {
+        $query .= " AND adhd='Y' ";
+    }
+}
+
 /*
     to check if user input any value on listing_activity page, if true,
     the keyword_main will be set to empty to avoid the influence from homepage
@@ -43,6 +61,7 @@ if (isset($_SESSION['userinput']) || isset($_SESSION['inputDisorder'])){
     }
     if ($keyword != "" || $option != 'All Budget Ranges') {
         $keyword_main="";
+        unset($_SESSION["userinput"]);
     }
 
     //echo "keyword main2 is: ". $keyword_main."<br>";
@@ -62,7 +81,11 @@ if (isset($_SESSION['userinput']) || isset($_SESSION['inputDisorder'])){
         $query .= " AND adhd='Y' ";
     }
 
-    session_destroy();
+    if($disorder != ""){
+        unset($_SESSION["inputDisorder"]);
+    }
+
+    //session_destroy();
 }
 
 //if(isset($_POST["postcode"], $_POST["suburb"]))
@@ -115,21 +138,7 @@ if(isset($_POST["value"]) && $_POST["value"] != 'All Budget Ranges'&& !empty($_P
         $query .= " AND fee_fix > 100";
     }
 }
-if(isset($_POST["disorder"]) && $_POST["disorder"] != 'All Disorder'&& !empty($_POST["disorder"]) ){
-    $search_text = $_POST["disorder"];
-    if (strpos($search_text, 'ASD') !== false) {
-        $query .= " AND asd='Y' ";
-    }
-    else if (strpos($search_text, 'CDD') !== false) {
-        $query .= " AND odd='Y' ";
-    }
-    else if (strpos($search_text, 'CD') !== false) {
-        $query .= " AND cd='Y' ";
-    }
-    else if (strpos($search_text, 'ADHD') !== false) {
-        $query .= " AND adhd='Y' ";
-    }
-}
+
 if (isset($_POST["check_p"])) {
     $query .= " AND parent='Y' ";
 }
@@ -138,7 +147,7 @@ if (isset($_POST["check_c"])) {
 }
 $query .= " ORDER BY date_format ASC";
 $output = '';
-echo $query;
+//echo $query;
 $result = mysqli_query($connect, $query);
 if(mysqli_num_rows($result) > 0)
 {
@@ -187,7 +196,7 @@ if(mysqli_num_rows($result) > 0)
                                <!-- listing-item end-->';
         $index++;
     }
-    echo $output;
+    //echo $output;
 }
 else{
     echo'<p></p>';

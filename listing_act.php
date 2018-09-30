@@ -92,7 +92,7 @@ $faqActive = "";
                             </div>
 
                             <div class="listsearch-input-item">
-                                <select name="disorder" data-placeholder="All Behavioral Disorders" class="chosen-select" id="disorder" >
+                                <select name="disorder" data-placeholder="All Behavioral Disorders" class="chosen-select" id="disorder" onchange="ajaxSearch_activity()">
                                     <option value="All Disorder">All Behavioral Disorders</option>
                                     <option value="ASD">Autism Spectrum Disorder (ASD)</option>
                                     <option value="CDD">Oppositional Defiant Disorder (ODD)</option>
@@ -116,7 +116,7 @@ $faqActive = "";
 
                             <!-- hidden-listing-filter end -->
                             <br/><br/><br/><br/>
-                            <button name="submit" type="submit" class="button fs-map-btn">Clear Selections</button>
+                            <button  type="button" class="button fs-map-btn">Update</button>
 
                             <div class="more-filter-option">More Filters <span></span></div>
                         </div>
@@ -126,11 +126,11 @@ $faqActive = "";
             </div>
             <?php
                 $tempPostcode = $_POST['userinput_activity'];
-                echo "-----";
-                echo $disorder;
-                echo $_POST['userinput_activity'];
-                echo "and";
-                echo $postcode;
+//                echo "-----";
+//                echo $disorder;
+//                echo $_POST['userinput_activity'];
+//                echo "and";
+//                echo $postcode;
              if($tempPostcode != "")
              {
                  $postcode = $tempPostcode;

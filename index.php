@@ -14,7 +14,7 @@ $faqActive = "";
         <!--section -->
         <section class="scroll-con-sec hero-section" data-scrollax-parent="true" id="sec1">
             <div class="media-container video-parallax" data-scrollax="properties: { translateY: '200px' }">
-                <div class="bg mob-bg" style="background-image: url(images/bg/1.jpg)"></div>
+<!--                <div class="bg mob-bg" style="background-image: url(images/bg/1.jpg)"></div>-->
                 <div class="video-container">
                     <video autoplay  loop muted  class="bgvid">
                         <source src="video/covervideo.mp4" type="video/mp4">
@@ -58,10 +58,12 @@ $faqActive = "";
         </section>
         <!-- section end -->
 
-        <a href="FAQ.php">
+
         <section class="color-bg" id="sec4">
 
+
             <div class="shapes-bg-big"></div>
+            <a href="FAQ.php">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
@@ -82,10 +84,12 @@ $faqActive = "";
                         </div>
                     </div>
                 </div>
+            </a>
             </div>
 
+
         </section>
-        </a>
+
 
         <!--section -->
         <section>

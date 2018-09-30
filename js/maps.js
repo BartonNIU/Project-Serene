@@ -6,7 +6,7 @@
                 '<div class="listing-title fl-wrap"><h4><a href=' + locationURL + '>' + locationTitle + '</a></h4>' +
                 '<span class="map-popup-location-info"><i class="material-icons" >place</i>' + locationAddress + '</span></div>' +
                 '<span class="map-popup-direction">' +
-                '<a target="_blank"  href ="https://www.google.com/maps/dir/?api=1&destination='+ locationAddress+'"><i class="material-icons" >directions</i><em>Directions</em></a><a href="https://calendar.google.com" target="_blank"><i class="material-icons">share</i><em>Share</em></a></span></div></div></div></div>')
+                '<a target="_blank"  href ="https://www.google.com/maps/dir/?api=1&destination='+ locationAddress+'"><i class="material-icons" >directions</i><em>Directions</em></a><a class="facebook customer share" href="https://www.facebook.com/sharer.php?u=serene.tk/' + locationURL + '" title="Facebook share" target="_blank"><i class="material-icons">share</i><em>Share</em></a></span></div></div></div></div>')
         }
 
 
@@ -14,7 +14,7 @@
         var map = new google.maps.Map(document.getElementById('map-main'), {
             zoom: 12,
             scrollwheel: false,
-            center: eval("("+locations[0]["coordinates"]+")"),//{lat: -37.8136, lng: 144.9621},
+            center: {lat: -37.8136, lng: 144.9621},//eval("("+locations[0]["coordinates"]+")"),//
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             zoomControl: false,
             mapTypeControl: false,
@@ -80,7 +80,7 @@
                 return function () {
                     ib.setOptions(boxOptions);
                     // the code below is for showing the popup on map
-                    boxText.innerHTML = locationData("detail_place.php?event="+ encodeURIComponent(locations[i]["activity_title"]), locations[i]["category"], locations[i]["place_name"], locations[i]["address"], "");
+                    boxText.innerHTML = locationData("detail_place.php?place="+ encodeURIComponent(locations[i]["place_name"]), locations[i]["category"], locations[i]["place_name"], locations[i]["address"], "");
                     ib.close();
                     ib.open(map, marker);
                     currentInfobox = marker.id;
@@ -91,12 +91,50 @@
                     //The code below for scrolling the matched list to the appropriate place.
                     if(currentInfobox){
                         document.getElementById('map-item'+ currentInfobox).scrollIntoView({behavior: "instant", block: "center", inline: "nearest"});
+                        $('#map-item' + currentInfobox)[0].style.color= '#5ad3ff';
+                        setTimeout(function() {
+                            //$('#map-item' + currentInfobox)[0].style.backgroundColor = '#FFF';
+                            //setTimeout(function() {
+                                $('#map-item' + currentInfobox)[0].style.color= '#999';
+                            },1000)
+                            //$('#map-item' + currentInfobox)[0].style.color= '#e474c9';
+                       // },500);
                     }
                     google.maps.event.addListener(ib, 'domready', function () {
                         $('.infoBox-close').click(function (e) {
                             e.preventDefault();
                             ib.close();
                         });
+                        //The function below for share icon on map marker popups
+                        $.fn.customerPopup = function (e, intWidth, intHeight, blnResize) {
+
+                            // Prevent default anchor event
+                            e.preventDefault();
+
+                            // Set values for window
+                            intWidth = intWidth || '500';
+                            intHeight = intHeight || '400';
+                            strResize = (blnResize ? 'yes' : 'no');
+
+                            // Set title and open popup with focus on it
+                            var strTitle = ((typeof this.attr('title') !== 'undefined') ? this.attr('title') : 'Social Share'),
+                                strParam = 'width=' + intWidth + ',height=' + intHeight + ',resizable=' + strResize,
+                                objWindow = window.open(this.attr('href'), strTitle, strParam).focus();
+                        };
+
+                        /* ================================================== */
+
+                        $('.customer.share').on("click", function(e) {
+                            $(this).customerPopup(e);
+                        });
+
+                        // $('.customer.directions').on("click", function(e) {
+                        //     $(this).customerPopup(e);
+                        // });
+
+                        /* =================share icon popup end==================== */
+
+
                     });
                 }
             })(marker, i));
@@ -145,16 +183,16 @@
             var index = currentInfobox;
             var marker_index = parseInt($(this).attr('href').split('#')[1], 10);
             google.maps.event.trigger(allMarkers[marker_index], "click");
-            if ($(this).hasClass("scroll-top-map")) {
-                $('html, body').animate({
-                    scrollTop: $(".map-container").offset().top + "-80px"
-                }, 500)
-            }
-            else if ($(window).width() < 1064) {
-                $('html, body').animate({
-                    scrollTop: $(".map-container").offset().top + "-80px"
-                }, 500)
-            }
+            // if ($(this).hasClass("scroll-top-map")) {
+            //     $('html, body').animate({
+            //         scrollTop: $(".map-container").offset().top + "-80px"
+            //     }, 500)
+            // }
+            // else if ($(window).width() < 1064) {
+            //     $('html, body').animate({
+            //         scrollTop: $(".map-container").offset().top + "-80px"
+            //     }, 500)
+            // }
         });
         var zoomControlDiv = document.createElement('div');
         var zoomControl = new ZoomControl(zoomControlDiv, map);

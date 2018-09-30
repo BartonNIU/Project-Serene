@@ -7,7 +7,7 @@ $rows = array();
 //$postcode = "";
 //$suburb = "";
 $keyword = "";
-$option = "'" . implode("', '", array('Park','Garden','Indoor Facility','Outdoor Venue','Reserve','Sports Center')) . "'";
+$option = "'" . implode("', '", array('Park','Garden','Farm','Venue','Reserve','Sports Center')) . "'";
 //echo $option;
 
 if (isset($_SESSION["category"]) and $_SESSION["category"] != ""){
@@ -69,6 +69,13 @@ if (isset($_POST['category'])){
     if(isset($_POST["check_shade"])){
         $sql .= " and shade='Y'";
     }
+    if(isset($_POST["check_bus_stops"])){
+        $sql .= " and bus_stops='Y'";
+    }
+    if(isset($_POST["check_trains_stops"])){
+        $sql .= " and trains_stops='Y'";
+    }
+
 
     $result = mysqli_query($connect, $sql);
 
@@ -83,7 +90,8 @@ if (isset($_POST['category'])){
 
     }
     else {
-        $rows = [["categoty" => "","place_name" => "","address" => "Melbourne","coordinates" => "{lat: -37.8136, lng: 144.9621}"]];
+        //$rows = [["categoty" => "","place_name" => "","address" => "Melbourne","coordinates" => "{lat: -37.8136, lng: 144.9621}"]];
+        $rows = [];
         //echo "query no result";
     }
 
