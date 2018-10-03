@@ -25,11 +25,11 @@ $faqActive = "";
                     <div class="listsearch-header fl-wrap" id="cat">
                         <!--Showing List Result Title-->
                         <?php
-                        if($_POST['category'] != "") {
-                            echo '<h3>List For : <span>'.$_POST['category'].'</span></h3>';
+                        if($_GET['category'] != "" or isset($_POST['category'])) {
+                            echo '<h3>List For : <span>'.$_GET['category'].$_POST['category'].'</span></h3>';
                         }
-                        elseif ($_POST['category'] == ""){
-                            echo '<h3>Explore Parks and Amenities</span></h3>';
+                        elseif ($_GET['category'] == ""){
+                            echo '<h3>Explore Parks and Amenities</h3>';
                         }
                         ?>
                         <!--End of Showing List Result Title-->
@@ -41,17 +41,17 @@ $faqActive = "";
                             </ul>
                         </div>
                     </div>
-                    <form  id= "pageinput">
+                    <form  id= "pageinput" method="post">
                     <!-- listsearch-input-wrap  -->
                     <!-- Insert Postcode  -->
                     <div class="listsearch-input-wrap fl-wrap">
                         <div class="listsearch-input-item">
                             <i class="mbri-key single-i"></i>
-                            <input type="text" name="userinput_place" placeholder="Search by Postcode" value="" id="search_text" onchange="ajaxSearch_place()">
+                            <input type="text" name="userinput_place" placeholder="Postcode or Suburb" value="" id="search_text" onchange="ajaxSearch_place()">
                         </div>
 
                         <!-- Select Category  -->
-                        <div class="listsearch-input-item">
+                        <div class="listsearch-input-item category">
                             <select multiple="multiple" name="category[]" data-placeholder="All Categories" class="chosen-select" id="value" onchange="ajaxSearch_place()">
 <!--                                                                            <option value="*">All Categories</option>-->
                                 <option value="Garden">Garden</option>
@@ -136,7 +136,7 @@ $faqActive = "";
                                 </ul>
                             </div>
                         </div>
-                        <button type="button" class="button fs-map-btn">Update</button>
+                        <button type="button" class="button fs-map-btn" onclick="ajaxSearch_place()">Update</button>
                         <!-- hidden-listing-filter end -->
                         <br/><br/><br/><br/>
 
@@ -180,7 +180,7 @@ $faqActive = "";
 </div>
 <!-- Main end -->
 <!--=============== scripts  ===============-->
-<script type="text/javascript" src="js/jquery.min.js"></script>
+<!--<script type="text/javascript" src="js/jquery.min.js"></script>-->
 <script type="text/javascript" src="js/plugins.js"></script>
 <script type="text/javascript" src="js/scripts.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6uvEZqkQXhf_Ai-vj50Phw-zMEaw7zLo"></script>
@@ -247,12 +247,14 @@ $faqActive = "";
             $.ajax({
                 url:"fetch.php",
                 method:"POST",
-                data:{action:action, query:query, disabled_access:disabled_access, toilet:toilet, fencing:fencing,
+                data:
+                    {action:action, query:query, disabled_access:disabled_access, toilet:toilet, fencing:fencing,
                     slides:slides, category:category, rockers:rockers,climbers:climbers, see_saws:see_saws,
                     swings:swings,liberty_swings:liberty_swings,play_structure:play_structure,
                     chinup_bar:chinup_bar, bells_chimes:bells_chimes, shade:shade, bus_stops:bus_stops, trains_stops:trains_stops},
                 success:function(data){
                     $('.filter_data').html(data);
+
                 }
             });
 
@@ -291,6 +293,12 @@ $faqActive = "";
             filter_data();
         });
     });
+
+    // function listname_ajax(){
+    //     $.post("",$(this).serialize(),function (data) {
+    //         $('#cat').html('<h3>List For : <span>' + data + '</span>');
+    //     })
+    // }
 </script>
 
 

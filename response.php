@@ -90,9 +90,10 @@ if (isset($_POST['category'])){
 
     }
     else {
+        //
         //$rows = [["categoty" => "","place_name" => "","address" => "Melbourne","coordinates" => "{lat: -37.8136, lng: 144.9621}"]];
-        $rows = [];
-        //echo "query no result";
+        //$rows = [];
+        echo "query no result";
     }
 
 echo json_encode($rows);  // pass data to javascript for map markers

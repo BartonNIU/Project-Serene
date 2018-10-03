@@ -3,10 +3,10 @@
         function locationData(locationURL, locationCategory, locationTitle, locationAddress, locationPhone) {
             //return ('<div class="map-popup-wrap"><div class="map-popup"><div class="infoBox-close"><i class="fa fa-times"></i></div><div class="map-popup-category">' + locationCategory + '</div><a href="' + locationURL + '" class="listing-img-content fl-wrap"></a> <div class="listing-content fl-wrap"><div class="listing-title fl-wrap"><h4><a href=' + locationURL + '>' + locationTitle + '</a></h4><span class="map-popup-location-info"><i class="fa fa-map-marker"></i>' + locationAddress + '</span></div></div></div></div>')
             return ('<div class="map-popup-wrap"><div class="map-popup"><div class="listing-content fl-wrap"><div class="infoBox-close"><i class="fa fa-times"></i></div>' +
-                '<div class="listing-title fl-wrap"><h4><a href=' + locationURL + '>' + locationTitle + '</a></h4>' +
+                '<div class="listing-title fl-wrap"><h4><a target="_blank" href=' + locationURL + '>' + locationTitle + '</a></h4>' +
                 '<span class="map-popup-location-info"><i class="material-icons" >place</i>' + locationAddress + '</span></div>' +
                 '<span class="map-popup-direction">' +
-                '<a target="_blank"  href ="https://www.google.com/maps/dir/?api=1&destination='+ locationAddress+'"><i class="material-icons" >directions</i><em>Directions</em></a><a class="facebook customer share" href="https://www.facebook.com/sharer.php?u=serene.tk/' + locationURL + '" title="Facebook share" target="_blank"><i class="material-icons">share</i><em>Share</em></a></span></div></div></div></div>')
+                '<a target="_blank"  href ="https://www.google.com/maps/dir/?api=1&destination='+ locationAddress+'"><i class="material-icons" >directions</i><em>Directions</em></a><a class="facebook customer share" href="https://www.facebook.com/sharer.php?u=serene.tk/' + locationURL + '&quote='+ encodeURI(locationTitle)+'" title="Facebook share" target="_blank"><i class="material-icons">share</i><em>Share</em></a></span></div></div></div></div>')
         }
 
 
