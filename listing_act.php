@@ -143,7 +143,7 @@ $faqActive = "";
             <div class="list-main-wrap fl-wrap card-listing scroller">
                 <!--                <a class="custom-scroll-link back-to-filters btf-l" href="#lisfw"><i class="fa fa-angle-double-up"></i><span>Back to Filters</span></a>-->
                 <div class="container">
-                    <div class="row filter_data ">
+                    <div class="row filter_data">
                         <!--Result from database will be here-->
                     </div>
                 </div>

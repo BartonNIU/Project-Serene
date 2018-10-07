@@ -86,7 +86,7 @@ if (isset($_SESSION['userinput']) || isset($_SESSION['inputDisorder'])){
         unset($_SESSION["inputDisorder"]);
     }
 
-    //session_destroy();
+    session_destroy();
 }
 
 //if(isset($_POST["postcode"], $_POST["suburb"]))
@@ -148,7 +148,7 @@ if (isset($_POST["check_c"])) {
 }
 $query .= " ORDER BY date_format ASC";
 $output = '';
-//echo $query;
+echo $query;
 $result = mysqli_query($connect, $query);
 if(mysqli_num_rows($result) > 0)
 {
@@ -197,7 +197,7 @@ if(mysqli_num_rows($result) > 0)
                                <!-- listing-item end-->';
         $index++;
     }
-    //echo $output;
+    echo $output;
 }
 else{
 
