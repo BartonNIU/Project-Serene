@@ -540,7 +540,7 @@ function initCitybook() {
 	            location: datacityw, //city and region *required 
 	            country: datacountryw,         //country *required 
 	            zmw : "02108.1.99999", 
-	            api: "yahoo", 
+	            api: "yahoo",
 	            view : "full", 
 	            lang: "en", //default: en only openweathermap supports translation (see below for supported languages)
 	            timeformat: "12", //"24" or "12" default: "12"

@@ -12,6 +12,7 @@ $keyword_main = "";
 $keyword_suburb = "";
 $keyword = "";
 $option = "";
+$search_text="";
 $query = "
 		SELECT * FROM activity WHERE activity_title !='' ";
 
@@ -190,12 +191,104 @@ if(mysqli_num_rows($result) > 0)
     echo $output;
 }
 else{
+
+    if(isset($_POST["disorder"])){
+        $search_text = $_POST["disorder"];
+
+        if (strpos($search_text, 'ASD') !== false) {
+            $search_text = "Autism Spectrum Disorder (ASD)";
+        }
+        else if (strpos($search_text, 'CDD') !== false) {
+            $search_text = "Oppositional Defiant Disorder (ODD)";
+        }
+        else if (strpos($search_text, 'CD') !== false) {
+            $search_text = "Conduct Disorder (CD)";
+        }
+        else if (strpos($search_text, 'ADHD') !== false) {
+            $search_text = "Attention Deficit Hyperactivity Disorder(ADHD)";
+        }
+    }
+
+
+    if (isset($_SESSION['inputDisorder'])){
+        $search_text = $_SESSION['inputDisorder'];
+
+        if (strpos($search_text, 'ASD') !== false) {
+            $search_text = "Autism Spectrum Disorder (ASD)";
+        }
+        else if (strpos($search_text, 'CDD') !== false) {
+            $search_text = "Oppositional Defiant Disorder (ODD)";
+        }
+        else if (strpos($search_text, 'CD') !== false) {
+            $search_text = "Conduct Disorder (CD)";
+        }
+        else if (strpos($search_text, 'ADHD') !== false) {
+            $search_text = "Attention Deficit Hyperactivity Disorder (ADHD)";
+        }
+        //session_destroy();
+    }
+
+
     echo'<p></p>';
     echo'<p></p>';
     echo'<p></p>';
     echo'<p></p>';
     echo'<p></p>';
     echo '<p> We apologize, there is no data found for your selection </p>';
+    echo '<p> Below is the results for activity related to <span>"'.$search_text.'"</span></p>';
+
+    $query = "
+		SELECT * FROM activity WHERE activity_title !='' ";
+
+
+    $result = mysqli_query($connect, $query);
+
+    $index = 0;
+    while($row = mysqli_fetch_array($result))
+    {
+        $actName = $row['activity_title'];
+        $orderPict = $row['id'];
+        $description = $row['description'] . ' ' . $actName;
+        $string = strip_tags($description);
+        if (strlen($string) > 180) {
+
+            // truncate string
+            $stringCut = substr($string, 0, 180);
+            $endPoint = strrpos($stringCut, ' ');
+
+            //if the string doesn't contain any space then it will cut without word basis.
+            $string = $endPoint? substr($stringCut, 0, $endPoint):substr($stringCut, 0);
+            $string .= '... <a href=detail_act.php?event='.urlencode($actName).' >Read More</a>';
+        }
+        ///$actName = str_replace("'"," ",$row['activity_title']);
+
+        $output .='
+                               <!-- listing-item -->
+                            <div class="listing-item list-layout">
+                                <article class="geodir-category-listing fl-wrap">
+                                <a href=detail_act.php?event='.urlencode($actName).'>
+                                    <div class="geodir-category-img">
+                                        <img src=picture/it3/act/Small/'.$orderPict.'.jpeg>
+                                        <div class="overlay"></div>
+                                        <div class="list-post-counter"><span>'.$row['date'].'</span><i class="fa fa-calendar"></i></div>
+                                    </div>
+                                </a>
+                                <div class="geodir-category-content fl-wrap" >                                     
+                                    <a class="listing-geodir-category">'. $row['fee'].'</a>
+                                      <h3><a href=detail_act.php?event='.urlencode($actName).' > '. $row['activity_title'].' </a></h3>
+                               
+                                                    <p id="map-item'.$index.'">'. $string.'</p>
+                                                    <div class="geodir-category-options fl-wrap">
+                                                      <div class="geodir-category-location"><a  href="#'.$index.'" class="map-item" ><i class="fa fa-map-marker" aria-hidden="true"></i>'. $row['address'].'</a></div>
+                                                    </div>
+                                            </div>
+                                 </article>
+                             </div>
+                             
+                               <!-- listing-item end-->';
+        $index++;
+    }
+    echo $output;
 }
 //}
 /* close connection */

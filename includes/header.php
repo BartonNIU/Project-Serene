@@ -37,8 +37,11 @@
     <script src="js/bootstrap-select.min.js"></script>
     <!--For AutoComplete-->
 
-
-
+    <!--For Chart-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <style>
         div.menu-item{
             float: left;
@@ -64,6 +67,54 @@
             overflow-x:hidden;
             padding: 5px;
             height: 100vh;
+        }
+
+        p.selected
+        {
+            font-size: 18px;
+            line-height: 24px;
+            padding-bottom: 10px;
+            font-weight:800;
+            color: #ffffff;
+        }
+
+        p.center-select
+        {
+            font-size: 14px;
+            line-height: 24px;
+            padding-bottom: 10px;
+            font-weight:800;
+            color: #666;
+            text-align: center;
+        }
+
+        p.justy-select
+        {
+            font-size: 16px;
+            line-height: 24px;
+            padding-bottom: 10px;
+            font-weight: 800;
+            color: #878C9F;
+            text-align: justify;
+        }
+
+        p.title
+        {
+            font-size: 16px;
+            line-height: 24px;
+            padding-bottom: 10px;
+            font-weight: 800;
+            color: #331423;
+            text-align: justify;
+        }
+
+        h3.justy{
+            font-size: 14px;
+            line-height: 24px;
+            padding-bottom: 10px;
+            font-weight: 800;
+            color: #878C9F;
+            text-align: justify;
         }
 
         popup{

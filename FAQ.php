@@ -125,7 +125,7 @@ $faqActive = "act-link";
                                                 • Low self-esteem
 
                                         </div>
-                                        <a class="toggle" href="#"> What are some of the characteristics of ADHD?<i class="fa fa-angle-down"></i></a>
+                                        <a class="toggle" href="#"> What are some of the characteristics of ASD?<i class="fa fa-angle-down"></i></a>
                                         <div class="accordion-inner">
                                             <p>There is a range of behaviours commonly linked with ASD. These may include:<br><br>
                                                 •	language – absent, delayed or abnormal developmental patterns <br><br>

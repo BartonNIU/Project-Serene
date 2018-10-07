@@ -2,8 +2,23 @@
 session_start();
 include "mysql_connect.php";
 
+
+$keyword_main = "";
+$keyword_suburb = "";
+$keyword = "";
 $query = "
 		SELECT * FROM explore WHERE place_name!='' ";
+$search = "";
+
+//textbox input for postcode at listing activity page
+if (isset($_POST['userinput_place']) && !empty($_POST["userinput_place"])){
+    $keyword = $_POST['userinput_place'];
+    $query .= " AND (post_code like '%$keyword%'or suburb like '%$keyword%')";
+    echo "+++++++++++++++++++++++";
+    echo $keyword;
+
+}
+
 
 if (isset($_SESSION["category"])){
     $keyword_main = $_SESSION['category'];
@@ -15,16 +30,18 @@ if (isset($_SESSION["category"])){
 }
 
 
-if(isset($_POST["action"]))
-{
+
+//if(isset($_POST["action"]))
+//{
 //    $query = "
 //		SELECT * FROM explore WHERE place_name!='' ";
 
     if(isset($_POST["query"]) && !empty($_POST["query"]))
     {
         $search = mysqli_real_escape_string($connect, $_POST["query"]);
+        $post = $search;
         $query .= "
-		 AND post_code LIKE '%".$search."%'  ";
+		 AND post_code LIKE '%".$post."%'  ";
     }
 
 
@@ -34,92 +51,92 @@ if(isset($_POST["action"]))
 //        print_r($_POST["category"]);
 //        echo $search_text;
 
-        $countCat= strlen($search_text);
+//        $countCat= strlen($search_text);
 //        echo $countCat;
-        if($countCat <= 3)
-        {
-            $query .= " AND category NOT IN (".$search_text.")
-            ";
-        }
+//        if($countCat <= 3)
+//        {
+//            $query .= " AND category NOT IN (".$search_text.")
+//            ";
+//        }
         //        print_r($search_text);
 
-        else{
+//        else{
             $query .= " AND category IN (".$search_text.")
             ";
-        }
+//        }
     }
 
-    if (isset($_POST["bus_stops"])) {
+    if (isset($_POST["check_bus_stops"])) {
         $query .= "
 		 AND bus_stops='Y' ";
     }
 
-    if (isset($_POST["trains_stops"])) {
+    if (isset($_POST["check_trains_stops"])) {
         $query .= "
 		 AND trains_stops='Y' ";
     }
 
-    if (isset($_POST["disabled_access"])) {
+    if (isset($_POST["check_disable"])) {
         $query .= "
 		 AND disabled_access='Y' ";
     }
 
-    if (isset($_POST["toilet"])) {
+    if (isset($_POST["check_toilet"])) {
         $query .= "
 		 AND public_toilet='Y' ";
     }
 
-    if (isset($_POST["fencing"])) {
+    if (isset($_POST["check_fencing"])) {
         $query .= "
 		 AND fencing='Y' ";
     }
 
-    if (isset($_POST["slides"])) {
+    if (isset($_POST["check_slide"])) {
         $query .= "
 		 AND slides='Y' ";
     }
 
-    if (isset($_POST["rockers"])) {
+    if (isset($_POST["check_rocker"])) {
         $query .= "
 		 AND rockers='Y' ";
     }
 
-    if (isset($_POST["climbers"])) {
+    if (isset($_POST["check_climber"])) {
         $query .= "
 		 AND climbers='Y' ";
     }
 
-    if (isset($_POST["see_saws"])) {
+    if (isset($_POST["check_saw"])) {
         $query .= "
 		 AND see_saws='Y' ";
     }
 
-    if (isset($_POST["swings"])) {
+    if (isset($_POST["check_swing"])) {
         $query .= "
 		 AND swings='Y' ";
     }
 
-    if (isset($_POST["liberty_swings"])) {
+    if (isset($_POST["check_liberty"])) {
         $query .= "
 		 AND liberty_swings='Y' ";
     }
 
-    if (isset($_POST["play_structure"])) {
+    if (isset($_POST["check_play"])) {
         $query .= "
 		 AND play_structure='Y' ";
     }
 
-    if (isset($_POST["chinup_bar"])) {
+    if (isset($_POST["check_chinup"])) {
         $query .= "
 		 AND chinup_bar='Y' ";
     }
 
-    if (isset($_POST["bells_chimes"])) {
+    if (isset($_POST["check_bell"])) {
         $query .= "
 		 AND bells_chimes='Y' ";
     }
 
-    if (isset($_POST["shade"])) {
+    if (isset($_POST["check_shade"])) {
         $query .= "
 		 AND shade='Y' ";
     }
@@ -187,7 +204,7 @@ if(isset($_POST["action"]))
         echo '<p> We apologize, there is no data found for your selection </p>';
     }
 
-}
+//}
 /* close connection */
 $connect->close();
 ?>

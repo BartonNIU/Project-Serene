@@ -16,9 +16,12 @@ $faqActive = "";
             <div class="media-container video-parallax" data-scrollax="properties: { translateY: '200px' }">
                 <div class="bg mob-bg" style="background-image: url(images/bg/1.jpg)"></div>
                 <div class="video-container">
-                    <video autoplay  loop muted  class="bgvid">
+                    <video playsinline autoplay loop muted autobuffer class="bgvid">
                         <source src="video/covervideo.mp4" type="video/mp4">
+<!--                        <source src="video/covervideo1.webm" type="video/webm">-->
                     </video>
+<!--                    <iframe width="1920" height="1024" src="https://www.youtube.com/embed/p66tof5hBPs?loop=1&autoplay=1">-->
+<!--                    </iframe>-->
                 </div>
 
             </div>
@@ -26,8 +29,8 @@ $faqActive = "";
             <div class="hero-section-wrap fl-wrap">
                 <div class="container">
                     <div class="intro-item fl-wrap">
-                        <h2>Find Activities and Play Areas </h2>
-                        <h3>To calm your behaviour issues child in and around Melbourne</h3>
+                        <h2>Do you have child with a behavioural disorder? </h2>
+                        <h3>Benefiting the child and nurture the relationship</h3>
                     </div>
                     <form method="post" action="listing_act.php">
                         <div class="main-search-input-wrap">
@@ -58,7 +61,7 @@ $faqActive = "";
         </section>
         <!-- section end -->
 
-        <a href="FAQ.php">
+<!--        <a href="FAQ.php">-->
         <section class="color-bg" id="sec4">
 
             <div class="shapes-bg-big"></div>
@@ -67,11 +70,11 @@ $faqActive = "";
                     <div class="col-md-6">
                         <div class="images-collage fl-wrap">
                             <div class="images-collage-title"><span>SERENE</span></div>
-                            <div class="images-collage-main images-collage-item"><img src="picture/home/6.jpeg" alt=""></div>
+                            <div class="images-collage-main images-collage-item"><img src="picture/faq/2.jpg" alt=""></div>
                             <div class="images-collage-other images-collage-item" data-position-left="23" data-position-top="10" data-zindex="2"><img src="picture/home/1.jpeg" alt=""></div>
                             <div class="images-collage-other images-collage-item" data-position-left="62" data-position-top="54" data-zindex="5"><img src="picture/home/3.jpeg" alt=""></div>
                             <div class="images-collage-other images-collage-item anim-col" data-position-left="18" data-position-top="70" data-zindex="11"><img src="picture/home/4.jpeg" alt=""></div>
-                            <div class="images-collage-other images-collage-item" data-position-left="37" data-position-top="90" data-zindex="1"><img src="picture/Activities/color.jpeg" alt=""></div>
+                            <div class="images-collage-other images-collage-item" data-position-left="37" data-position-top="90" data-zindex="1"><img src="picture/Activities/a.jpeg" alt=""></div>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -85,7 +88,7 @@ $faqActive = "";
             </div>
 
         </section>
-        </a>
+<!--        </a>-->
 
         <!--section -->
         <section>
@@ -93,7 +96,7 @@ $faqActive = "";
                 <div class="section-title">
                     <h2>How it WORKS?</h2>
                     <span class="section-separator"></span>
-                    <p>We help you to find and locate activities specially catered towards children with behavioural issues</p>
+                    <p>We help you to find and locate activities specifically catered towards children with behavioural issues</p>
                 </div>
                 <!--process-wrap  -->
                 <div class="process-wrap fl-wrap">
@@ -126,7 +129,7 @@ $faqActive = "";
                                 <div class="process-item">
                                     <span class="process-count">03 .</span>
                                     <div class="time-line-icon"><i class="fa fa-heart-o"></i></div>
-                                    <h4>For parents</h4>
+                                    <h4>For Parents</h4>
                                     <p>Look up activities specially catered to parents with special needs children, that help you understand their behavious and provide you with skills to calm them</p>
                                 </div>
                             </a>

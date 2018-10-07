@@ -25,11 +25,16 @@ $faqActive = "";
                     <div class="listsearch-header fl-wrap" id="cat">
                         <!--Showing List Result Title-->
                         <?php
-                        if($_POST['category'] != "") {
-                            echo '<h3>List For : <span>'.$_POST['category'].'</span></h3>';
+                        if($_GET['category'] != "") {
+                            echo '<h3>EXPLORE PARKS and AMENITIES</h3>';
+
+                            echo '<br><br><br>';
+                            echo '<h3>List For : <span>'.$_GET['category'].'</span></h3>';
+
+
                         }
-                        elseif ($_POST['category'] == ""){
-                            echo '<h3>Explore Parks and Amenities</span></h3>';
+                        elseif ($_GET['category'] == ""){
+                            echo '<h3>EXPLORE PARKS and AMENITIES</span></h3>';
                         }
                         ?>
                         <!--End of Showing List Result Title-->
@@ -41,7 +46,7 @@ $faqActive = "";
                             </ul>
                         </div>
                     </div>
-                    <form  id= "pageinput">
+                    <form id="pageinput">
                     <!-- listsearch-input-wrap  -->
                     <!-- Insert Postcode  -->
                     <div class="listsearch-input-wrap fl-wrap">
@@ -247,10 +252,12 @@ $faqActive = "";
             $.ajax({
                 url:"fetch.php",
                 method:"POST",
-                data:{action:action, query:query, disabled_access:disabled_access, toilet:toilet, fencing:fencing,
-                    slides:slides, category:category, rockers:rockers,climbers:climbers, see_saws:see_saws,
-                    swings:swings,liberty_swings:liberty_swings,play_structure:play_structure,
-                    chinup_bar:chinup_bar, bells_chimes:bells_chimes, shade:shade, bus_stops:bus_stops, trains_stops:trains_stops},
+                // data:{action:action, query:query, disabled_access:disabled_access, toilet:toilet, fencing:fencing,
+                //     slides:slides, category:category, rockers:rockers,climbers:climbers, see_saws:see_saws,
+                //     swings:swings,liberty_swings:liberty_swings,play_structure:play_structure,
+                //     chinup_bar:chinup_bar, bells_chimes:bells_chimes, shade:shade, bus_stops:bus_stops, trains_stops:trains_stops},
+                // data:$("#pageinput").serialize(),
+                data:$("#pageinput").serialize(),category:category,
                 success:function(data){
                     $('.filter_data').html(data);
                 }

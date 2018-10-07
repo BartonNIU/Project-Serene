@@ -75,7 +75,7 @@ $faqActive = "";
                         <div class="listsearch-input-wrap fl-wrap">
                             <div class="listsearch-input-item">
                                 <i class="mbri-key single-i"></i>
-                                <input type="text" name="userinput_activity" placeholder="Search by Postcode" value="" id="search_text" onchange="ajaxSearch_activity()"/>
+                                <input type="text" name="userinput_activity" placeholder="Search by Postcode or Suburb" value="" id="search_text" onchange="ajaxSearch_activity()"/>
                             </div>
 
 
@@ -93,7 +93,7 @@ $faqActive = "";
 
                             <div class="listsearch-input-item">
                                 <select name="disorder" data-placeholder="All Behavioral Disorders" class="chosen-select" id="disorder" >
-                                    <option value="All Disorder">All Behavioral Disorders</option>
+                                    <option value="All Behavioral Disorders">All Behavioral Disorders</option>
                                     <option value="ASD">Autism Spectrum Disorder (ASD)</option>
                                     <option value="CDD">Oppositional Defiant Disorder (ODD)</option>
                                     <option value="CD">Conduct Disorder (CD)</option>
@@ -126,11 +126,11 @@ $faqActive = "";
             </div>
             <?php
                 $tempPostcode = $_POST['userinput_activity'];
-                echo "-----";
-                echo $disorder;
-                echo $_POST['userinput_activity'];
-                echo "and";
-                echo $postcode;
+//                echo "-----";
+//                echo $disorder;
+//                echo $_POST['userinput_activity'];
+//                echo "and";
+//                echo $postcode;
              if($tempPostcode != "")
              {
                  $postcode = $tempPostcode;
