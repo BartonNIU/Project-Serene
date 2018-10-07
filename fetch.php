@@ -180,12 +180,12 @@ if (isset($_SESSION["category"])){
                                          <a class="listing-geodir-category">'. $row['category'] .'</a>
                                           <h3><a href=detail_place.php?place='.urlencode($placeName).' > '. $row['place_name'].' </a></h3>
   
-                                          <p>'. $string.'</p>
+                                          <p id="map-item'.$index.'">'. $string.'</p>
                                           <div class="geodir-category-options fl-wrap">
                                           
                                       
                       
-                                            <div class="geodir-category-location"><a  href="#'.$index.'" class="map-item" id="map-item'.$index.'"><i class="fa fa-map-marker" aria-hidden="true"></i>'. $row['address'].'</a></div>
+                                            <div class="geodir-category-location"><a  href="#'.$index.'" class="map-item" ><i class="fa fa-map-marker" aria-hidden="true"></i>'. $row['address'].'</a></div>
                                           </div>
                                        </div>
                                    </article>

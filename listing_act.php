@@ -53,10 +53,10 @@ $faqActive = "";
                         ?>
 
                         <?php
-                        if($_POST['value'] != "") {
-                            echo '<h3>Results For : <span>'.$_POST['value'].'</span></h3>';
+                        if($_GET['value'] != "") {
+                            echo '<h3>Results For : <span>'.$_GET['value'].'</span></h3>';
                         }
-                        elseif ($_POST['value'] == ""){
+                        elseif ($_GET['value'] == ""){
                             echo '<h3>Activities For Children With Behavioral Issues</span></h3>';
                         }
                         ?>
@@ -73,13 +73,13 @@ $faqActive = "";
                     <form id= "pageinput">
                         <!-- listsearch-input-wrap  -->
                         <div class="listsearch-input-wrap fl-wrap">
-                            <div class="listsearch-input-item">
+                            <div class="listsearch-input-item input">
                                 <i class="mbri-key single-i"></i>
                                 <input type="text" name="userinput_activity" placeholder="Search by Postcode or Suburb" value="" id="search_text" onchange="ajaxSearch_activity()"/>
                             </div>
 
 
-                            <div class="listsearch-input-item">
+                            <div class="listsearch-input-item budget">
                                 <select name="value" data-placeholder="All Range Budgets" class="chosen-select" id="value" onchange="ajaxSearch_activity()">
                                     <option value="All Budget Ranges">All Budget Ranges</option>
                                     <option value="Free">Free</option>
@@ -91,7 +91,7 @@ $faqActive = "";
                                 <input type="hidden" name="hidden_category" id="hidden_category" />
                             </div>
 
-                            <div class="listsearch-input-item">
+                            <div class="listsearch-input-item disorder">
                                 <select name="disorder" data-placeholder="All Behavioral Disorders" class="chosen-select" id="disorder" >
                                     <option value="All Behavioral Disorders">All Behavioral Disorders</option>
                                     <option value="ASD">Autism Spectrum Disorder (ASD)</option>
@@ -116,7 +116,7 @@ $faqActive = "";
 
                             <!-- hidden-listing-filter end -->
                             <br/><br/><br/><br/>
-                            <button name="submit" type="submit" class="button fs-map-btn">Clear Selections</button>
+                            <button  type="button" class="button fs-map-btn" onclick="ajaxSearch_activity()">Update</button>
 
                             <div class="more-filter-option">More Filters <span></span></div>
                         </div>

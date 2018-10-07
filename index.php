@@ -14,7 +14,7 @@ $faqActive = "";
         <!--section -->
         <section class="scroll-con-sec hero-section" data-scrollax-parent="true" id="sec1">
             <div class="media-container video-parallax" data-scrollax="properties: { translateY: '200px' }">
-                <div class="bg mob-bg" style="background-image: url(images/bg/1.jpg)"></div>
+<!--                <div class="bg mob-bg" style="background-image: url(images/bg/1.jpg)"></div>-->
                 <div class="video-container">
                     <video playsinline autoplay loop muted autobuffer class="bgvid">
                         <source src="video/covervideo.mp4" type="video/mp4">
@@ -63,7 +63,6 @@ $faqActive = "";
 
 <!--        <a href="FAQ.php">-->
         <section class="color-bg" id="sec4">
-
             <div class="shapes-bg-big"></div>
             <div class="container">
                 <div class="row">

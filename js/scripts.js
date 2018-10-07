@@ -507,6 +507,8 @@ function initCitybook() {
     });
  
 	 $('.chosen-select').niceSelect();
+    //$('.chosen-select').multiselect();
+
     $('input[type="range"].distance-radius').rangeslider({
         polyfill: false,
         onInit: function () {
@@ -542,7 +544,7 @@ function initCitybook() {
 	            zmw : "02108.1.99999", 
 	            api: "yahoo",
 	            view : "full", 
-	            lang: "en", //default: en only openweathermap supports translation (see below for supported languages)
+	            //lang: "en", //default: en only openweathermap supports translation (see below for supported languages)
 	            timeformat: "12", //"24" or "12" default: "12"
 	            displayCityNameOnly : false, //default: false (true/false) if you want to display only city name
 	            forecast: 5, //default: 5 (0 -5) how many days you want forecast

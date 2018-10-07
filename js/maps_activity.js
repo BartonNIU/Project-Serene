@@ -17,13 +17,13 @@ function mainMap(locations) {
     function locationData(locationURL, locationCategory, locationTitle, locationAddress, locationTime) {
         //return ('<div class="map-popup-wrap"><div class="map-popup"><div class="infoBox-close"><i class="fa fa-times"></i></div><div class="map-popup-category">' + locationCategory + '</div><a href="' + locationURL + '" class="listing-img-content fl-wrap"></a> <div class="listing-content fl-wrap"><div class="listing-title fl-wrap"><h4><a href=' + locationURL + '>' + locationTitle + '</a></h4><span class="map-popup-location-info"><i class="fa fa-map-marker"></i>' + locationAddress + '</span></div></div></div></div>')
         return ('<div class="map-popup-wrap"><div class="map-popup"><div class="listing-content fl-wrap"><div class="infoBox-close"><i class="fa fa-times"></i></div>' +
-            '<div class="listing-title fl-wrap"><h4><a href=' + locationURL + '>' + locationTitle + '</a></h4>' +
+            '<div class="listing-title fl-wrap"><h4><a target="_blank" href=' + locationURL + '>' + locationTitle + '</a></h4>' +
             '<span class="map-popup-location-info"><i class="material-icons">place</i>' + locationAddress + '</span>'+
             '<span class="map-popup-location-info"><i class="material-icons">event_available</i>' + locationTime + '</span></div>' +
             '<span class="map-popup-direction">' +
             '<a class="google customer directions"  target="_blank"  href ="https://www.google.com/maps/dir/?api=1&destination='+ locationAddress+'">' +
             '<i class="material-icons">directions</i><em>Directions</em></a>' +
-            '<a class="facebook customer share" href="https://www.facebook.com/sharer.php?u=serene.tk/' + locationURL + '" title="Facebook share" target="_blank">' +
+            '<a class="facebook customer share" href="https://www.facebook.com/sharer.php?u=serene.tk/' + locationURL + '&quote='+ encodeURI(locationTitle)+'" title="Facebook share" target="_blank">' +
             '<i class="material-icons">share</i><em>Share</em></a></span></div></div></div></div>')
     }
 
@@ -33,7 +33,7 @@ function mainMap(locations) {
     var map = new google.maps.Map(document.getElementById('map-main'), {
             zoom: 12,
             scrollwheel: false,
-            center: eval("("+locations[0]["coordinates"]+")"), // eval("("+center_location+")"),//{lat: -37.8136, lng: 144.9621},
+            center: {lat: -37.8136, lng: 144.9621},//eval("("+locations[0]["coordinates"]+")"), // eval("("+center_location+")"),//
             mapTypeId: google.maps.MapTypeId.ROADMAP,
             zoomControl: false,
             mapTypeControl: false,
@@ -99,7 +99,7 @@ function mainMap(locations) {
             return function () {
                 ib.setOptions(boxOptions);
                 // the code below is for showing the popup on map
-                boxText.innerHTML = locationData("detail_act.php?event="+ encodeURI(locations[i]["activity_title"]), locations[i]["audience"], locations[i]["activity_title"], locations[i]["address"], locations[i]["date"]+ ",   "+ locations[i]["time"]);
+                boxText.innerHTML = locationData("detail_act.php?event="+ encodeURI(locations[i]["activity_title"]), locations[i]["audience"], locations[i]["activity_title"],  locations[i]["address"], locations[i]["start"]+ ",   "+locations[i]["date"]);
                 ib.close();
                 ib.open(map, marker);
                 currentInfobox = marker.id;
@@ -114,12 +114,12 @@ function mainMap(locations) {
                     $('#map-item' + currentInfobox)[0].style.color= '#5ad3ff';
                     setTimeout(function() {
                         //$('#map-item' + currentInfobox)[0].style.backgroundColor = '#FFF';
-                        setTimeout(function() {
+                        //setTimeout(function() {
                             $('#map-item' + currentInfobox)[0].style.color= '#999';
 
-                        },500)
-                        $('#map-item' + currentInfobox)[0].style.color= '#e474c9';
-                    },500);
+                        },1000)
+                        //$('#map-item' + currentInfobox)[0].style.color= '#e474c9';
+                   // },500);
                 }
                 google.maps.event.addListener(ib, 'domready', function () {
                     $('.infoBox-close').click(function (e) {
@@ -183,6 +183,7 @@ function mainMap(locations) {
         } else {
             google.maps.event.trigger(allMarkers[0], 'click');
         }
+        console.log("next index is: " + index);
     });
     $('.prevmap-nav').click(function (e) {
         e.preventDefault();
@@ -198,12 +199,15 @@ function mainMap(locations) {
             }
         }
     });
+
+   // $(function(){
     $('.map-item').click(function (e) {
-        e.preventDefault();
+        //e.preventDefault();
         map.setZoom(15);
-        //var index = currentInfobox;
+        var index = currentInfobox;
+        //console.log("marker index1 is: "+index);
         var marker_index = parseInt($(this).attr('href').split('#')[1], 10);
-        console.log(marker_index);
+        console.log("marker index2 is: "+ marker_index);
         google.maps.event.trigger(allMarkers[marker_index], "click");
         // if ($(this).hasClass("scroll-top-map")) {
         //     $('html, body').animate({
@@ -216,6 +220,7 @@ function mainMap(locations) {
         //     }, 500)
         // }
     });
+   // });
 
     var zoomControlDiv = document.createElement('div');
     var zoomControl = new ZoomControl(zoomControlDiv, map);
@@ -243,7 +248,7 @@ function mainMap(locations) {
 } //This is the end of main map
 
 
-function normalMap(){
+//function normalMap(){
     $.get("response_activity.php",function(data){
         var locations = JSON.parse(data);
         mainMap(locations);
@@ -256,12 +261,12 @@ function normalMap(){
 //         //     console.log(marker_index);
 //         //     google.maps.event.trigger(allMarkers[marker_index], "click");});
    });
-}
+//}
 
-$(function(){
-        normalMap();
-
-});
+// $(function(){
+//         normalMap();
+//
+// });
 
 
 
