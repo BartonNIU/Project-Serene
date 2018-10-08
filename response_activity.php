@@ -10,6 +10,7 @@ $keyword_main = "";
 $keyword = "";
 $budget = "";
 $disorder="";
+$disorderInput="";
 $check_p = "";
 $check_c = "";
 
@@ -57,10 +58,10 @@ if (isset($_POST['disorder'])){
 }
 
 
-if (isset($_SESSION['userinput'])){
+if (isset($_SESSION['userinput']) || isset($_SESSION['inputDisorder'])){
     $keyword_main = $_SESSION['userinput'];
     if( strpos($keyword_main, ",") !== false ) {
-        $keyword_main = explode(",",$keyword_main)[0];
+        $keyword_main = explode(",",$keyword_main)[1];
         //echo "keyword is:".$keyword_main;
     }
     if ($keyword != "" || $option !="") {
@@ -183,8 +184,43 @@ if (mysqli_num_rows($result) > 0) {
     }
 }
 else {
+
+    $sql = "SELECT * FROM activity where suburb like '%%'";
+    if (isset($_POST['disorder'])) {
+        if ($disorder == "ASD") { //strpos($disorder, 'ASD') !== false) {
+            $sql .= " AND asd='Y' ";
+        }
+        if (strpos($disorder, 'CDD') !== false) {
+            $sql .= " AND odd='Y' ";
+        }
+        if ($disorder == "CD") {//(strpos($disorder, 'CD') !== false) {
+            $sql .= " AND cd='Y' ";
+        }
+        if ($disorder == "ADHD") {//(strpos($disorder, 'ADHD') !== false) {
+            $sql .= " AND adhd='Y' ";
+        }
+    }
+//    else {
+//        if (strpos($disorderInput, 'ASD') !== false) {
+//            $sql .= " AND asd='Y' ";
+//        }
+//        if (strpos($disorderInput, 'CDD') !== false) {
+//            $sql .= " AND odd='Y' ";
+//        }
+//        if (strpos($disorderInput, 'CD') !== false) {
+//            $sql .= " AND cd='Y' ";
+//        }
+//        if (strpos($disorderInput, 'ADHD') !== false) {
+//            $sql .= " AND adhd='Y' ";
+//        }
+//    }
+    $result = mysqli_query($connect, $sql);
+    while($record = mysqli_fetch_assoc($result)) {
+        $rows[] = $record;
+        //echo json_encode ($record);
+    }
     //$rows = [["audience" => "","activity_title" => "","address" => "Melbourne","coordinates" => "{lat: -37.8136, lng: 144.9621}"]];
-    $rows = [];
+   // $rows = [];
 
     //echo "query no result";
 }

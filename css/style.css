@@ -987,7 +987,7 @@ section.gray-section .section-separator {
 }
 .main-search-input-item  .nice-select .list {
 	width:100%;
-	padding: 60px 12px 10px;
+	padding: 12px 12px 10px;
     background: #fff;
     border-radius: 4px;
 	max-height: 180px;
@@ -1904,7 +1904,7 @@ section.gray-section .section-separator {
 	position:relative;
 }
 .category{
-	width:30.3%;
+	width:42.3%;
 }
 .input {
 	width:30.3%;
@@ -1937,7 +1937,7 @@ section.gray-section .section-separator {
 .listsearch-input-item .nice-select .list {
 	float:left;
 	width:100%;
-	padding: 12px 12px 10px;
+	padding: 12px 6px 10px;
     background: #fff;
     border: 1px solid #eee;
     border-radius: 4px;
@@ -1997,7 +1997,7 @@ section.gray-section .section-separator {
 .fs-map-btn {
 	border:none;
 	float:left;
-	padding:15px 45px;
+	padding:16px 45px;
 	border-radius:4px;
 	color:#fff;
 	cursor:pointer;

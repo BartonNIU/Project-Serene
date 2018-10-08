@@ -9,13 +9,14 @@ $keyword = "";
 $query = "
 		SELECT * FROM explore WHERE place_name!='' ";
 $search = "";
+$search_text = "" ;
 
 //textbox input for postcode at listing activity page
 if (isset($_POST['userinput_place']) && !empty($_POST["userinput_place"])){
     $keyword = $_POST['userinput_place'];
     $query .= " AND (post_code like '%$keyword%'or suburb like '%$keyword%')";
-    echo "+++++++++++++++++++++++";
-    echo $keyword;
+    //echo "+++++++++++++++++++++++";
+    //echo $keyword;
 
 }
 
@@ -47,7 +48,7 @@ if (isset($_SESSION["category"])){
 
     if(isset($_POST["category"]) && $_POST["category"] != '*'&& !empty($_POST["category"]) )
     {
-        $search_text = "'" . implode("', '", $_POST["category"]) . "'";
+        $search_text = '"' . implode('","', $_POST["category"]) . '"';
 //        print_r($_POST["category"]);
 //        echo $search_text;
 
@@ -142,7 +143,7 @@ if (isset($_SESSION["category"])){
     }
 
     $output = '';
-    echo $query;
+    //echo $query;
     $result = mysqli_query($connect, $query);
 
     if(mysqli_num_rows($result) > 0)
@@ -196,12 +197,76 @@ if (isset($_SESSION["category"])){
         echo $output;
     }
     else{
+        $show_text="";
+        $display_text="";
+        if($search_text==""){
+            $display_text="All Categories";
+           // $show_text = "'" . implode("', '", "All Categories") . "'";
+            $search_text = "'" . implode("', '", $display_text) . "'";
+        }else{
+            $show_text=$search_text;
+            $display_text = $search_text;
+        }
         echo'<p></p>';
         echo'<p></p>';
         echo'<p></p>';
         echo'<p></p>';
         echo'<p></p>';
         echo '<p> We apologize, there is no data found for your selection </p>';
+        echo '<p> Below is the results for PARKS and AMENITIES related to <span>"'.$display_text.'"</span></p>';
+
+
+
+        $query="SELECT * FROM explore where (category like '%$show_text%' or  category IN ($search_text))";
+        //echo $query;
+        $result = mysqli_query($connect, $query);
+        $index =0;
+        while($row = mysqli_fetch_array($result))
+        {
+            $orderPict = $row['id'];
+            $placeName = $row['place_name'];
+
+            $description = $row['description'] . ' ' . $placeName;
+            $string = strip_tags($description);
+            if (strlen($string) > 200) {
+
+                // truncate string
+                $stringCut = substr($string, 0, 200);
+                $endPoint = strrpos($stringCut, ' ');
+
+                //if the string doesn't contain any space then it will cut without word basis.
+                $string = $endPoint? substr($stringCut, 0, $endPoint):substr($stringCut, 0);
+                $string .= '... <a href=detail_place.php?place='.urlencode($placeName).' >Read More</a>';
+            }
+
+            $output .='
+                                <!-- listing-item -->
+                             <div class="listing-item list-layout">
+                                <article class="geodir-category-listing fl-wrap">
+                                <a href=detail_place.php?place='.urlencode($placeName).'>
+                                  <div class="geodir-category-img">
+                                    <img src=picture/it3/exp/Small/'.$orderPict.'.jpeg>
+                                    <div class="overlay"></div>
+                                    </div>
+                                    </a>
+                                       <div class="geodir-category-content fl-wrap">
+                                         <a class="listing-geodir-category">'. $row['category'] .'</a>
+                                          <h3><a href=detail_place.php?place='.urlencode($placeName).' > '. $row['place_name'].' </a></h3>
+  
+                                          <p id="map-item'.$index.'">'. $string.'</p>
+                                          <div class="geodir-category-options fl-wrap">
+                                          
+                                      
+                      
+                                            <div class="geodir-category-location"><a  href="#'.$index.'" class="map-item" ><i class="fa fa-map-marker" aria-hidden="true"></i>'. $row['address'].'</a></div>
+                                          </div>
+                                       </div>
+                                   </article>
+                               </div>
+                               <!-- listing-item end-->';
+            $index++;
+        }
+        echo $output;
     }
 
 //}

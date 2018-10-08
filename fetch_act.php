@@ -60,7 +60,7 @@ if (isset($_SESSION['userinput']) || isset($_SESSION['inputDisorder'])){
         $keyword_main = explode(", ",$keyword_main)[1]; //postcode
 
     }
-    if ($keyword != "" || $option != 'All Budget Ranges') {
+    if ($keyword != "" || $option != 'All Budget Ranges' ) {
         $keyword_main="";
         unset($_SESSION["userinput"]);
     }
@@ -86,7 +86,7 @@ if (isset($_SESSION['userinput']) || isset($_SESSION['inputDisorder'])){
         unset($_SESSION["inputDisorder"]);
     }
 
-    session_destroy();
+    //session_destroy();
 }
 
 //if(isset($_POST["postcode"], $_POST["suburb"]))

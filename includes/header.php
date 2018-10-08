@@ -28,13 +28,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <!--For Checkbox Filter-->
-    <script src="js/jquery-1.10.2.min.js"></script>
+    <script src="js/jquery.min.js"></script>
     <script src="js/jquery-ui.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    <!--=============== css  ===============-->
-    <!--For Multiselect Drop down Filter-->
+<!--    =============== css  ===============-->
+<!--    For Multiselect Drop down Filter-->
     <link href="css/bootstrap-select.min.css" rel="stylesheet" />
     <script src="js/bootstrap-select.min.js"></script>
+
+    <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css">
+    <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
     <!--For AutoComplete-->
 
     <!--For Chart-->

@@ -46,13 +46,13 @@ $faqActive = "";
                             </ul>
                         </div>
                     </div>
-                    <form  id= "pageinput" method="post">
+                    <form  id= "pageinput" >
                     <!-- listsearch-input-wrap  -->
                     <!-- Insert Postcode  -->
                     <div class="listsearch-input-wrap fl-wrap">
                         <div class="listsearch-input-item">
                             <i class="mbri-key single-i"></i>
-                            <input type="text" name="userinput_place" placeholder="Postcode or Suburb" value="" id="search_text" onchange="ajaxSearch_place()">
+                            <input type="text" name="userinput_place" placeholder="Search by Postcode" value="" id="search_text" onchange="ajaxSearch_place()">
                         </div>
 
                         <!-- Select Category  -->
@@ -68,6 +68,7 @@ $faqActive = "";
                             </select>
                             <input type="hidden" name="hidden_category" id="hidden_category" />
                         </div>
+                        <button type="button" class="button fs-map-btn" onclick="ajaxSearch_place()">Update</button>
                         <?php
 
 
@@ -141,7 +142,6 @@ $faqActive = "";
                                 </ul>
                             </div>
                         </div>
-                        <button type="button" class="button fs-map-btn" onclick="ajaxSearch_place()">Update</button>
                         <!-- hidden-listing-filter end -->
                         <br/><br/><br/><br/>
 
@@ -185,7 +185,7 @@ $faqActive = "";
 </div>
 <!-- Main end -->
 <!--=============== scripts  ===============-->
-<!--<script type="text/javascript" src="js/jquery.min.js"></script>-->
+<script type="text/javascript" src="js/jquery.min.js"></script>
 <script type="text/javascript" src="js/plugins.js"></script>
 <script type="text/javascript" src="js/scripts.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6uvEZqkQXhf_Ai-vj50Phw-zMEaw7zLo"></script>
@@ -297,6 +297,14 @@ $faqActive = "";
 
             filter_data();
         });
+
+        $('#pageinput').on('keyup keypress', function(e) {
+            var keyCode = e.keyCode || e.which;
+            if (keyCode === 13) {
+                e.preventDefault();
+                return false;
+            }
+        });
     });
 
     // function listname_ajax(){
@@ -304,6 +312,9 @@ $faqActive = "";
     //         $('#cat').html('<h3>List For : <span>' + data + '</span>');
     //     })
     // }
+
+
+
 </script>
 
 

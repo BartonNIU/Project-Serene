@@ -90,10 +90,24 @@ if (isset($_POST['category'])){
 
     }
     else {
-        //
+//        $postcode = array();// $keyword;
+//        for ($i = -10; $i<=10; $i++){
+//            $newPostcode = (int)$keyword + $i;
+//            array_push($postcode,$newPostcode);
+//        }
+//        $postcodeList = "'" . implode("', '", $postcode) . "'";
+//        //echo "postcodeList is :".$postcodeList;
+//        $keyword = "";  // to avoid the influence from userinput postcode
+        $sql = "SELECT * FROM explore where category in ($option)";
+        //$sql .= " where post_code in ($postcodeList)";
+        $result = mysqli_query($connect, $sql);
+        while($record = mysqli_fetch_assoc($result)) {
+                $rows[] = $record;
+                //echo json_encode ($record);
+        }
         //$rows = [["categoty" => "","place_name" => "","address" => "Melbourne","coordinates" => "{lat: -37.8136, lng: 144.9621}"]];
         //$rows = [];
-        echo "query no result";
+        //echo "query no result";
     }
 
 echo json_encode($rows);  // pass data to javascript for map markers

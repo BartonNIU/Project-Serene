@@ -507,6 +507,7 @@ function initCitybook() {
     });
  
 	 $('.chosen-select').niceSelect();
+    //$('.chosen-select-explore').niceSelectCategory();
     //$('.chosen-select').multiselect();
 
     $('input[type="range"].distance-radius').rangeslider({
