@@ -1,5 +1,5 @@
 # Project-Serene
-> [Live Site here] (http://serene.tk)
+> [Live Site here](http://serene.tk)
 ## Features
 * Search activities and places based on location.
 * All activities and places are shown as a list on the page and as markers on the map.
